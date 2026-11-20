@@ -1,4 +1,4 @@
-# Keep the exact bytes of the CSV files: BULK INSERT expects CRLF row terminators and a UTF-8 BOM.
+# Keep the exact bytes of the CSV fixtures (UTF-8 with BOM, CRLF), so they stay identical to what the pipeline writes.
 *.csv   -text
 *.txt   -text
 # Text files use LF in the repository.

@@ -25,7 +25,7 @@ Each item says what was decided and why. Items marked **verify** are assumptions
 13. **Staging is text.** Every staging column is `varchar` in a UTF-8 database collation, so a bad value never stops a load; typing happens in the ETL, which fails loudly on inner-join losses (row counts are reconciled by tests).
 14. **No `pyodbc`.** Loading uses `sqlcmd` inside the container, so the project needs only Docker and the Python standard library (plus `pandas`/`openpyxl` for profiling and Cochilco).
 15. **TOML, not YAML.** `config.toml` is read with `tomllib` (Python 3.11+), avoiding a dependency.
-16. **CSV bytes are preserved** (`.gitattributes`): `BULK INSERT` expects CRLF row terminators and Git must not rewrite them.
+16. **CSV bytes are preserved** (`.gitattributes`): the fixtures stay byte-identical to what the pipeline writes (UTF-8 with BOM, CRLF). The loader reads them with Python's `csv` module, so line endings no longer matter for `BULK INSERT`.
 17. **No data in Git.** The MSHA page states no license, the raw files are 3.5 GB, and they change weekly. The pipeline downloads them; `data/manifest.json` records the snapshot.
 
 ## Power BI
