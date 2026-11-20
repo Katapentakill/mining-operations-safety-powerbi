@@ -1,0 +1,49 @@
+table GradoLesion
+
+	column 'Clave de grado'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: injury_degree_key
+
+	column 'Código de grado'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: degree_code
+
+	column 'Grado (descripción MSHA)'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: degree_desc
+
+	column 'Grado de lesión'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: degree_es
+		sortByColumn: 'Código de grado'
+
+	column 'Es fatalidad'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_fatality
+
+	column 'Con tiempo perdido'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_lost_time
+
+	column 'Cuenta como lesión'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: counts_as_injury
+
+	partition GradoLesion = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="dim_injury_degree"]}[Data]
+			in
+				Vista

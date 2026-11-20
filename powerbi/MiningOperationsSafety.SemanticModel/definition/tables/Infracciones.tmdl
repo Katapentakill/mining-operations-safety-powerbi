@@ -1,0 +1,173 @@
+table Infracciones
+
+	measure Infracciones =
+			COUNTROWS(Infracciones)
+		formatString: #,0
+		displayFolder: 1 Infracciones
+
+	measure 'Infracciones S&S' =
+			CALCULATE([Infracciones], PerfilInfraccion[Significativa y sustancial] = "Yes")
+		formatString: #,0
+		displayFolder: 1 Infracciones
+
+	measure '% S&S' =
+			DIVIDE([Infracciones S&S], [Infracciones])
+		formatString: 0.0%
+		displayFolder: 1 Infracciones
+
+	measure 'Personas afectadas' =
+			SUM(Infracciones[Personas afectadas (registro)])
+		formatString: #,0
+		displayFolder: 1 Infracciones
+
+	measure 'Días promedio para corregir' =
+			AVERAGE(Infracciones[Días para corregir (registro)])
+		formatString: 0.0
+		displayFolder: 1 Infracciones
+
+	measure 'Infracciones con multa' =
+			CALCULATE([Infracciones], Infracciones[Tiene multa] = TRUE())
+		formatString: #,0
+		displayFolder: 2 Multas
+
+	measure 'Multa propuesta' =
+			SUM(Infracciones[Multa propuesta (registro)])
+		formatString: $ #,0
+		displayFolder: 2 Multas
+
+	measure 'Multa vigente' =
+			SUM(Infracciones[Multa vigente (registro)])
+		formatString: $ #,0
+		displayFolder: 2 Multas
+
+	measure 'Multa pagada' =
+			SUM(Infracciones[Multa pagada (registro)])
+		formatString: $ #,0
+		displayFolder: 2 Multas
+
+	measure '% de multa pagada' =
+			DIVIDE([Multa pagada], [Multa vigente])
+		formatString: 0.0%
+		displayFolder: 2 Multas
+
+	measure 'Multa promedio' =
+			DIVIDE([Multa vigente], [Infracciones con multa])
+		formatString: $ #,0
+		displayFolder: 2 Multas
+
+	column 'Clave de infracción'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: violation_key
+
+	column 'N.º de evento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: event_no
+
+	column 'N.º de infracción'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: violation_no
+
+	column mine_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: mine_key
+
+	column date_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column company_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: company_key
+
+	column standard_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: standard_key
+
+	column violation_profile_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: violation_profile_key
+
+	column 'Fecha de emisión'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: issue_date
+
+	column 'Fecha de ocurrencia'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: occurrence_date
+
+	column 'Fecha de término'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: termination_date
+
+	column 'Fecha de orden final'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: final_order_date
+
+	column 'Días para corregir (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: days_to_terminate
+
+	column 'Personas afectadas (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: people_affected
+
+	column 'Tiene multa'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: has_assessment
+
+	column 'Multa propuesta (registro)'
+		dataType: decimal
+		formatString: $ #
+		isHidden
+		summarizeBy: none
+		sourceColumn: proposed_penalty
+
+	column 'Multa vigente (registro)'
+		dataType: decimal
+		formatString: $ #
+		isHidden
+		summarizeBy: none
+		sourceColumn: current_assessment
+
+	column 'Multa pagada (registro)'
+		dataType: decimal
+		formatString: $ #
+		isHidden
+		summarizeBy: none
+		sourceColumn: paid_penalty
+
+	partition Infracciones = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="fact_violation"]}[Data]
+			in
+				Vista

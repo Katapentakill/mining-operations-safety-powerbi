@@ -1,0 +1,44 @@
+table ProduccionCobre
+
+	measure 'Producción de cobre de mina (kt)' =
+			CALCULATE(SUM(ProduccionCobre[Producción (registro)]), ProduccionCobre[Es agregado] = FALSE())
+		formatString: #,0.0
+		displayFolder: Contexto Chile
+
+	column date_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column Mes
+		dataType: dateTime
+		formatString: MMM yyyy
+		summarizeBy: none
+		sourceColumn: month_start
+
+	column 'Faena o empresa'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: faena
+
+	column 'Es agregado'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_aggregate
+
+	column 'Producción (registro)'
+		dataType: decimal
+		formatString: #
+		isHidden
+		summarizeBy: none
+		sourceColumn: kt_fine_cu
+
+	partition ProduccionCobre = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="fact_cu_production_month"]}[Data]
+			in
+				Vista

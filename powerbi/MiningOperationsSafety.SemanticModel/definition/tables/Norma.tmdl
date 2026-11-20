@@ -1,0 +1,26 @@
+table Norma
+
+	column 'Clave de norma'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: standard_key
+
+	column 'Norma (sección CFR)'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: part_section
+
+	column 'Parte CFR'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cfr_part
+
+	partition Norma = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="dim_standard"]}[Data]
+			in
+				Vista

@@ -1,0 +1,27 @@
+table ParteCuerpo
+
+	column 'Clave de parte'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: body_part_key
+
+	column 'Código de parte'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: body_part_code
+
+	column 'Parte del cuerpo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: body_part_desc
+
+	partition ParteCuerpo = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="dim_body_part"]}[Data]
+			in
+				Vista

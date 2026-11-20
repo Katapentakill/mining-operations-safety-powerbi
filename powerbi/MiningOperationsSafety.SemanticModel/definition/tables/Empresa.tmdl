@@ -1,0 +1,32 @@
+table Empresa
+
+	column 'Clave de empresa'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: company_key
+
+	column 'ID controlador'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: controller_id
+
+	column 'Empresa controladora (al momento del evento)'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: controller_name
+
+	column 'Es la empresa analizada'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_target_company
+
+	partition Empresa = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="dim_company"]}[Data]
+			in
+				Vista

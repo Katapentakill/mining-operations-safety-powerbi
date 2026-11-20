@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+
+ref table Fecha
+ref table Mina
+ref table Empresa
+ref table AreaTrabajo
+ref table GradoLesion
+ref table TipoAccidente
+ref table Ocupacion
+ref table ParteCuerpo
+ref table NaturalezaLesion
+ref table Actividad
+ref table Equipo
+ref table Norma
+ref table PerfilInfraccion
+ref table Accidentes
+ref table Infracciones
+ref table Inspecciones
+ref table Plantilla
+ref table PrecioCobre
+ref table ProduccionCobre
+
+ref expression Servidor
+ref expression Base

@@ -1,0 +1,116 @@
+table Mina
+
+	column 'Clave de mina'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: mine_key
+
+	column 'ID de mina'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: mine_id
+
+	column Mina
+		dataType: string
+		summarizeBy: none
+		sourceColumn: mine_name
+
+	column 'Tipo de mina'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: mine_type
+
+	column 'Estado de la mina'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: mine_status
+
+	column Activa
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_active
+
+	column 'Fecha de estado'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: status_date
+
+	column 'Mineral principal'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: commodity
+
+	column 'Estado (EE.UU.)'
+		dataType: string
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: state
+
+	column Condado
+		dataType: string
+		summarizeBy: none
+		sourceColumn: county
+
+	column Latitud
+		dataType: decimal
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+	column Longitud
+		dataType: decimal
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+	column 'Tiene coordenadas'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: has_coordinates
+
+	column 'Empleados declarados'
+		dataType: int64
+		formatString: #
+		summarizeBy: none
+		sourceColumn: employees_reported
+
+	column 'ID controlador actual'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: current_controller_id
+
+	column 'Empresa controladora actual'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: current_controller_name
+
+	column 'ID operador actual'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: current_operator_id
+
+	column 'Operador actual'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: current_operator_name
+
+	hierarchy 'Ubicación'
+		level 'Estado (EE.UU.)'
+			column: 'Estado (EE.UU.)'
+		level Condado
+			column: Condado
+		level Mina
+			column: Mina
+
+	partition Mina = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="dim_mine"]}[Data]
+			in
+				Vista

@@ -1,0 +1,18 @@
+{
+  "name": "Copper Mining",
+  "dataColors": ["#B8602A", "#3E8E85", "#4F6D8F", "#D9B382", "#8A8D3F", "#C0392B", "#7A5C8E", "#A7ADB3"],
+  "background": "#FFFFFF",
+  "foreground": "#2B2F33",
+  "tableAccent": "#B8602A",
+  "good": "#3E8E85",
+  "neutral": "#D9B382",
+  "bad": "#C0392B",
+  "maximum": "#B8602A",
+  "center": "#D9B382",
+  "minimum": "#F3E6D5",
+  "textClasses": {
+    "title": {"fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#2B2F33"},
+    "label": {"fontFace": "Segoe UI", "fontSize": 10, "color": "#4A5058"},
+    "callout": {"fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#B8602A"}
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "p01_resumen",
+    "p02_accidentes",
+    "p03_infracciones",
+    "p04_plantilla",
+    "p05_mapa_detalle",
+    "p06_contexto_chile"
+  ],
+  "activePageName": "p01_resumen"
+}

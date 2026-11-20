@@ -1,0 +1,27 @@
+table TipoAccidente
+
+	column 'Clave de tipo'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: accident_type_key
+
+	column 'Código de tipo'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: accident_type_code
+
+	column 'Tipo de accidente'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: accident_type_desc
+
+	partition TipoAccidente = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="dim_accident_type"]}[Data]
+			in
+				Vista

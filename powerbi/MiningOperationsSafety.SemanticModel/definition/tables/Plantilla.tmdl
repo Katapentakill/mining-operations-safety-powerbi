@@ -1,0 +1,73 @@
+table Plantilla
+
+	measure 'Horas trabajadas' =
+			SUM(Plantilla[Horas trabajadas (registro)])
+		formatString: #,0
+		displayFolder: Plantilla
+
+	measure 'Empleados promedio' =
+			AVERAGEX(VALUES(Fecha[Año-Trimestre]), CALCULATE(SUM(Plantilla[Empleados promedio (registro)])))
+		formatString: #,0
+		displayFolder: Plantilla
+
+	measure 'Horas por empleado' =
+			DIVIDE([Horas trabajadas], [Empleados promedio])
+		formatString: #,0
+		displayFolder: Plantilla
+
+	column 'Clave de plantilla'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: workforce_key
+
+	column mine_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: mine_key
+
+	column work_area_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: work_area_key
+
+	column date_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column 'Año (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: calendar_year
+
+	column 'Trimestre (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: calendar_quarter
+
+	column 'Empleados promedio (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: avg_employees
+
+	column 'Horas trabajadas (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: hours_worked
+
+	partition Plantilla = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="fact_workforce"]}[Data]
+			in
+				Vista

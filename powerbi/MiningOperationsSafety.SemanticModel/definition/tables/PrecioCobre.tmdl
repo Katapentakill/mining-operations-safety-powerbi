@@ -1,0 +1,46 @@
+table PrecioCobre
+
+	measure 'Precio BML promedio (cUS$/lb)' =
+			AVERAGE(PrecioCobre[Precio BML (registro)])
+		formatString: 0.0
+		displayFolder: Contexto Chile
+
+	measure 'Precio COMEX promedio (cUS$/lb)' =
+			AVERAGE(PrecioCobre[Precio COMEX (registro)])
+		formatString: 0.0
+		displayFolder: Contexto Chile
+
+	column date_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column Mes
+		dataType: dateTime
+		formatString: MMM yyyy
+		summarizeBy: none
+		sourceColumn: month_start
+
+	column 'Precio BML (registro)'
+		dataType: decimal
+		formatString: 0.0
+		isHidden
+		summarizeBy: none
+		sourceColumn: bml_cusd_lb
+
+	column 'Precio COMEX (registro)'
+		dataType: decimal
+		formatString: 0.0
+		isHidden
+		summarizeBy: none
+		sourceColumn: comex_cusd_lb
+
+	partition PrecioCobre = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="fact_cu_price_month"]}[Data]
+			in
+				Vista

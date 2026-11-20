@@ -1,0 +1,46 @@
+table PerfilInfraccion
+
+	column 'Clave de perfil'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: violation_profile_key
+
+	column 'Significativa y sustancial'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: significant_and_substantial
+
+	column Negligencia
+		dataType: string
+		summarizeBy: none
+		sourceColumn: negligence
+
+	column Probabilidad
+		dataType: string
+		summarizeBy: none
+		sourceColumn: likelihood
+
+	column 'Lesión esperada por el inspector'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: expected_injury
+
+	column 'Tipo de citación'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: citation_type
+
+	column 'Sección de la ley minera'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: mine_act_section
+
+	partition PerfilInfraccion = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="dim_violation_profile"]}[Data]
+			in
+				Vista

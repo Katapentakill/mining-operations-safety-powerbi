@@ -1,0 +1,102 @@
+table Inspecciones
+
+	measure Inspecciones =
+			COUNTROWS(Inspecciones)
+		formatString: #,0
+		displayFolder: Inspecciones
+
+	measure 'Horas de inspección' =
+			SUM(Inspecciones[Horas de inspección (registro)])
+		formatString: #,0
+		displayFolder: Inspecciones
+
+	measure 'Horas en sitio' =
+			SUM(Inspecciones[Horas en sitio (registro)])
+		formatString: #,0
+		displayFolder: Inspecciones
+
+	measure 'Infracciones por 100 h de inspección' =
+			DIVIDE([Infracciones] * 100, [Horas de inspección])
+		formatString: 0.0
+		displayFolder: Inspecciones
+
+	column 'Clave de inspección'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: inspection_key
+
+	column 'N.º de evento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: event_no
+
+	column mine_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: mine_key
+
+	column date_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column company_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: company_key
+
+	column 'Fecha de inicio'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: begin_date
+
+	column 'Fecha de término'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: end_date
+
+	column 'Inspectores (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: inspector_count
+
+	column 'Horas de inspección (registro)'
+		dataType: decimal
+		formatString: #
+		isHidden
+		summarizeBy: none
+		sourceColumn: inspection_hours
+
+	column 'Horas en sitio (registro)'
+		dataType: decimal
+		formatString: #
+		isHidden
+		summarizeBy: none
+		sourceColumn: on_site_hours
+
+	column 'Código de actividad'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: activity_code
+
+	column 'Tipo de inspección'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: activity
+
+	partition Inspecciones = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="fact_inspection"]}[Data]
+			in
+				Vista

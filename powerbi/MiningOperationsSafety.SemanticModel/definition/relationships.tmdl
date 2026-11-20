@@ -1,0 +1,95 @@
+relationship d0b043b8-92fa-53f8-a48f-ce3a0360d260
+	fromColumn: Accidentes.date_key
+	toColumn: Fecha.'Clave de fecha'
+
+relationship 12e07c7f-c24b-5f0a-9bd7-e02f039791ed
+	fromColumn: Accidentes.mine_key
+	toColumn: Mina.'Clave de mina'
+
+relationship 8fad083d-a350-50ba-94ad-d3845096781f
+	fromColumn: Accidentes.company_key
+	toColumn: Empresa.'Clave de empresa'
+
+relationship ac21fc54-06c6-5df3-82d6-0f0152f0de52
+	fromColumn: Accidentes.work_area_key
+	toColumn: AreaTrabajo.'Clave de área'
+
+relationship 36777654-531c-5147-9a31-2a842ece4147
+	fromColumn: Accidentes.injury_degree_key
+	toColumn: GradoLesion.'Clave de grado'
+
+relationship 2680a962-9092-56f3-a4c1-caefa0974b20
+	fromColumn: Accidentes.accident_type_key
+	toColumn: TipoAccidente.'Clave de tipo'
+
+relationship 41b7ca5b-c09a-5dbd-99f9-a5bfef43eb87
+	fromColumn: Accidentes.occupation_key
+	toColumn: Ocupacion.'Clave de ocupación'
+
+relationship 8e667ea6-ee31-5a8e-a270-4c6f23622b5e
+	fromColumn: Accidentes.body_part_key
+	toColumn: ParteCuerpo.'Clave de parte'
+
+relationship 0bf4121f-f968-5993-9142-f9c1cb2ec5b3
+	fromColumn: Accidentes.nature_injury_key
+	toColumn: NaturalezaLesion.'Clave de naturaleza'
+
+relationship 9ee07927-64af-58dd-85aa-975aee90ee1f
+	fromColumn: Accidentes.activity_key
+	toColumn: Actividad.'Clave de actividad'
+
+relationship 977350c5-f3c4-5660-9f85-10b2976d131b
+	fromColumn: Accidentes.equipment_key
+	toColumn: Equipo.'Clave de equipo'
+
+relationship 7d9b20a6-4b2b-5db6-9642-bafd7143d2f9
+	fromColumn: Infracciones.date_key
+	toColumn: Fecha.'Clave de fecha'
+
+relationship 8368a8a1-434f-5a1c-99e9-04405be2fb45
+	fromColumn: Infracciones.mine_key
+	toColumn: Mina.'Clave de mina'
+
+relationship 2eae54c2-0cf8-5b30-a9dc-c1e7abfb76bb
+	fromColumn: Infracciones.company_key
+	toColumn: Empresa.'Clave de empresa'
+
+relationship 323bb71e-56b9-5f31-8859-adc0662b3657
+	fromColumn: Infracciones.standard_key
+	toColumn: Norma.'Clave de norma'
+
+relationship b9925c09-da5f-5e5d-8ef5-8fc2f730597e
+	fromColumn: Infracciones.violation_profile_key
+	toColumn: PerfilInfraccion.'Clave de perfil'
+
+relationship ec576ffb-a96c-5121-ae20-eb0cf55128ec
+	fromColumn: Inspecciones.date_key
+	toColumn: Fecha.'Clave de fecha'
+
+relationship d4146079-1395-515a-9248-88728baba001
+	fromColumn: Inspecciones.mine_key
+	toColumn: Mina.'Clave de mina'
+
+relationship 5f5fa09f-b0fb-51ae-a517-d94e693da780
+	fromColumn: Inspecciones.company_key
+	toColumn: Empresa.'Clave de empresa'
+
+relationship 6d27f208-2363-529c-a1bd-a12f32700f23
+	fromColumn: Plantilla.date_key
+	toColumn: Fecha.'Clave de fecha'
+
+relationship 24bb6324-64d0-5d6f-89ea-8336b229c3b7
+	fromColumn: Plantilla.mine_key
+	toColumn: Mina.'Clave de mina'
+
+relationship 63c8b8c6-5a57-55eb-aa3b-6185366190c1
+	fromColumn: Plantilla.work_area_key
+	toColumn: AreaTrabajo.'Clave de área'
+
+relationship b0873143-9c37-5859-bab2-89ab867d2bac
+	fromColumn: PrecioCobre.date_key
+	toColumn: Fecha.'Clave de fecha'
+
+relationship 9bcae2e9-6348-516a-90c2-1179d2660c87
+	fromColumn: ProduccionCobre.date_key
+	toColumn: Fecha.'Clave de fecha'

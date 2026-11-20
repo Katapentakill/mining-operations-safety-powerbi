@@ -1,0 +1,244 @@
+table Accidentes
+
+	measure Accidentes =
+			COUNTROWS(Accidentes)
+		formatString: #,0
+		displayFolder: 1 Accidentes
+
+	measure 'Lesiones declaradas' =
+			SUM(Accidentes[Lesiones declaradas (registro)])
+		formatString: #,0
+		displayFolder: 1 Accidentes
+
+	measure Fatalidades =
+			CALCULATE(COUNTROWS(Accidentes), GradoLesion[Es fatalidad] = TRUE())
+		formatString: #,0
+		displayFolder: 1 Accidentes
+
+	measure 'Casos con tiempo perdido' =
+			CALCULATE(COUNTROWS(Accidentes), GradoLesion[Con tiempo perdido] = TRUE())
+		formatString: #,0
+		displayFolder: 1 Accidentes
+
+	measure 'Días perdidos' =
+			SUM(Accidentes[Días perdidos (registro)])
+		formatString: #,0
+		displayFolder: 1 Accidentes
+
+	measure 'Días restringidos' =
+			SUM(Accidentes[Días restringidos (registro)])
+		formatString: #,0
+		displayFolder: 1 Accidentes
+
+	measure 'Accidentes de contratistas' =
+			CALCULATE(COUNTROWS(Accidentes), Accidentes[Es contratista] = TRUE())
+		formatString: #,0
+		displayFolder: 1 Accidentes
+
+	measure '% de accidentes de contratistas' =
+			DIVIDE([Accidentes de contratistas], [Accidentes])
+		formatString: 0.0%
+		displayFolder: 1 Accidentes
+
+	measure 'Experiencia promedio en la mina (años)' =
+			AVERAGE(Accidentes[Experiencia en la mina (años)])
+		formatString: 0.0
+		displayFolder: 1 Accidentes
+
+	measure 'Accidentes año anterior' =
+			CALCULATE([Accidentes], SAMEPERIODLASTYEAR(Fecha[Fecha]))
+		formatString: #,0
+		displayFolder: 2 Tiempo
+
+	measure 'Variación vs año anterior' =
+			DIVIDE([Accidentes] - [Accidentes año anterior], [Accidentes año anterior])
+		formatString: 0.0%
+		displayFolder: 2 Tiempo
+
+	measure 'Accidentes acumulados del año' =
+			TOTALYTD([Accidentes], Fecha[Fecha])
+		formatString: #,0
+		displayFolder: 2 Tiempo
+
+	measure 'Accidentes últimos 12 meses' =
+			CALCULATE([Accidentes], DATESINPERIOD(Fecha[Fecha], MAX(Fecha[Fecha]), -12, MONTH))
+		formatString: #,0
+		displayFolder: 2 Tiempo
+
+	measure 'Casos de lesión (personal propio)' =
+			CALCULATE(COUNTROWS(Accidentes), GradoLesion[Cuenta como lesión] = TRUE(), Accidentes[Es contratista] = FALSE())
+		formatString: #,0
+		displayFolder: 3 Tasas
+
+	measure 'Tasa de incidencia (por 200.000 h)' =
+			VAR Casos = CALCULATE([Casos de lesión (personal propio)], Fecha[Con horas disponibles] = TRUE())
+			RETURN DIVIDE(Casos * 200000, [Horas trabajadas])
+		formatString: 0.00
+		displayFolder: 3 Tasas
+
+	measure 'Tasa de días perdidos (por 200.000 h)' =
+			VAR Dias = CALCULATE(SUM(Accidentes[Días perdidos (registro)]), Accidentes[Es contratista] = FALSE(), Fecha[Con horas disponibles] = TRUE())
+			RETURN DIVIDE(Dias * 200000, [Horas trabajadas])
+		formatString: 0.00
+		displayFolder: 3 Tasas
+
+	column 'Clave de accidente'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: accident_key
+
+	column 'N.º de documento'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: document_no
+
+	column mine_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: mine_key
+
+	column date_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column company_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: company_key
+
+	column work_area_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: work_area_key
+
+	column injury_degree_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: injury_degree_key
+
+	column accident_type_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: accident_type_key
+
+	column occupation_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: occupation_key
+
+	column body_part_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: body_part_key
+
+	column nature_injury_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: nature_injury_key
+
+	column activity_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: activity_key
+
+	column equipment_key
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: equipment_key
+
+	column 'Fecha del accidente'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: accident_date
+
+	column 'Hora del accidente'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: accident_hour
+
+	column 'Hora de inicio del turno'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: shift_start_hour
+
+	column 'Es contratista'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_contractor
+
+	column 'Bajo la empresa analizada'
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_target_company_era
+
+	column 'Lesiones declaradas (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: injuries_reported
+
+	column 'Días perdidos (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: days_lost
+
+	column 'Días restringidos (registro)'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: days_restricted
+
+	column 'Cargo programado (días)'
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: schedule_charge
+
+	column 'Experiencia total (años)'
+		dataType: decimal
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: total_experience_years
+
+	column 'Experiencia en la mina (años)'
+		dataType: decimal
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: mine_experience_years
+
+	column 'Experiencia en el cargo (años)'
+		dataType: decimal
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: job_experience_years
+
+	column 'Fecha de retorno al trabajo'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		summarizeBy: none
+		sourceColumn: return_to_work_date
+
+	partition Accidentes = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="fact_accident"]}[Data]
+			in
+				Vista

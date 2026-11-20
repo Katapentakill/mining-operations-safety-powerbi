@@ -1,0 +1,38 @@
+table AreaTrabajo
+
+	column 'Clave de área'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: work_area_key
+
+	column 'Código de área'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: work_area_code
+
+	column 'Área (descripción MSHA)'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: work_area_desc
+
+	column 'Área de trabajo'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: work_area_es
+
+	column 'Grupo de área'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: work_area_group
+
+	partition AreaTrabajo = m
+		mode: import
+		source =
+			let
+				Source = Sql.Database(Servidor, Base),
+				Vista = Source{[Schema="rpt", Item="dim_work_area"]}[Data]
+			in
+				Vista
