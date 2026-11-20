@@ -11,7 +11,7 @@ El modelo y el informe base están escritos como código y **no se han abierto n
 
 1. Doble clic en `powerbi/MiningOperationsSafety.pbip`.
 2. Si pide activar una característica en vista previa (PBIP o TMDL), actívala en *Archivo → Opciones → Características en vista previa* y reinicia.
-3. En *Transformar datos → Administrar parámetros* deja `Servidor = localhost,1433` y `Base = MiningOpsSafety`.
+3. En *Transformar datos → Editar parámetros* deja `Servidor = 127.0.0.1,1433` y `Base = MiningOpsSafety`. No uses `localhost`: Power BI lo resuelve a las IP de red del equipo, donde el contenedor no escucha, y la actualización se queda en "Evaluando…" sin pedir credenciales.
 4. Cuando pida credenciales: tipo **Base de datos**, usuario `pbi_reader`, la contraseña de `.env`. Si da error de certificado, desmarca *Cifrar conexiones*.
 5. **Actualizar**. Deberían cargar 19 tablas.
 

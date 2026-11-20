@@ -41,7 +41,7 @@ python scripts/run_all.py
 
 Then open `powerbi/MiningOperationsSafety.pbip` in Power BI Desktop:
 
-1. Parameters: `Servidor` = `localhost,1433`, `Base` = `MiningOpsSafety`.
+1. Parameters: `Servidor` = `127.0.0.1,1433` (not `localhost`: Power BI resolves it to the machine's network IPs, where the container does not listen, and the refresh hangs), `Base` = `MiningOpsSafety`.
 2. Credentials (Database): user `pbi_reader`, password `PBI_READER_PASSWORD` from your `.env`. If Power BI complains about the certificate, untick *Encrypt connections*.
 3. Refresh.
 
