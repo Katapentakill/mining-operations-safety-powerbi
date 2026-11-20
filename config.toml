@@ -1,0 +1,20 @@
+# Project configuration. Changing the company is changing two lines below.
+
+[company]
+slug = "freeport"                          # output folder: data/csv/<slug>/
+controller_name = "Freeport-McMoRan Inc"   # exact value of CURRENT_CONTROLLER_NAME in MSHA Mines.txt
+
+[paths]
+data_dir = "data"
+
+[msha]
+base_url = "https://arlweb.msha.gov/OpenGovernmentData/DataSets"
+
+[cochilco]
+# Public Excel files published by Cochilco (Chilean Copper Commission). Context only.
+base_url = "https://www.cochilco.cl/web/download"
+[cochilco.files]
+"precios-cobre-refinado-mensual.xlsx" = "887/cobre/12537/precios-del-cobre-refinado-mensual-2.xlsx"
+"precios-cobre-refinado-anual.xlsx" = "887/cobre/12536/precios-del-cobre-refinado-anual-2.xlsx"
+"produccion-cobre-mina-por-empresa-mensual.xlsx" = "951/cobre/12683/produccion-de-cobre-mina-por-empresa-mensual.xlsx"
+"produccion-cobre-mina-por-empresa-anual.xlsx" = "951/cobre/12682/produccion-de-cobre-mina-por-empresa-anual.xlsx"

@@ -1,0 +1,11 @@
+# Keep the exact bytes of the CSV files: BULK INSERT expects CRLF row terminators and a UTF-8 BOM.
+*.csv   -text
+*.txt   -text
+# Text files use LF in the repository.
+*.md    text eol=lf
+*.py    text eol=lf
+*.sql   text eol=lf
+*.yml   text eol=lf
+*.toml  text eol=lf
+*.json  text eol=lf
+*.tmdl  text eol=lf
