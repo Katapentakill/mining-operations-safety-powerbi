@@ -90,7 +90,7 @@ CI starts SQL Server, loads the small fixtures, runs the SQL assertions (row rec
 config.toml · docker-compose.yml · .env.example
 scripts/   download, filter, Cochilco, staging DDL generator, SQL Server loader, run_all
 sql/       database, staging, star schema, ETL, views, indexes, security, load scripts
-powerbi/   PBIP project (TMDL model + PBIR report) and theme
+powerbi/   PBIP project (TMDL model + PBIR report with the Copper Mining theme)
 tests/     unit tests, SQL assertions, fixtures
 docs/      data model, profile, decisions, DAX measures, video script
 ```

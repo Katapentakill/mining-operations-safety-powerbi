@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "bar_grado",
   "position": {
-    "x": 660,
-    "y": 150,
+    "x": 748,
+    "y": 196,
     "z": 5,
-    "height": 300,
-    "width": 600,
+    "height": 504,
+    "width": 512,
     "tabOrder": 5
   },
   "visual": {
@@ -51,6 +51,21 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "45D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

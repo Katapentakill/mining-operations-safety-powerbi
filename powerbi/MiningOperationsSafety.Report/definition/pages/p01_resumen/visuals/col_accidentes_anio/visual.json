@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "col_accidentes_anio",
   "position": {
-    "x": 20,
-    "y": 150,
+    "x": 220,
+    "y": 196,
     "z": 4,
-    "height": 300,
-    "width": 620,
+    "height": 242,
+    "width": 512,
     "tabOrder": 4
   },
   "visual": {
@@ -51,6 +51,35 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Scalar'"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "1999.5D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "2026.5D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

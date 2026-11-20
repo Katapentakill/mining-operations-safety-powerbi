@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "card_2",
   "position": {
-    "x": 332,
-    "y": 20,
+    "x": 484,
+    "y": 80,
     "z": 1,
-    "height": 110,
-    "width": 296,
+    "height": 100,
+    "width": 248,
     "tabOrder": 1
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Accidentes.Tasa de incidencia (por 200.000 h)",
-              "nativeQueryRef": "Tasa de incidencia (por 200.000 h)"
+              "nativeQueryRef": "Tasa de incidencia (por 200.000 h)",
+              "displayName": "Incidencia (por 200.000 h)"
             }
           ]
         }

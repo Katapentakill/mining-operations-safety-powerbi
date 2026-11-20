@@ -113,7 +113,8 @@ def check_report(tables: dict, errors: list[str]) -> int:
     n = 0
     for f in PBI.rglob("visual.json"):
         data = json.loads(f.read_text(encoding="utf-8"))
-        for role in data["visual"]["query"]["queryState"].values():
+        # navigator, text boxes and shapes have no query: nothing to check
+        for role in data["visual"].get("query", {}).get("queryState", {}).values():
             for pr in role["projections"]:
                 (kind, body), = pr["field"].items()
                 ent, prop = body["Expression"]["SourceRef"]["Entity"], body["Property"]
