@@ -43,6 +43,22 @@ Category names (accident types, negligence levels, mine status) are translated t
 
 Headline measure: **injury incidence rate per 200,000 hours worked**, own staff only, computed for quarters that have hours data (see [decisions](docs/decisions.md)).
 
+## What the report tells
+
+**Source and scope.** The data is published by **MSHA** (the Mine Safety and Health Administration, the US mining regulator). The scope is the **43 mines currently controlled by Freeport-McMoRan** (25 in Arizona, 12 in New Mexico, 5 in Colorado and 1 in Oregon; 10 active), with their history since 2000, including years in which another company ran them. One company and one source: every figure traces back to an MSHA file.
+
+| Page | Question it answers | How to read it | Finding |
+|---|---|---|---|
+| **About the data** | Where does the data come from and what does it mean? | Source, scope, three definitions and the limits. | 43 mines, 6,654 accidents, 19,046 violations and 424 million hours. |
+| **Summary** | What is the overall picture? | Four cards on top; below, the trend by year and the severity. With one year selected, each card shows the change against the previous year. | The incidence rate fell from 3.6 (2008) to 1.9 (2009) per 200,000 hours; in 2024 it was 2.26. |
+| **Accidents** | How severe and of what kind? | Bars run from most to least frequent; gray is what is grouped as "other". | 15 fatalities since 2000 (6, 6 and 3 per decade); 2,502 lost-time cases; 22.3% of accidents involve contractors. |
+| **Violations and penalties** | What was breached and how much was paid? | Columns = violations; the line is the rate per 100 inspection hours. | 18.9% of violations are significant and substantial; standard 56.20003(a) is cited 948 times; penalties paid: US$ 12.2 million. |
+| **Workforce and hours** | How much exposure to risk was there? | More hours means more exposure; the rate is computed on these hours. | Surface and plant add up to 84% of the 424 million hours. |
+| **Map and mine detail** | Where are the mines and which weigh most? | Each bubble is a mine: size = accidents, color = status. | Morenci holds 44% of the accidents (2,958 of 6,654). |
+| **Mine detail** | How did one particular mine do? | Pick a mine in the filter; with none picked, the 43 are added up. | Example: Climax Mine, 230 accidents and 976 violations. |
+
+Every figure comes from a query against the `rpt` views and matches the table in [`docs/dax_measures.md`](docs/dax_measures.md). To understand the project in depth (Spanish): [`docs/guia_para_entender.md`](docs/guia_para_entender.md).
+
 ## Quick start (three commands)
 
 Requirements: Docker Desktop, Python 3.11+, Power BI Desktop (Windows). The first run downloads about 414 MB of MSHA files and the SQL Server image.

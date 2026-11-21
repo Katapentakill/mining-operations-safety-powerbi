@@ -37,6 +37,22 @@ Los nombres de categorías (tipos de accidente, niveles de negligencia, estado d
 
 Medida principal: **tasa de incidencia de lesiones por 200.000 horas trabajadas**, solo personal propio y solo en trimestres con horas (ver [decisiones](docs/decisions.md)).
 
+## Qué cuenta el informe
+
+**Fuente y universo.** Los datos los publica **MSHA** (Mine Safety and Health Administration, el regulador minero de EE. UU.). El universo son las **43 minas que hoy controla Freeport-McMoRan** (25 en Arizona, 12 en Nuevo México, 5 en Colorado y 1 en Oregón; 10 activas), con su historia desde 2000, también los años en que otra empresa las operaba. Una sola empresa y una sola fuente: así cada cifra se puede rastrear hasta un archivo de MSHA.
+
+| Página | Pregunta que responde | Cómo leerla | Hallazgo |
+|---|---|---|---|
+| **Acerca de los datos** | ¿De dónde salen los datos y qué significan? | Fuente, universo, tres definiciones y los límites. | 43 minas, 6.654 accidentes, 19.046 infracciones y 424 millones de horas. |
+| **Resumen** | ¿Cuál es el panorama? | Cuatro tarjetas arriba; abajo, la evolución por año y la gravedad. Con un año elegido, cada tarjeta muestra la variación contra el año anterior. | La tasa de incidencia pasó de 3,6 (2008) a 1,9 (2009) por 200.000 horas; en 2024 fue 2,26. |
+| **Accidentes** | ¿Qué tan graves y de qué tipo? | Las barras van de más a menos frecuente; en gris, lo agrupado como «otros». | 15 fatalidades desde 2000 (6, 6 y 3 por década); 2.502 casos con tiempo perdido; 22,3% de los accidentes involucra contratistas. |
+| **Infracciones y multas** | ¿Qué incumplimientos hubo y cuánto se pagó? | Columnas = infracciones; la línea es la tasa por cada 100 horas de inspección. | 18,9% de las infracciones son significativas y sustanciales; la norma 56.20003(a) se cita 948 veces; multa pagada: US$ 12,2 millones. |
+| **Plantilla y horas** | ¿Cuánta exposición al riesgo hubo? | Más horas significa más exposición; la tasa se calcula sobre estas horas. | Superficie y planta suman el 84% de las 424 millones de horas. |
+| **Mapa y detalle por mina** | ¿Dónde están y cuáles pesan más? | Cada burbuja es una mina: tamaño = accidentes, color = estado. | Morenci concentra el 44% de los accidentes (2.958 de 6.654). |
+| **Detalle por mina** | ¿Cómo le fue a una mina en particular? | Elige una mina en el filtro; sin elegir, se suman las 43. | Ejemplo: Climax Mine, 230 accidentes y 976 infracciones. |
+
+Cada cifra sale de una consulta a las vistas `rpt` y cuadra con la tabla de [`docs/dax_measures.md`](docs/dax_measures.md). Para entender el proyecto a fondo: [`docs/guia_para_entender.md`](docs/guia_para_entender.md).
+
 ## Inicio rápido (tres comandos)
 
 Requisitos: Docker Desktop, Python 3.11+ y Power BI Desktop (Windows). La primera vez se descargan unos 414 MB de MSHA y la imagen de SQL Server.

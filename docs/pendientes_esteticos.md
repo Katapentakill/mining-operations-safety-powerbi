@@ -15,4 +15,7 @@ Lo funcional está primero; esto es lo que quedó sin pulir a propósito.
 - [x] Tarjetas con variación vs año anterior, «cómo leerla» y dato clave por página; página «Detalle por mina».
 - [ ] Revisar el contraste final (≥ 4,5:1) con las capturas definitivas (Fase 6).
 - [x] Capturas en `docs/img/` enlazadas en el README (se vuelven a tomar si cambia el diseño).
-- [ ] Grabar el video corto (guion en `docs/video_guion.md`) y enlazarlo en el README.
+- [x] Capturas nítidas (PDF a PNG) en `docs/img/`.
+- [x] README con «Qué cuenta el informe» y `docs/guia_para_entender.md`.
+- [ ] Grabar el video corto (guion actualizado en `docs/video_guion.md`) y enlazarlo en el README: lo graba Alexander y solo se publica cuando él lo decida.
+- [ ] Pendiente probado y descartado: tooltip de página y drill-through no funcionaron en Desktop (decisión 28).
