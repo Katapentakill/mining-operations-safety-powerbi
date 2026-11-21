@@ -23,11 +23,12 @@
                       "Entity": "Accidentes"
                     }
                   },
-                  "Property": "Accidentes"
+                  "Property": "Accidentes (tabla)"
                 }
               },
-              "queryRef": "Accidentes.Accidentes",
-              "nativeQueryRef": "Accidentes"
+              "queryRef": "Accidentes.Accidentes (tabla)",
+              "nativeQueryRef": "Accidentes (tabla)",
+              "displayName": "Accidentes"
             }
           ]
         }
@@ -105,7 +106,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Indicador: Accidentes'"
+                  "Value": "'Indicador: Accidentes (tabla)'"
                 }
               }
             }

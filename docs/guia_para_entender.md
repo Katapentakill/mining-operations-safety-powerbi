@@ -43,7 +43,7 @@ Los otros hechos son infracciones (con su multa en la misma fila), inspecciones 
 3. `04_load_sqlserver.py` copia los CSV a tablas de texto (`stg`) con `BULK INSERT` dentro de un contenedor Docker.
 4. `dwh.usp_load_all` convierte tipos, traduce al español y arma la estrella (`dwh`), todo en una transacción.
 5. Vistas `rpt` (solo lectura, usuario `pbi_reader`): lo único que ve Power BI.
-6. El proyecto de Power BI (PBIP) lee las vistas, tiene 66 medidas DAX y 7 páginas.
+6. El proyecto de Power BI (PBIP) lee las vistas, tiene 74 medidas DAX y 7 páginas.
 
 `python scripts/run_all.py` hace los pasos 1 a 4. Las pruebas (`pytest`) comprueban que los totales cuadren entre origen, almacén y medidas.
 
@@ -88,7 +88,8 @@ Ojo con una trampa: la tabla se llama `Mina`, y en DAX `Mina[col]` se confunde c
 9. **¿Por qué el mapa es nativo y qué cuidado tiene?** Muestra burbujas sobre un mapa real con zoom; hay que filtrar a las minas con coordenadas (si no, las sin coordenadas caen en 0,0) y el administrador debe permitir los visuales de mapa.
 10. **¿Cómo manejas el año parcial?** Las tasas usan solo trimestres con horas (`has_hours_data`), y la comparación contra el año anterior usa el mismo período.
 11. **¿Cómo versionas Power BI?** Como código: PBIP con TMDL y PBIR, revisable en Git; un validador comprueba que cada columna y medida citada exista.
-12. **¿Qué mejorarías?** Incluir toneladas si hubiera fuente, comparar contra otras empresas y agregar un tooltip de página y drill-through (los probé y no funcionaron en Desktop; quedan como pendiente).
+12. **¿Qué mejorarías?** Incluir toneladas si hubiera fuente, comparar contra otras empresas y agregar minigráficos en las tarjetas y un parámetro de campo para cambiar entre tipo y parte del cuerpo (están en el prototipo HTML; el tooltip de página y el drill-through los probé y no funcionaron en Desktop).
+13. **Los títulos del informe ¿son texto fijo?** No: son medidas (`Título Resumen`, etc.) que se recalculan con el año y la mina elegidos; se muestran en un botón sin borde porque un cuadro de texto no se enlaza a datos (decisión 29).
 
 ## 9. Glosario
 

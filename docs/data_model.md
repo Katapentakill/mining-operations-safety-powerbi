@@ -41,7 +41,7 @@ erDiagram
 
 - `dim_company` is the **controller (parent company) at the time of the event**, not the current one. `is_target_company` marks the company this snapshot was built for, so the report can separate years in which a mine belonged to someone else.
 - `dim_violation_profile` is a junk dimension that groups six low-cardinality attributes (significant and substantial, negligence, likelihood, expected injury, citation type, Mine Act section) into one table.
-- `dim_injury_degree` carries three flags used by the measures: `is_fatality`, `is_lost_time` (degrees 01 to 04) and `counts_as_injury` (degrees 01 to 06).
+- `dim_injury_degree` also carries `degree_group_es` / `degree_group_sort`: the 12 MSHA degrees grouped into 4 (fatality, with lost days, without lost days, no injury or other) for the severity chart. It carries three flags used by the measures: `is_fatality`, `is_lost_time` (degrees 01 to 04) and `counts_as_injury` (degrees 01 to 06).
 - Presentation labels are Spanish (`*_es`); the MSHA text is kept next to them (decision 25).
 - Every code dimension has a `?` member, so a missing code never drops a fact row.
 - `dim_date` runs from 2000-01-01 to the end of the current year, with an MSHA fiscal year (starts 1 October) and `has_hours_data`, true for quarters up to the last one with workforce hours.

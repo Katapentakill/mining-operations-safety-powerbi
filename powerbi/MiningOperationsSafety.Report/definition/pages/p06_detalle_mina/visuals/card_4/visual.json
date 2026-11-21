@@ -23,11 +23,12 @@
                       "Entity": "Plantilla"
                     }
                   },
-                  "Property": "Horas trabajadas"
+                  "Property": "Horas trabajadas (tabla)"
                 }
               },
-              "queryRef": "Plantilla.Horas trabajadas",
-              "nativeQueryRef": "Horas trabajadas"
+              "queryRef": "Plantilla.Horas trabajadas (tabla)",
+              "nativeQueryRef": "Horas trabajadas (tabla)",
+              "displayName": "Horas trabajadas"
             }
           ]
         }
@@ -112,7 +113,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Indicador: Horas trabajadas'"
+                  "Value": "'Indicador: Horas trabajadas (tabla)'"
                 }
               }
             }

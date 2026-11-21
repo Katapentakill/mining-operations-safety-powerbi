@@ -13,13 +13,13 @@ Proyecto reproducible con **datos públicos reales**: horas trabajadas, accident
 | Modelado dimensional (estrella, dimensión basura, granos) | [`docs/data_model.md`](docs/data_model.md), [`sql/02_dwh_tables.sql`](sql/02_dwh_tables.sql) |
 | ETL en T-SQL con staging y carga tipada | [`sql/03_etl.sql`](sql/03_etl.sql) |
 | SQL Server en Docker, `BULK INSERT`, índices, vistas y usuario de solo lectura | [`docker-compose.yml`](docker-compose.yml), [`sql/`](sql) |
-| Power BI como código (PBIP + TMDL), parámetros, jerarquías y 66 medidas DAX | [`powerbi/`](powerbi), [`docs/dax_measures.md`](docs/dax_measures.md) |
+| Power BI como código (PBIP + TMDL), parámetros, jerarquías y 74 medidas DAX | [`powerbi/`](powerbi), [`docs/dax_measures.md`](docs/dax_measures.md) |
 | Perfilado de datos y límites explicados | [`docs/data_profile.md`](docs/data_profile.md), [`docs/decisions.md`](docs/decisions.md) |
 | Pruebas automáticas y CI | [`tests/`](tests), [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 
 ## Informe
 
-Siete páginas (el mapa requiere activar los visuales de mapa en *Archivo → Opciones → Seguridad*): **Acerca de los datos** (fuente, universo, definiciones y límites), **Resumen**, **Accidentes**, **Infracciones y multas**, **Plantilla y horas**, **Mapa y detalle por mina** y **Detalle por mina** (una mina a la vez). Cada página trae una línea de «cómo leerla», un dato clave en la barra lateral y, con un solo año elegido, tarjetas que muestran la variación frente al año anterior. Un menú lateral lleva de una página a otra y un filtro de año se sincroniza entre todas. Un video corto vendrá más adelante.
+Siete páginas: **Acerca de los datos** (fuente, universo, definiciones y límites), **Resumen**, **Accidentes**, **Infracciones y multas**, **Plantilla y horas**, **Mapa** y **Detalle** (una mina a la vez). Una barra superior oscura trae el navegador de páginas y un filtro de año sincronizado entre todas. El título de cada página es una medida que enuncia el hallazgo y se recalcula con los filtros (por ejemplo *En 2024 la tasa de lesiones fue 2,3, más baja que en 2023 (2,9)*); con un solo año elegido las tarjetas muestran la variación frente al año anterior y los gráficos por año conservan la serie completa. En la página del mapa, un clic en una burbuja o en una fila rellena la ficha de la mina; en *Detalle*, el filtro de mina trae un cuadro de búsqueda (escribe para filtrar). El mapa requiere activar los visuales de mapa en *Archivo → Opciones → Seguridad*. El diseño se probó primero como página HTML interactiva: [`docs/prototipo_visual.html`](docs/prototipo_visual.html) (descárgala y ábrela en un navegador). Un video corto vendrá más adelante.
 
 ![Página Resumen](docs/img/01-resumen.png)
 
@@ -27,9 +27,9 @@ Siete páginas (el mapa requiere activar los visuales de mapa en *Archivo → Op
 |---|---|
 | ![Acerca de los datos](docs/img/00-acerca-de-los-datos.png) | ![Accidentes](docs/img/02-accidentes.png) |
 | ![Infracciones y multas](docs/img/03-infracciones-multas.png) | ![Plantilla y horas](docs/img/04-plantilla-horas.png) |
-| ![Mapa y detalle por mina](docs/img/05-mapa-detalle-mina.png) | ![Detalle por mina](docs/img/06-detalle-por-mina.png) |
+| ![Mapa](docs/img/05-mapa-detalle-mina.png) | ![Detalle de una mina (Morenci)](docs/img/06-detalle-por-mina.png) |
 
-Con un solo año elegido (2024) las tarjetas muestran la variación frente al año anterior:
+Con un solo año elegido (2024) el título, las tarjetas y el ranking lo siguen:
 
 ![Resumen con 2024](docs/img/01-resumen-2024.png)
 
@@ -45,11 +45,11 @@ Medida principal: **tasa de incidencia de lesiones por 200.000 horas trabajadas*
 |---|---|---|---|
 | **Acerca de los datos** | ¿De dónde salen los datos y qué significan? | Fuente, universo, tres definiciones y los límites. | 43 minas, 6.654 accidentes, 19.046 infracciones y 424 millones de horas. |
 | **Resumen** | ¿Cuál es el panorama? | Cuatro tarjetas arriba; abajo, la evolución por año y la gravedad. Con un año elegido, cada tarjeta muestra la variación contra el año anterior. | La tasa de incidencia pasó de 3,6 (2008) a 1,9 (2009) por 200.000 horas; en 2024 fue 2,26. |
-| **Accidentes** | ¿Qué tan graves y de qué tipo? | Las barras van de más a menos frecuente; en gris, lo agrupado como «otros». | 15 fatalidades desde 2000 (6, 6 y 3 por década); 2.502 casos con tiempo perdido; 22,3% de los accidentes involucra contratistas. |
+| **Accidentes** | ¿Qué tan graves y de qué tipo? | Los 5 tipos y partes más frecuentes; en gris, lo agrupado como «otros»; las áreas de trabajo son una sola barra al 100%. | 15 fatalidades desde 2000 (6, 6 y 3 por década); 2.502 casos con tiempo perdido; 22,3% de los accidentes involucra contratistas. |
 | **Infracciones y multas** | ¿Qué incumplimientos hubo y cuánto se pagó? | Columnas = infracciones; la línea es la tasa por cada 100 horas de inspección. | 18,9% de las infracciones son significativas y sustanciales; la norma 56.20003(a) se cita 948 veces; multa pagada: US$ 12,2 millones. |
 | **Plantilla y horas** | ¿Cuánta exposición al riesgo hubo? | Más horas significa más exposición; la tasa se calcula sobre estas horas. | Superficie y planta suman el 84% de las 424 millones de horas. |
-| **Mapa y detalle por mina** | ¿Dónde están y cuáles pesan más? | Cada burbuja es una mina: tamaño = accidentes, color = estado. | Morenci concentra el 44% de los accidentes (2.958 de 6.654). |
-| **Detalle por mina** | ¿Cómo le fue a una mina en particular? | Elige una mina en el filtro; sin elegir, se suman las 43. | Ejemplo: Climax Mine, 230 accidentes y 976 infracciones. |
+| **Mapa** | ¿Dónde están y cuáles pesan más? | Cada burbuja es una mina: tamaño = accidentes, color = estado. Un clic en una burbuja o fila abre la ficha; los botones filtran por estado. | Morenci concentra el 44% de los accidentes (2.958 de 6.654). |
+| **Detalle** | ¿Cómo le fue a una mina en particular? | Escribe o elige una mina en el filtro; sin elegir, se suman las 43. | Ejemplo: Morenci, 2.958 accidentes y 6.330 infracciones. |
 
 Cada cifra sale de una consulta a las vistas `rpt` y cuadra con la tabla de [`docs/dax_measures.md`](docs/dax_measures.md). Para entender el proyecto a fondo: [`docs/guia_para_entender.md`](docs/guia_para_entender.md).
 

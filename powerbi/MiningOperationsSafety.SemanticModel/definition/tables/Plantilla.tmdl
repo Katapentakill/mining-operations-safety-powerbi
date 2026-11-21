@@ -6,6 +6,11 @@ table Plantilla
 		displayFolder: Plantilla
 		lineageTag: da4ddffc-dd2d-425f-b68e-9b7317a5c293
 
+	measure 'Horas trabajadas (tabla)' = [Horas trabajadas] + 0
+		formatString: #,0;-#,0;"—"
+		displayFolder: 9 Presentación
+		lineageTag: f0834c08-ed37-4e7e-ac46-e989f5b77217
+
 	measure 'Empleados promedio' = AVERAGEX(VALUES(Fecha[Año-Trimestre]), CALCULATE(SUM(Plantilla[Empleados promedio (registro)])))
 		formatString: #,0
 		displayFolder: Plantilla

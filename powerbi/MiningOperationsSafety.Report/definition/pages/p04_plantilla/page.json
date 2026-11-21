@@ -4,5 +4,17 @@
   "displayName": "Plantilla",
   "displayOption": "FitToPage",
   "height": 720,
-  "width": 1280
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "filtro_anio",
+      "target": "col_horas_anio",
+      "type": "NoFilter"
+    },
+    {
+      "source": "filtro_anio",
+      "target": "line_empleados",
+      "type": "NoFilter"
+    }
+  ]
 }

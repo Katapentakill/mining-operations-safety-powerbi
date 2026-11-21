@@ -4,5 +4,12 @@
   "displayName": "Accidentes",
   "displayOption": "FitToPage",
   "height": 720,
-  "width": 1280
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "filtro_anio",
+      "target": "col_dias",
+      "type": "NoFilter"
+    }
+  ]
 }

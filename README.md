@@ -18,14 +18,14 @@ A reproducible analytics project on **real public data**: workforce hours, accid
 | Dimensional modeling (star schema, junk dimension, grains) | [`docs/data_model.md`](docs/data_model.md), [`sql/02_dwh_tables.sql`](sql/02_dwh_tables.sql) |
 | T-SQL ETL: staging, typed load, `TRY_CONVERT`, reload in one transaction | [`sql/03_etl.sql`](sql/03_etl.sql) |
 | SQL Server in Docker, `BULK INSERT`, indexes, reporting views, least-privilege login | [`docker-compose.yml`](docker-compose.yml), [`sql/`](sql) |
-| Power BI as code (PBIP + TMDL), parameters, hierarchies, 66 DAX measures | [`powerbi/`](powerbi), [`docs/dax_measures.md`](docs/dax_measures.md) |
+| Power BI as code (PBIP + TMDL), parameters, hierarchies, 74 DAX measures | [`powerbi/`](powerbi), [`docs/dax_measures.md`](docs/dax_measures.md) |
 | Data profiling and honest limits | [`docs/data_profile.md`](docs/data_profile.md), [`docs/decisions.md`](docs/decisions.md) |
 | Automated tests (unit, SQL reconciliation) and CI | [`tests/`](tests), [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 | Reproducible pipeline (download, filter, load) | [`scripts/`](scripts) |
 
 ## Dashboard
 
-Seven report pages (the map needs Power BI's map visuals enabled in *File → Options → Security*): **About the data** (source, scope, definitions and limits), **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours**, **Map and mine detail** and **Mine detail** (one mine at a time). Each page has a one-line reading guide, a key figure in the sidebar and, with a single year selected, KPI cards that show the change against the previous year. A side menu moves between pages and one year filter is synced across all of them. A short video will be added later.
+Seven report pages: **About the data** (source, scope, definitions and limits), **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours**, **Map** and **Detail** (one mine at a time). A dark top bar holds the page navigator and one year filter that is synced across all pages. Each page title is a measure that states the finding and recomputes with the filters (for example *In 2024 the injury rate was 2.3, lower than in 2023 (2.9)*), and with a single year selected the KPI cards show the change against the previous year; the yearly trend charts keep the full series. On the map page a click on a bubble or a table row fills the mine card; on *Detail* the mine slicer has a built-in search box (type to filter). The map needs Power BI's map visuals enabled in *File → Options → Security*. The design was prototyped first as an interactive HTML page: [`docs/prototipo_visual.html`](docs/prototipo_visual.html) (download it and open it in a browser). A short video will be added later.
 
 ![Summary page](docs/img/01-resumen.png)
 
@@ -33,9 +33,9 @@ Seven report pages (the map needs Power BI's map visuals enabled in *File → Op
 |---|---|
 | ![About the data](docs/img/00-acerca-de-los-datos.png) | ![Accidents](docs/img/02-accidentes.png) |
 | ![Violations and penalties](docs/img/03-infracciones-multas.png) | ![Workforce and hours](docs/img/04-plantilla-horas.png) |
-| ![Map and mine detail](docs/img/05-mapa-detalle-mina.png) | ![Mine detail](docs/img/06-detalle-por-mina.png) |
+| ![Map](docs/img/05-mapa-detalle-mina.png) | ![Detail of one mine (Morenci)](docs/img/06-detalle-por-mina.png) |
 
-With one year selected (2024) the cards show the change against the previous year:
+With one year selected (2024) the title, the cards and the ranking follow it:
 
 ![Summary for 2024](docs/img/01-resumen-2024.png)
 
@@ -51,11 +51,11 @@ Headline measure: **injury incidence rate per 200,000 hours worked**, own staff 
 |---|---|---|---|
 | **About the data** | Where does the data come from and what does it mean? | Source, scope, three definitions and the limits. | 43 mines, 6,654 accidents, 19,046 violations and 424 million hours. |
 | **Summary** | What is the overall picture? | Four cards on top; below, the trend by year and the severity. With one year selected, each card shows the change against the previous year. | The incidence rate fell from 3.6 (2008) to 1.9 (2009) per 200,000 hours; in 2024 it was 2.26. |
-| **Accidents** | How severe and of what kind? | Bars run from most to least frequent; gray is what is grouped as "other". | 15 fatalities since 2000 (6, 6 and 3 per decade); 2,502 lost-time cases; 22.3% of accidents involve contractors. |
+| **Accidents** | How severe and of what kind? | The 5 most frequent types and body parts; gray is what is grouped as "other"; work areas are one 100% bar. | 15 fatalities since 2000 (6, 6 and 3 per decade); 2,502 lost-time cases; 22.3% of accidents involve contractors. |
 | **Violations and penalties** | What was breached and how much was paid? | Columns = violations; the line is the rate per 100 inspection hours. | 18.9% of violations are significant and substantial; standard 56.20003(a) is cited 948 times; penalties paid: US$ 12.2 million. |
 | **Workforce and hours** | How much exposure to risk was there? | More hours means more exposure; the rate is computed on these hours. | Surface and plant add up to 84% of the 424 million hours. |
-| **Map and mine detail** | Where are the mines and which weigh most? | Each bubble is a mine: size = accidents, color = status. | Morenci holds 44% of the accidents (2,958 of 6,654). |
-| **Mine detail** | How did one particular mine do? | Pick a mine in the filter; with none picked, the 43 are added up. | Example: Climax Mine, 230 accidents and 976 violations. |
+| **Map** | Where are the mines and which weigh most? | Each bubble is a mine: size = accidents, color = status. Click a bubble or a row for the mine card; the chips filter by status. | Morenci holds 44% of the accidents (2,958 of 6,654). |
+| **Detail** | How did one particular mine do? | Type or pick a mine in the filter; with none picked, the 43 are added up. | Example: Morenci, 2,958 accidents and 6,330 violations. |
 
 Every figure comes from a query against the `rpt` views and matches the table in [`docs/dax_measures.md`](docs/dax_measures.md). To understand the project in depth (Spanish): [`docs/guia_para_entender.md`](docs/guia_para_entender.md).
 
@@ -121,7 +121,7 @@ sql/       database, staging, star schema, ETL, views, indexes, security, load s
 powerbi/   PBIP project (TMDL model + PBIR report with the Copper Mining theme)
 assets/    banner and the SVG art of the report (map outline, source badges; `scripts/make_report_art.py`)
 tests/     unit tests, SQL assertions, fixtures
-docs/      data model, profile, decisions, DAX measures, video script
+docs/      data model, profile, decisions, DAX measures, video script, interactive HTML prototype
 ```
 
 ## License

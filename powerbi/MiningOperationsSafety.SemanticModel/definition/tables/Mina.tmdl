@@ -5,17 +5,12 @@ table Mina
 		displayFolder: 9 Presentación
 		lineageTag: 0b931e01-b6af-4b46-a6b2-34bbe2eef113
 
-	measure 'Accidentes (Top 10 minas)' = VAR r = RANKX(ALLSELECTED('Mina'), CALCULATE(COUNTROWS(Accidentes)), , DESC, DENSE) RETURN IF(r <= 10, COUNTROWS(Accidentes))
-		formatString: #,0
-		displayFolder: 9 Presentación
-		lineageTag: 74e78a3b-408c-44f9-a1ef-04032ea8dd3a
-
 	measure 'Título Detalle' =
 			VAR one = HASONEVALUE('Mina'[Mina])
 			VAR sh = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(MAX('Mina'[Mina]), "Freeport-McMoRan ", ""), "Freeport McMoRan ", ""), " Inc.", ""), " Inc", "")
 			RETURN
 			IF(one, sh, "Las " & FORMAT(DISTINCTCOUNT('Mina'[Clave de mina]), "0") & " minas juntas")
-				& ": " & FORMAT([Accidentes], "#,0", "es-CL") & " accidentes e " & FORMAT([Infracciones], "#,0", "es-CL") & " infracciones"
+				& ": " & FORMAT([Accidentes] + 0, "#,0", "es-CL") & " accidentes e " & FORMAT([Infracciones] + 0, "#,0", "es-CL") & " infracciones"
 		displayFolder: 8 Títulos
 		lineageTag: eb5ac230-48e7-4ad8-9d1d-89a062d392db
 
@@ -23,11 +18,6 @@ table Mina
 		formatString: #,0
 		displayFolder: 9 Presentación
 		lineageTag: e6e123d0-b271-4243-afb0-33b85ebf4ccf
-
-	measure 'Accidentes (Top 8 minas)' = VAR r = RANKX(ALLSELECTED('Mina'), CALCULATE(COUNTROWS(Accidentes)), , DESC, DENSE) RETURN IF(r <= 8, COUNTROWS(Accidentes))
-		formatString: #,0
-		displayFolder: 9 Presentación
-		lineageTag: 6902a1e9-dbee-4495-a831-3d6a8bd9971a
 
 	measure 'Ficha de mina' = VAR one = HASONEVALUE('Mina'[Mina]) VAR sh = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(MAX('Mina'[Mina]), "Freeport-McMoRan ", ""), "Freeport McMoRan ", ""), " Inc.", ""), " Inc", "") RETURN IF(one, sh & " · " & MAX('Mina'[Estado (EE.UU., nombre)]) & " · " & LOWER(MAX('Mina'[Estado de la mina])) & " — " & FORMAT([Accidentes], "#,0", "es-CL") & " accidentes · " & FORMAT([Infracciones], "#,0", "es-CL") & " infracciones · " & FORMAT([Horas trabajadas] / 1000000, "#,0.0", "es-CL") & " millones de horas", "Haz clic en una burbuja del mapa o en una fila de la tabla para ver la ficha de la mina")
 		displayFolder: 8 Títulos

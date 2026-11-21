@@ -23,11 +23,12 @@
                       "Entity": "Infracciones"
                     }
                   },
-                  "Property": "Multa pagada"
+                  "Property": "Multa pagada (tabla)"
                 }
               },
-              "queryRef": "Infracciones.Multa pagada",
-              "nativeQueryRef": "Multa pagada"
+              "queryRef": "Infracciones.Multa pagada (tabla)",
+              "nativeQueryRef": "Multa pagada (tabla)",
+              "displayName": "Multa pagada"
             }
           ]
         }
@@ -105,7 +106,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Indicador: Multa pagada'"
+                  "Value": "'Indicador: Multa pagada (tabla)'"
                 }
               }
             }
