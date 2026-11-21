@@ -7,7 +7,7 @@
     "z": 14,
     "height": 100,
     "width": 248,
-    "tabOrder": 14
+    "tabOrder": 70
   },
   "visual": {
     "visualType": "card",
@@ -52,7 +52,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "28D"
+                  "Value": "26D"
                 }
               }
             },
@@ -84,6 +84,21 @@
               "expr": {
                 "Literal": {
                   "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Indicador: % de accidentes de contratistas'"
                 }
               }
             }

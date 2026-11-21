@@ -7,7 +7,7 @@
     "z": 2005,
     "height": 30,
     "width": 820,
-    "tabOrder": 2005
+    "tabOrder": 20
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "43 minas de Freeport-McMoRan (EE. UU.) · 2000 a 2026, con 2026 parcial",
+                    "value": "Cómo leerla: arriba el total de cada medida; abajo, la evolución por año y la gravedad de las lesiones. Cambia el filtro Año para comparar.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -55,6 +55,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cómo leerla: arriba el total de cada medida; abajo, la evolución por año y la gravedad de las lesiones. Cambia el filtro Año para comparar.'"
                 }
               }
             }

@@ -7,7 +7,7 @@
     "z": 23,
     "height": 244,
     "width": 512,
-    "tabOrder": 23
+    "tabOrder": 120
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
@@ -207,6 +207,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Infracciones por año y por cada 100 h de inspección'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de columnas con línea: Infracciones por año y por cada 100 h de inspección'"
                 }
               }
             }

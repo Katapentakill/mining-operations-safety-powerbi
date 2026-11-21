@@ -7,7 +7,7 @@
     "z": 17,
     "height": 244,
     "width": 512,
-    "tabOrder": 17
+    "tabOrder": 140
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -85,6 +85,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Accidentes por área de trabajo'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de barras: Accidentes por área de trabajo'"
                 }
               }
             }

@@ -7,7 +7,7 @@
     "z": 25,
     "height": 244,
     "width": 512,
-    "tabOrder": 25
+    "tabOrder": 140
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -161,6 +161,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Infracciones por nivel de negligencia'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de barras: Infracciones por nivel de negligencia'"
                 }
               }
             }

@@ -7,7 +7,7 @@
     "z": 34,
     "height": 244,
     "width": 512,
-    "tabOrder": 34
+    "tabOrder": 150
   },
   "visual": {
     "visualType": "tableEx",
@@ -145,6 +145,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Horas por mina'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabla: Horas por mina'"
                 }
               }
             }

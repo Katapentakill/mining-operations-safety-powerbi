@@ -7,7 +7,7 @@
     "z": 2005,
     "height": 30,
     "width": 820,
-    "tabOrder": 2005
+    "tabOrder": 20
   },
   "visual": {
     "visualType": "textbox",
@@ -55,6 +55,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Seguridad en las minas de Freeport-McMoRan (EE. UU.) según MSHA · 2000 a 2026'"
                 }
               }
             }

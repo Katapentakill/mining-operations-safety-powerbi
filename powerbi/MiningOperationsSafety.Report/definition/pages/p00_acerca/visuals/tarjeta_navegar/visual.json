@@ -7,7 +7,7 @@
     "z": 21,
     "height": 214,
     "width": 336,
-    "tabOrder": 21
+    "tabOrder": 60
   },
   "visual": {
     "visualType": "textbox",
@@ -134,7 +134,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Mapa y minas: ",
+                    "value": "Mapa y detalle por mina: ",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
@@ -143,7 +143,29 @@
                     }
                   },
                   {
-                    "value": "dónde y cuáles.",
+                    "value": "dónde y cuáles pesan.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "11pt",
+                      "color": "#2B2F33"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Detalle por mina: ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "11pt",
+                      "color": "#2B2F33",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "una mina a la vez.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "11pt",
@@ -228,6 +250,19 @@
               "expr": {
                 "Literal": {
                   "Value": "6D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cómo recorrerlo Resumen:  el panorama general. Accidentes:  gravedad y tipo. Infracciones y multas:  incumplimientos e inspecciones. Plantil'"
                 }
               }
             }

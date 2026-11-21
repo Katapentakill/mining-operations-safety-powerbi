@@ -7,7 +7,7 @@
     "z": 1,
     "height": 100,
     "width": 248,
-    "tabOrder": 1
+    "tabOrder": 50
   },
   "visual": {
     "visualType": "card",
@@ -53,7 +53,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "28D"
+                  "Value": "26D"
                 }
               }
             },
@@ -85,6 +85,21 @@
               "expr": {
                 "Literal": {
                   "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Indicador: Tasa de incidencia (por 200.000 h)'"
                 }
               }
             }

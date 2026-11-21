@@ -1,6 +1,6 @@
 # DAX measures
 
-40 measures, stored in the fact tables and grouped in display folders. The source of truth is the TMDL in `powerbi/MiningOperationsSafety.SemanticModel/definition/tables/`.
+66 measures, stored in the fact tables and grouped in display folders. The source of truth is the TMDL in `powerbi/MiningOperationsSafety.SemanticModel/definition/tables/`.
 
 | Table | Folder | Measures |
 |---|---|---|
@@ -12,6 +12,7 @@
 | Inspecciones | Inspecciones | Inspecciones, Horas de inspección, Horas en sitio, Infracciones por 100 h de inspección |
 | Plantilla | Plantilla | Horas trabajadas, Empleados promedio, Horas por empleado |
 | Accidentes, Infracciones, Mina | 9 Presentación | Accidentes (tabla), Infracciones (tabla), Multa pagada (tabla) (show "—" instead of blanks), Accidentes (Top 10 minas), Escala de burbuja (square root of accidents), Color por estado (hex color for the map) |
+| Accidentes, Infracciones, Plantilla | 3 Variación | 13 pairs `Δ <medida> (texto)` / `Δ <medida> (color)`: text such as "▲ 13,4% vs 2007" and its color (red = worse, green = better, gray = neutral). Empty when no single year is selected; uses `SAMEPERIODLASTYEAR`, so a partial year is compared with the same months of the year before. |
 
 ## The main rate
 

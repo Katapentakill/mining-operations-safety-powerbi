@@ -7,7 +7,7 @@
     "z": 4,
     "height": 244,
     "width": 512,
-    "tabOrder": 4
+    "tabOrder": 120
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -118,6 +118,21 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de columnas'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

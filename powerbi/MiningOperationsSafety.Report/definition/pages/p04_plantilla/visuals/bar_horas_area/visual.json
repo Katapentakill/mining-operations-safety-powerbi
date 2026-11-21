@@ -7,7 +7,7 @@
     "z": 33,
     "height": 244,
     "width": 512,
-    "tabOrder": 33
+    "tabOrder": 140
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -162,6 +162,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Horas trabajadas por área de trabajo'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de barras: Horas trabajadas por área de trabajo'"
                 }
               }
             }

@@ -7,7 +7,7 @@
     "z": 2005,
     "height": 30,
     "width": 820,
-    "tabOrder": 2005
+    "tabOrder": 20
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Ubicación y comparación de las minas (27 de 43 tienen coordenadas)",
+                    "value": "Cómo leerla: cada burbuja es una mina; su tamaño muestra los accidentes y su color, el estado. Elige una barra para destacarla.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -55,6 +55,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cómo leerla: cada burbuja es una mina; su tamaño muestra los accidentes y su color, el estado. Elige una barra para destacarla.'"
                 }
               }
             }

@@ -7,7 +7,7 @@
     "z": 2005,
     "height": 30,
     "width": 820,
-    "tabOrder": 2005
+    "tabOrder": 20
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Empleados y horas trabajadas por mina y año",
+                    "value": "Cómo leerla: más horas trabajadas significa más exposición al riesgo; la tasa de incidencia se calcula sobre estas mismas horas.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -55,6 +55,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cómo leerla: más horas trabajadas significa más exposición al riesgo; la tasa de incidencia se calcula sobre estas mismas horas.'"
                 }
               }
             }

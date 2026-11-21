@@ -7,7 +7,7 @@
     "z": 15,
     "height": 244,
     "width": 512,
-    "tabOrder": 15
+    "tabOrder": 120
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -215,6 +215,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Accidentes por tipo de accidente'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de barras: Accidentes por tipo de accidente'"
                 }
               }
             }

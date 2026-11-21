@@ -7,7 +7,7 @@
     "z": 2000,
     "height": 330,
     "width": 168,
-    "tabOrder": 2000
+    "tabOrder": 220
   },
   "visual": {
     "visualType": "pageNavigator",
@@ -212,6 +212,26 @@
             }
           }
         }
+      ],
+      "pages": [
+        {
+          "properties": {
+            "showHiddenPages": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showTooltipPages": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -235,6 +255,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Navegación entre páginas'"
                 }
               }
             }

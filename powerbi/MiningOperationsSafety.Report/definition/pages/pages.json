@@ -6,7 +6,8 @@
     "p02_accidentes",
     "p03_infracciones",
     "p04_plantilla",
-    "p05_mapa_detalle"
+    "p05_mapa_detalle",
+    "p06_detalle_mina"
   ],
   "activePageName": "p00_acerca"
 }

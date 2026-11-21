@@ -66,6 +66,38 @@ table Infracciones
 		displayFolder: 9 Presentación
 		lineageTag: 0f790ded-6e23-466b-ac76-58fa19d40085
 
+	measure 'Δ Infracciones (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Infracciones] VAR prev = CALCULATE([Infracciones], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: 7d11a85c-82bd-433d-8f4b-7aa0c3903b69
+
+	measure 'Δ Infracciones (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Infracciones] - CALCULATE([Infracciones], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: 5c466515-9351-40ae-a909-98c32f2bbf1b
+
+	measure 'Δ Multa pagada (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Multa pagada] VAR prev = CALCULATE([Multa pagada], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: e3f362ea-92b2-407b-9253-6d313701c84a
+
+	measure 'Δ Multa pagada (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Multa pagada] - CALCULATE([Multa pagada], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: b77e18f0-3b84-40c1-8963-6d24b2b76720
+
+	measure 'Δ S&S (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [% S&S] VAR prev = CALCULATE([% S&S], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(d) * 100, "0.0", "es-CL") & " pp" & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: 425a9bc3-c8a6-4789-8dc8-c980b08bb6c4
+
+	measure 'Δ S&S (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [% S&S] - CALCULATE([% S&S], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: bcdc78e1-0f0b-4921-a1e5-8903d33d972e
+
+	measure 'Δ Días para corregir (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Días promedio para corregir] VAR prev = CALCULATE([Días promedio para corregir], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(d), "0.0", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: c4479648-022a-47c1-a511-ba591fd305ba
+
+	measure 'Δ Días para corregir (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Días promedio para corregir] - CALCULATE([Días promedio para corregir], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: 04c8a10f-bf4b-4911-9aed-0a52543158b1
+
 	column 'Clave de infracción'
 		dataType: int64
 		isHidden

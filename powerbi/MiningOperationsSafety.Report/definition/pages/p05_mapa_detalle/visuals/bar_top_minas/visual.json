@@ -7,7 +7,7 @@
     "z": 36,
     "height": 300,
     "width": 512,
-    "tabOrder": 36
+    "tabOrder": 60
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -48,6 +48,52 @@
               "queryRef": "Mina.Accidentes (Top 10 minas)",
               "nativeQueryRef": "Accidentes (Top 10 minas)",
               "displayName": "Accidentes"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Infracciones"
+                    }
+                  },
+                  "Property": "Infracciones"
+                }
+              },
+              "queryRef": "Infracciones.Infracciones",
+              "nativeQueryRef": "Infracciones"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Plantilla"
+                    }
+                  },
+                  "Property": "Horas trabajadas"
+                }
+              },
+              "queryRef": "Plantilla.Horas trabajadas",
+              "nativeQueryRef": "Horas trabajadas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "Tasa de incidencia (por 200.000 h)"
+                }
+              },
+              "queryRef": "Accidentes.Tasa de incidencia (por 200.000 h)",
+              "nativeQueryRef": "Tasa de incidencia (por 200.000 h)"
             }
           ]
         }
@@ -176,6 +222,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Las 10 minas con más accidentes'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de barras: Las 10 minas con más accidentes'"
                 }
               }
             }

@@ -95,6 +95,62 @@ table Accidentes
 		displayFolder: 9 Presentación
 		lineageTag: b217668a-673d-43f0-997c-75ed89c83819
 
+	measure 'Δ Accidentes (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Accidentes] VAR prev = CALCULATE([Accidentes], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: 9e7e11c3-2c22-4158-af6b-2dac78ce2b01
+
+	measure 'Δ Accidentes (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Accidentes] - CALCULATE([Accidentes], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: 365e76be-c2f4-47a3-90fe-011410cf1117
+
+	measure 'Δ Incidencia (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Tasa de incidencia (por 200.000 h)] VAR prev = CALCULATE([Tasa de incidencia (por 200.000 h)], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: 3ae58791-7a65-419f-8774-a2cb4e4ac75b
+
+	measure 'Δ Incidencia (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Tasa de incidencia (por 200.000 h)] - CALCULATE([Tasa de incidencia (por 200.000 h)], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: d6e3fccb-b503-4a1b-9713-2ba8fd72ed5d
+
+	measure 'Δ Fatalidades (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Fatalidades] VAR prev = CALCULATE([Fatalidades], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(d), "#,0", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: ee379383-25a6-4480-8bc7-4fcfcdbbe61e
+
+	measure 'Δ Fatalidades (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Fatalidades] - CALCULATE([Fatalidades], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: 90c73356-925f-469f-a8f6-02628ec567f2
+
+	measure 'Δ Casos con tiempo perdido (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Casos con tiempo perdido] VAR prev = CALCULATE([Casos con tiempo perdido], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: 05286852-9dda-40d5-9c1c-17f2cf293c88
+
+	measure 'Δ Casos con tiempo perdido (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Casos con tiempo perdido] - CALCULATE([Casos con tiempo perdido], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: 702c9194-2721-411b-871d-6aec639970e0
+
+	measure 'Δ Días perdidos (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Días perdidos] VAR prev = CALCULATE([Días perdidos], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: 192e1821-d60b-4146-a3c1-34a64401c4cf
+
+	measure 'Δ Días perdidos (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Días perdidos] - CALCULATE([Días perdidos], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: efe8339a-a1c6-4565-9c7b-542d91407dd5
+
+	measure 'Δ Contratistas (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [% de accidentes de contratistas] VAR prev = CALCULATE([% de accidentes de contratistas], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(d) * 100, "0.0", "es-CL") & " pp" & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: d9c5a08e-8326-4154-9444-069f7e0cf6f4
+
+	measure 'Δ Contratistas (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [% de accidentes de contratistas] - CALCULATE([% de accidentes de contratistas], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: cc6e44bf-2781-4d78-89fb-8967b272ee5e
+
+	measure 'Δ Tasa de días perdidos (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Tasa de días perdidos (por 200.000 h)] VAR prev = CALCULATE([Tasa de días perdidos (por 200.000 h)], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: e3847890-72e4-4b51-bb7a-3f25fae16d4c
+
+	measure 'Δ Tasa de días perdidos (color)' = VAR one = HASONEVALUE(Fecha[Año]) VAR d = [Tasa de días perdidos (por 200.000 h)] - CALCULATE([Tasa de días perdidos (por 200.000 h)], SAMEPERIODLASTYEAR(Fecha[Fecha])) RETURN IF(NOT one || ISBLANK(d), "#6B7178", IF(d > 0, "#C0392B", IF(d < 0, "#3E8E85", "#6B7178")))
+		displayFolder: 3 Variación
+		lineageTag: a893ee04-ef99-4d2a-83bc-f179df3212c3
+
 	column 'Clave de accidente'
 		dataType: int64
 		isHidden

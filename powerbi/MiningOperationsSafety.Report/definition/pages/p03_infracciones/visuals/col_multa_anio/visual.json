@@ -7,7 +7,7 @@
     "z": 24,
     "height": 244,
     "width": 512,
-    "tabOrder": 24
+    "tabOrder": 130
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -140,6 +140,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Multa pagada por año'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de columnas: Multa pagada por año'"
                 }
               }
             }

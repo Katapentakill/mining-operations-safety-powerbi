@@ -7,7 +7,7 @@
     "z": 31,
     "height": 244,
     "width": 512,
-    "tabOrder": 31
+    "tabOrder": 120
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -126,6 +126,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Horas trabajadas por año'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de columnas: Horas trabajadas por año'"
                 }
               }
             }

@@ -7,7 +7,7 @@
     "z": 2007,
     "height": 56,
     "width": 200,
-    "tabOrder": 2007
+    "tabOrder": 30
   },
   "visual": {
     "visualType": "slicer",
@@ -101,6 +101,19 @@
                       "Value": "'#4A5058'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Filtro de año, sincronizado en todas las páginas'"
                 }
               }
             }

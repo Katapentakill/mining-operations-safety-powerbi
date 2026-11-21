@@ -7,7 +7,7 @@
     "z": 26,
     "height": 244,
     "width": 512,
-    "tabOrder": 26
+    "tabOrder": 150
   },
   "visual": {
     "visualType": "tableEx",
@@ -140,6 +140,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Normas más citadas'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabla: Normas más citadas'"
                 }
               }
             }

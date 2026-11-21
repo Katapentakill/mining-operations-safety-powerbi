@@ -7,7 +7,7 @@
     "z": 5,
     "height": 504,
     "width": 512,
-    "tabOrder": 5
+    "tabOrder": 130
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -200,6 +200,21 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de barras'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

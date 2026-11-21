@@ -16,6 +16,22 @@ table Plantilla
 		displayFolder: Plantilla
 		lineageTag: 6e151669-261e-4ecc-99dc-444e28d9ac00
 
+	measure 'Δ Horas trabajadas (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Horas trabajadas] VAR prev = CALCULATE([Horas trabajadas], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: 3fd900b1-3a74-4a9c-9be0-624cd3a6a3a5
+
+	measure 'Δ Horas trabajadas (color)' = "#6B7178"
+		displayFolder: 3 Variación
+		lineageTag: 63938893-ba08-4d55-9940-ace8f4704274
+
+	measure 'Δ Empleados promedio (texto)' = VAR one = HASONEVALUE(Fecha[Año]) VAR cur = [Empleados promedio] VAR prev = CALCULATE([Empleados promedio], SAMEPERIODLASTYEAR(Fecha[Fecha])) VAR d = cur - prev RETURN IF(NOT one, IF(ISFILTERED(Fecha[Año]), "Varios años", ""), IF(ISBLANK(cur) || ISBLANK(prev) || prev = 0, "Sin año previo", UNICHAR(IF(d > 0, 9650, IF(d < 0, 9660, 9670))) & " " & FORMAT(ABS(DIVIDE(d, prev)), "0.0%", "es-CL") & " vs " & (SELECTEDVALUE(Fecha[Año]) - 1)))
+		displayFolder: 3 Variación
+		lineageTag: 42907b29-61cf-445b-9ce2-89013faecd80
+
+	measure 'Δ Empleados promedio (color)' = "#6B7178"
+		displayFolder: 3 Variación
+		lineageTag: 94568bb7-dbeb-4bf4-a11a-fe7b021d0695
+
 	column 'Clave de plantilla'
 		dataType: int64
 		isHidden

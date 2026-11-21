@@ -7,7 +7,7 @@
     "z": 37,
     "height": 304,
     "width": 512,
-    "tabOrder": 37
+    "tabOrder": 80
   },
   "visual": {
     "visualType": "tableEx",
@@ -218,6 +218,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Detalle de las 43 minas'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabla: Detalle de las 43 minas'"
                 }
               }
             }

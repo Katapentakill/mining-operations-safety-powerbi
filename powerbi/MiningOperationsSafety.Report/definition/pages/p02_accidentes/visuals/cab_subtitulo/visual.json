@@ -7,7 +7,7 @@
     "z": 2005,
     "height": 30,
     "width": 820,
-    "tabOrder": 2005
+    "tabOrder": 20
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Cuántos hay, qué tan graves son y dónde ocurren",
+                    "value": "Cómo leerla: las barras van de lo más a lo menos frecuente; en gris, lo agrupado como «otros». Las tarjetas comparan con el año anterior.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -55,6 +55,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cómo leerla: las barras van de lo más a lo menos frecuente; en gris, lo agrupado como «otros». Las tarjetas comparan con el año anterior.'"
                 }
               }
             }

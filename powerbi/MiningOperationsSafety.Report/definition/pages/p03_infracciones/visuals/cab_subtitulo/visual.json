@@ -7,7 +7,7 @@
     "z": 2005,
     "height": 30,
     "width": 820,
-    "tabOrder": 2005
+    "tabOrder": 20
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Infracciones, multas pagadas y normas más citadas",
+                    "value": "Cómo leerla: las columnas son infracciones y la línea es la tasa por cada 100 horas de inspección; abajo, negligencia y normas citadas.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -55,6 +55,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cómo leerla: las columnas son infracciones y la línea es la tasa por cada 100 horas de inspección; abajo, negligencia y normas citadas.'"
                 }
               }
             }

@@ -7,7 +7,7 @@
     "z": 16,
     "height": 244,
     "width": 512,
-    "tabOrder": 16
+    "tabOrder": 130
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -215,6 +215,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Accidentes por parte del cuerpo'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de barras: Accidentes por parte del cuerpo'"
                 }
               }
             }

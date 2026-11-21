@@ -11,6 +11,8 @@ Lo funcional está primero; esto es lo que quedó sin pulir a propósito.
 - [x] Filtro de año en las 6 páginas, sincronizado entre ellas.
 - [x] Textos en inglés de MSHA traducidos en el data warehouse (decisión 25).
 - [x] Página «Acerca de los datos» con insignias propias (sin logos oficiales) y mapa con contorno de AZ, NM y CO.
-- [ ] Revisar el contraste (≥ 4,5:1) y agregar texto alternativo a cada visual (Fase 5).
+- [x] Texto alternativo en cada visual y orden de tabulación lógico.
+- [x] Tarjetas con variación vs año anterior, «cómo leerla» y dato clave por página; página «Detalle por mina».
+- [ ] Revisar el contraste final (≥ 4,5:1) con las capturas definitivas (Fase 6).
 - [x] Capturas en `docs/img/` enlazadas en el README (se vuelven a tomar si cambia el diseño).
 - [ ] Grabar el video corto (guion en `docs/video_guion.md`) y enlazarlo en el README.
