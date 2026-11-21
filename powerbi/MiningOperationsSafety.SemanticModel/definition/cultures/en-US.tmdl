@@ -8673,19 +8673,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Accidentes (Top 8 minas)"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Accidentes": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "accidentes.accidentes_partes_principales": {
 			      "Definition": {

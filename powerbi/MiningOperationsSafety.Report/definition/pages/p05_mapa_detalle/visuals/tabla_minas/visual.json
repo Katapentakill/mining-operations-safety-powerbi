@@ -3,11 +3,11 @@
   "name": "tabla_minas",
   "position": {
     "x": 760,
-    "y": 420,
+    "y": 438,
     "z": 37,
-    "height": 280,
+    "height": 262,
     "width": 496,
-    "tabOrder": 80
+    "tabOrder": 100
   },
   "visual": {
     "visualType": "tableEx",

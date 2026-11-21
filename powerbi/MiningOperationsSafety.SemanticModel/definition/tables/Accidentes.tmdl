@@ -190,11 +190,11 @@ table Accidentes
 
 	measure 'Título Mapa' =
 			VAR one = HASONEVALUE(Fecha[Año])
-			VAR t = ADDCOLUMNS(VALUES('Mina'[Mina]), "@a", [Accidentes])
+			VAR t = ADDCOLUMNS(ALL('Mina'[Mina]), "@a", VAR mm = 'Mina'[Mina] RETURN CALCULATE([Accidentes], REMOVEFILTERS('Mina'), 'Mina'[Mina] = mm))
 			VAR m = MAXX(t, [@a])
 			VAR nm = MAXX(FILTER(t, [@a] = m), 'Mina'[Mina])
 			VAR sh = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(nm, "Freeport-McMoRan ", ""), "Freeport McMoRan ", ""), " Inc.", ""), " Inc", "")
-			VAR share = DIVIDE(m, [Accidentes])
+			VAR share = DIVIDE(m, CALCULATE([Accidentes], REMOVEFILTERS('Mina')))
 			RETURN
 			IF(ISBLANK(m), "Sin accidentes en este período",
 				IF(one,

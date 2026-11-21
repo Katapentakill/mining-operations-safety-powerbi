@@ -29,6 +29,10 @@ table Mina
 		displayFolder: 9 Presentación
 		lineageTag: 6902a1e9-dbee-4495-a831-3d6a8bd9971a
 
+	measure 'Ficha de mina' = VAR one = HASONEVALUE('Mina'[Mina]) VAR sh = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(MAX('Mina'[Mina]), "Freeport-McMoRan ", ""), "Freeport McMoRan ", ""), " Inc.", ""), " Inc", "") RETURN IF(one, sh & " · " & MAX('Mina'[Estado (EE.UU., nombre)]) & " · " & LOWER(MAX('Mina'[Estado de la mina])) & " — " & FORMAT([Accidentes], "#,0", "es-CL") & " accidentes · " & FORMAT([Infracciones], "#,0", "es-CL") & " infracciones · " & FORMAT([Horas trabajadas] / 1000000, "#,0.0", "es-CL") & " millones de horas", "Haz clic en una burbuja del mapa o en una fila de la tabla para ver la ficha de la mina")
+		displayFolder: 8 Títulos
+		lineageTag: 0f933c1f-2fc2-4c36-bb6c-16bab3d1aca5
+
 	column 'Clave de mina'
 		dataType: int64
 		isHidden

@@ -192,6 +192,19 @@
             }
           }
         }
+      ],
+      "mapStyles": [
+        {
+          "properties": {
+            "mapTheme": {
+              "expr": {
+                "Literal": {
+                  "Value": "'grayscale'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -315,7 +328,116 @@
               }
             }
           ]
-        }
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "94d579e0b1d13252d0c9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Mina"
+              }
+            },
+            "Property": "Mina"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9790b71228881740bb2a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Accidentes"
+              }
+            },
+            "Property": "Escala de burbuja"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f33ee38a9cddc654a0ec",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Infracciones"
+              }
+            },
+            "Property": "Infracciones"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0b3e2ccb9ac0de7bbc63",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Plantilla"
+              }
+            },
+            "Property": "Horas trabajadas"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "52fbf190b102653cae0e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Accidentes"
+              }
+            },
+            "Property": "Tasa de incidencia (por 200.000 h)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bb4e240e0a3ac8e20b5c",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Mina"
+                  }
+                },
+                "Property": "Longitud"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "887643f7ac260c6a4a00",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Mina"
+                  }
+                },
+                "Property": "Latitud"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
