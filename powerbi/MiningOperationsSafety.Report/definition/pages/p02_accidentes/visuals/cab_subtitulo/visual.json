@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "cab_subtitulo",
   "position": {
-    "x": 220,
-    "y": 48,
+    "x": 24,
+    "y": 102,
     "z": 2005,
     "height": 30,
-    "width": 820,
+    "width": 1232,
     "tabOrder": 20
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Cómo leerla: las barras van de lo más a lo menos frecuente; en gris, lo agrupado como «otros». Las tarjetas comparan con el año anterior.",
+                    "value": "Accidentes de las 43 minas",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cómo leerla: las barras van de lo más a lo menos frecuente; en gris, lo agrupado como «otros». Las tarjetas comparan con el año anterior.'"
+                  "Value": "'Accidentes de las 43 minas'"
                 }
               }
             }

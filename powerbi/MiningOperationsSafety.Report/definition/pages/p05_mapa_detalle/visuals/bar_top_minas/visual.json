@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "bar_top_minas",
   "position": {
-    "x": 748,
-    "y": 80,
+    "x": 760,
+    "y": 132,
     "z": 36,
-    "height": 300,
-    "width": 512,
-    "tabOrder": 60
+    "height": 272,
+    "width": 496,
+    "tabOrder": 70
   },
   "visual": {
     "visualType": "clusteredBarChart",

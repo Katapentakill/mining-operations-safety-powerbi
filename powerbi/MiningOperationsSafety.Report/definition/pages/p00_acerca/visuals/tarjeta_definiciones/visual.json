@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "tarjeta_definiciones",
   "position": {
-    "x": 220,
-    "y": 494,
+    "x": 24,
+    "y": 484,
     "z": 23,
-    "height": 206,
-    "width": 512,
-    "tabOrder": 80
+    "height": 216,
+    "width": 608,
+    "tabOrder": 90
   },
   "visual": {
     "visualType": "textbox",

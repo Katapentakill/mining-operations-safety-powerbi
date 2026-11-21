@@ -8614,6 +8614,48 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "accidentes.escala_de_burbuja": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Accidentes",
+			          "ConceptualProperty": "Escala de burbuja"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Accidentes (escala raíz)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "mina.accidentes_top_10_minas": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mina",
+			          "ConceptualProperty": "Accidentes (Top 10 minas)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Accidentes": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

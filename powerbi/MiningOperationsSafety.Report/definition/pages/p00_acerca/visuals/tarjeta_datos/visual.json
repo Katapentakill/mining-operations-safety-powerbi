@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "tarjeta_datos",
   "position": {
-    "x": 924,
-    "y": 264,
+    "x": 845,
+    "y": 260,
     "z": 22,
-    "height": 214,
-    "width": 336,
-    "tabOrder": 70
+    "height": 208,
+    "width": 411,
+    "tabOrder": 80
   },
   "visual": {
     "visualType": "textbox",

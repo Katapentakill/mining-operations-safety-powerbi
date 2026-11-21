@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "col_accidentes_anio",
   "position": {
-    "x": 220,
-    "y": 196,
+    "x": 24,
+    "y": 252,
     "z": 4,
-    "height": 244,
-    "width": 512,
-    "tabOrder": 120
+    "height": 216,
+    "width": 607,
+    "tabOrder": 140
   },
   "visual": {
     "visualType": "clusteredColumnChart",

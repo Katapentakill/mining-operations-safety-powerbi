@@ -144,7 +144,7 @@ def check_layout(errors: list[str]) -> None:
     for f in sorted(PBI.rglob("visual.json")):
         data = json.loads(f.read_text(encoding="utf-8"))
         name = data["name"]
-        if not name.startswith(("side_", "cab_", "nav_", "filtro_")):
+        if not name.startswith(("top_", "cab_", "nav_", "filtro_anio")):
             continue
         pos = data["position"]
         box = (pos["x"], pos["y"], pos["width"], pos["height"])

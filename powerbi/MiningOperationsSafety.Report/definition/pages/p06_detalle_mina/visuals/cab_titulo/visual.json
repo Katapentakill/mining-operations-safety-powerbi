@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "cab_titulo",
   "position": {
-    "x": 220,
-    "y": 0,
+    "x": 24,
+    "y": 58,
     "z": 2004,
-    "height": 58,
-    "width": 820,
+    "height": 50,
+    "width": 1232,
     "tabOrder": 10
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "value": "Detalle por mina",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "24pt",
+                      "fontSize": "22pt",
                       "color": "#2B2F33"
                     }
                   }

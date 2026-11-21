@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "cab_subtitulo",
   "position": {
-    "x": 220,
-    "y": 48,
+    "x": 24,
+    "y": 102,
     "z": 2005,
     "height": 30,
-    "width": 820,
+    "width": 1232,
     "tabOrder": 20
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Cómo leerla: elige una mina en el filtro Mina; sin elegir, se suman las 43.",
+                    "value": "Elige una mina en el filtro; sin elegir se suman las 43",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cómo leerla: elige una mina en el filtro Mina; sin elegir, se suman las 43.'"
+                  "Value": "'Elige una mina en el filtro; sin elegir se suman las 43'"
                 }
               }
             }

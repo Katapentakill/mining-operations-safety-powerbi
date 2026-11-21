@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "card_2_acento",
   "position": {
-    "x": 484,
-    "y": 80,
+    "x": 337,
+    "y": 132,
     "z": 502,
     "height": 5,
-    "width": 248,
-    "tabOrder": 170
+    "width": 294,
+    "tabOrder": 200
   },
   "visual": {
     "visualType": "shape",

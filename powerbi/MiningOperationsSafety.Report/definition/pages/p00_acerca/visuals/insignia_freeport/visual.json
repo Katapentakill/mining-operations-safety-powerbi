@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "insignia_freeport",
   "position": {
-    "x": 748,
-    "y": 88,
+    "x": 652,
+    "y": 132,
     "z": 17,
-    "height": 160,
-    "width": 512,
-    "tabOrder": 40
+    "height": 112,
+    "width": 604,
+    "tabOrder": 50
   },
   "visual": {
     "visualType": "image",

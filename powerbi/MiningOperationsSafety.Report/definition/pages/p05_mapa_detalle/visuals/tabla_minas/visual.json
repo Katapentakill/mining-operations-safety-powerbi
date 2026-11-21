@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "tabla_minas",
   "position": {
-    "x": 748,
-    "y": 396,
+    "x": 760,
+    "y": 420,
     "z": 37,
-    "height": 304,
-    "width": 512,
+    "height": 280,
+    "width": 496,
     "tabOrder": 80
   },
   "visual": {

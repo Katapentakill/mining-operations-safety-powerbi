@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "insignia_msha",
   "position": {
-    "x": 220,
-    "y": 88,
+    "x": 24,
+    "y": 132,
     "z": 12,
-    "height": 160,
-    "width": 512,
-    "tabOrder": 30
+    "height": 112,
+    "width": 604,
+    "tabOrder": 40
   },
   "visual": {
     "visualType": "image",

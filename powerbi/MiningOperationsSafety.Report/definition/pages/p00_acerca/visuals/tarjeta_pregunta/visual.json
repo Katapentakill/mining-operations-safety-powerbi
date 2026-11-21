@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "tarjeta_pregunta",
   "position": {
-    "x": 220,
-    "y": 264,
+    "x": 24,
+    "y": 260,
     "z": 20,
-    "height": 214,
-    "width": 336,
-    "tabOrder": 50
+    "height": 208,
+    "width": 395,
+    "tabOrder": 60
   },
   "visual": {
     "visualType": "textbox",

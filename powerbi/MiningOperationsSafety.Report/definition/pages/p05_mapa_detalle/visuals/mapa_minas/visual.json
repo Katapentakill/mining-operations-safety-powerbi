@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "mapa_minas",
   "position": {
-    "x": 220,
-    "y": 80,
+    "x": 24,
+    "y": 132,
     "z": 35,
-    "height": 620,
-    "width": 520,
-    "tabOrder": 35
+    "height": 568,
+    "width": 720,
+    "tabOrder": 60
   },
   "visual": {
     "visualType": "map",

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "col_dias",
   "position": {
-    "x": 748,
-    "y": 456,
+    "x": 649,
+    "y": 484,
     "z": 18,
-    "height": 244,
-    "width": 512,
-    "tabOrder": 150
+    "height": 216,
+    "width": 607,
+    "tabOrder": 170
   },
   "visual": {
     "visualType": "clusteredColumnChart",

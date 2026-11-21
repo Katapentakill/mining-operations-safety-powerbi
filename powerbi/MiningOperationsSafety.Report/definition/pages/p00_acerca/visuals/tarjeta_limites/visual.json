@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "tarjeta_limites",
   "position": {
-    "x": 748,
-    "y": 494,
+    "x": 648,
+    "y": 484,
     "z": 24,
-    "height": 206,
-    "width": 512,
-    "tabOrder": 90
+    "height": 216,
+    "width": 608,
+    "tabOrder": 100
   },
   "visual": {
     "visualType": "textbox",
