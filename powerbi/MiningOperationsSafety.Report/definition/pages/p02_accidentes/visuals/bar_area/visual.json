@@ -10,28 +10,9 @@
     "tabOrder": 160
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "hundredPercentStackedBarChart",
     "query": {
       "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "AreaTrabajo"
-                    }
-                  },
-                  "Property": "Grupo de área"
-                }
-              },
-              "queryRef": "AreaTrabajo.Grupo de área",
-              "nativeQueryRef": "Grupo de área",
-              "active": true
-            }
-          ]
-        },
         "Y": {
           "projections": [
             {
@@ -49,25 +30,26 @@
               "nativeQueryRef": "Accidentes"
             }
           ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AreaTrabajo"
+                    }
+                  },
+                  "Property": "Grupo de área"
+                }
+              },
+              "queryRef": "AreaTrabajo.Grupo de área",
+              "nativeQueryRef": "Grupo de área",
+              "active": true
+            }
+          ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Accidentes"
-                  }
-                },
-                "Property": "Accidentes"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "visualContainerObjects": {
@@ -84,7 +66,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Accidentes por área de trabajo'"
+                  "Value": "'Accidentes por área de trabajo (% del total)'"
                 }
               }
             }
@@ -97,7 +79,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Gráfico de barras: Accidentes por área de trabajo'"
+                  "Value": "'Barra apilada al 100 %: proporción de accidentes por área de trabajo'"
                 }
               }
             }
@@ -107,43 +89,6 @@
     },
     "drillFilterOtherVisuals": true,
     "objects": {
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#B8602A'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "labelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "labels": [
         {
           "properties": {
@@ -161,17 +106,6 @@
                 }
               }
             },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#4A5058'"
-                    }
-                  }
-                }
-              }
-            },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
@@ -179,6 +113,260 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#B8602A'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "AreaTrabajo"
+                          }
+                        },
+                        "Property": "Grupo de área"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Superficie'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4F6D8F'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "AreaTrabajo"
+                          }
+                        },
+                        "Property": "Grupo de área"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Planta'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7A5C45'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "AreaTrabajo"
+                          }
+                        },
+                        "Property": "Grupo de área"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Subterránea'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8F979F'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "AreaTrabajo"
+                          }
+                        },
+                        "Property": "Grupo de área"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Oficina'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CFC9C0'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "AreaTrabajo"
+                          }
+                        },
+                        "Property": "Grupo de área"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Otras'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       ]

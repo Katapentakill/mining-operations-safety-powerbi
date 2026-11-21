@@ -1,0 +1,247 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "bar_top_minas",
+  "position": {
+    "x": 649,
+    "y": 484,
+    "z": 6,
+    "height": 216,
+    "width": 607,
+    "tabOrder": 170
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mina"
+                    }
+                  },
+                  "Property": "Mina"
+                }
+              },
+              "queryRef": "Mina.Mina",
+              "nativeQueryRef": "Mina",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mina"
+                    }
+                  },
+                  "Property": "Accidentes (Top 5 minas)"
+                }
+              },
+              "queryRef": "Mina.Accidentes (Top 5 minas)",
+              "nativeQueryRef": "Accidentes (Top 5 minas)",
+              "displayName": "Accidentes"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Infracciones"
+                    }
+                  },
+                  "Property": "Infracciones"
+                }
+              },
+              "queryRef": "Infracciones.Infracciones",
+              "nativeQueryRef": "Infracciones"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Plantilla"
+                    }
+                  },
+                  "Property": "Horas trabajadas"
+                }
+              },
+              "queryRef": "Plantilla.Horas trabajadas",
+              "nativeQueryRef": "Horas trabajadas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "Tasa de incidencia (por 200.000 h)"
+                }
+              },
+              "queryRef": "Accidentes.Tasa de incidencia (por 200.000 h)",
+              "nativeQueryRef": "Tasa de incidencia (por 200.000 h)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Mina"
+                  }
+                },
+                "Property": "Accidentes (Top 5 minas)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#B8602A'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4A5058'"
+                    }
+                  }
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Las 5 minas con más accidentes'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico de barras: Las 5 minas con más accidentes'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

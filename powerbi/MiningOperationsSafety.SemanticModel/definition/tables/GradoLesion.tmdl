@@ -54,6 +54,20 @@ table GradoLesion
 		summarizeBy: none
 		sourceColumn: degree_sort
 
+	column 'Grupo de gravedad'
+		dataType: string
+		lineageTag: ed3ca9fb-2d1b-4e31-be40-d93b7b821c2e
+		summarizeBy: none
+		sourceColumn: degree_group_es
+		sortByColumn: 'Orden del grupo de gravedad'
+
+	column 'Orden del grupo de gravedad'
+		dataType: int64
+		isHidden
+		lineageTag: 60ff655b-38ce-47bb-a402-d024de4b224d
+		summarizeBy: none
+		sourceColumn: degree_group_sort
+
 	partition GradoLesion = m
 		mode: import
 		source =

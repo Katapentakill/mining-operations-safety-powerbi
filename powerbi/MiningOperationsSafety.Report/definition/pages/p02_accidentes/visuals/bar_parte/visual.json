@@ -55,18 +55,19 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "ParteCuerpo"
+                    "Entity": "Accidentes"
                   }
                 },
-                "Property": "Parte del cuerpo (agrupada)"
+                "Property": "Accidentes"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -214,7 +215,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Accidentes por parte del cuerpo'"
+                  "Value": "'Las 5 partes del cuerpo más afectadas'"
                 }
               }
             }
@@ -227,7 +228,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Gráfico de barras: Accidentes por parte del cuerpo'"
+                  "Value": "'Gráfico de barras: Las 5 partes del cuerpo más afectadas'"
                 }
               }
             }
@@ -236,5 +237,110 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f_top5_parte",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ParteCuerpo"
+              }
+            },
+            "Property": "Parte del cuerpo (agrupada)"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "t",
+                        "Entity": "ParteCuerpo",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "a",
+                        "Entity": "Accidentes",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "t"
+                            }
+                          },
+                          "Property": "Parte del cuerpo (agrupada)"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "a"
+                              }
+                            },
+                            "Property": "Accidentes"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 5
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "t",
+              "Entity": "ParteCuerpo",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "Parte del cuerpo (agrupada)"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 }

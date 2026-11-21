@@ -78,6 +78,8 @@ CREATE TABLE dwh.dim_injury_degree (
     degree_desc       NVARCHAR(80)  NOT NULL,
     degree_es         NVARCHAR(100) NOT NULL,
     degree_sort       TINYINT       NOT NULL,                      -- severity order; unknown last
+    degree_group_es   NVARCHAR(40)  NOT NULL,                      -- 4 groups for the report: fatal / lost days / no lost days / other
+    degree_group_sort TINYINT       NOT NULL,
     is_fatality       BIT           NOT NULL,
     is_lost_time      BIT           NOT NULL,                      -- degrees 01 to 04
     counts_as_injury  BIT           NOT NULL                       -- degrees 01 to 06 (assumption, see docs/decisions.md)

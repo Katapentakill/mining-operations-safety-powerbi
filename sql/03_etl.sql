@@ -145,7 +145,7 @@ BEGIN
             INSERT dwh.dim_work_area VALUES ('?', N'No value found', N'Sin clasificar', N'Other', N'Otras');
 
         -- ---------------------------------------------------------------- dim_injury_degree
-        INSERT dwh.dim_injury_degree (degree_code, degree_desc, degree_es, degree_sort, is_fatality, is_lost_time, counts_as_injury)
+        INSERT dwh.dim_injury_degree (degree_code, degree_desc, degree_es, degree_sort, degree_group_es, degree_group_sort, is_fatality, is_lost_time, counts_as_injury)
         SELECT u.code, MAX(u.descr),
                CASE u.code
                     WHEN '00' THEN N'Solo accidente (sin lesión)' WHEN '01' THEN N'Fatalidad'
@@ -155,13 +155,16 @@ BEGIN
                     WHEN '08' THEN N'Lesión por causas naturales' WHEN '09' THEN N'Lesión a no empleados'
                     WHEN '10' THEN N'Otros casos (incluye primeros auxilios)' ELSE N'Sin valor' END,
                CASE WHEN u.code LIKE '[0-9][0-9]' THEN CONVERT(TINYINT, u.code) ELSE 99 END,
+               CASE WHEN u.code = '01' THEN N'Fatalidad' WHEN u.code IN ('02', '03', '04') THEN N'Con días perdidos'
+                    WHEN u.code IN ('05', '06') THEN N'Sin días perdidos' ELSE N'Sin lesión u otros' END,
+               CASE WHEN u.code = '01' THEN 1 WHEN u.code IN ('02', '03', '04') THEN 2 WHEN u.code IN ('05', '06') THEN 3 ELSE 4 END,
                CASE WHEN u.code = '01' THEN 1 ELSE 0 END,
                CASE WHEN u.code IN ('01', '02', '03', '04') THEN 1 ELSE 0 END,
                CASE WHEN u.code IN ('01', '02', '03', '04', '05', '06') THEN 1 ELSE 0 END
         FROM (SELECT COALESCE(NULLIF(DEGREE_INJURY_CD, ''), '?') AS code, DEGREE_INJURY AS descr FROM stg.accidents) u
         GROUP BY u.code;
         IF NOT EXISTS (SELECT 1 FROM dwh.dim_injury_degree WHERE degree_code = '?')
-            INSERT dwh.dim_injury_degree VALUES ('?', N'NO VALUE FOUND', N'Sin valor', 99, 0, 0, 0);
+            INSERT dwh.dim_injury_degree VALUES ('?', N'NO VALUE FOUND', N'Sin valor', 99, N'Sin lesión u otros', 4, 0, 0, 0);
 
         -- ---------------------------------------------------------------- simple code dimensions (only those the report shows)
         INSERT dwh.dim_accident_type (accident_type_code, accident_type_desc)

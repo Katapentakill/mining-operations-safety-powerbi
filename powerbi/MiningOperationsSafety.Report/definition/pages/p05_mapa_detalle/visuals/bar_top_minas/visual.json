@@ -42,11 +42,11 @@
                       "Entity": "Mina"
                     }
                   },
-                  "Property": "Accidentes (Top 10 minas)"
+                  "Property": "Accidentes (Top 8 minas)"
                 }
               },
-              "queryRef": "Mina.Accidentes (Top 10 minas)",
-              "nativeQueryRef": "Accidentes (Top 10 minas)",
+              "queryRef": "Mina.Accidentes (Top 8 minas)",
+              "nativeQueryRef": "Accidentes (Top 8 minas)",
               "displayName": "Accidentes"
             }
           ]
@@ -108,7 +108,7 @@
                     "Entity": "Mina"
                   }
                 },
-                "Property": "Accidentes (Top 10 minas)"
+                "Property": "Accidentes (Top 8 minas)"
               }
             },
             "direction": "Descending"
@@ -221,7 +221,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Las 10 minas con más accidentes'"
+                  "Value": "'Las 8 minas con más accidentes'"
                 }
               }
             }
@@ -234,7 +234,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Gráfico de barras: Las 10 minas con más accidentes'"
+                  "Value": "'Gráfico de barras: Las 8 minas con más accidentes'"
                 }
               }
             }

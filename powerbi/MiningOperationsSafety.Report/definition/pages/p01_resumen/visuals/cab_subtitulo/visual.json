@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Seguridad en las 43 minas · el filtro Año resalta un año y compara con el anterior",
+                    "value": "Seguridad en las 43 minas · el filtro Año elige el período y compara con el año anterior",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Seguridad en las 43 minas · el filtro Año resalta un año y compara con el anterior'"
+                  "Value": "'Seguridad en las 43 minas · el filtro Año elige el período y compara con el año anterior'"
                 }
               }
             }

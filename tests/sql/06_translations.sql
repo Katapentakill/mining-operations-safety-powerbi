@@ -10,6 +10,9 @@ UNION ALL
 SELECT 'mine status or type not translated', mine_id FROM dwh.dim_mine
 WHERE mine_status_es IN (N'Active', N'Abandoned', N'NonProducing') OR mine_type_es IN (N'Surface', N'Underground', N'Facility')
 UNION ALL
+SELECT 'injury degree without a severity group (or fatal not alone in group 1)', degree_code FROM dwh.dim_injury_degree
+WHERE degree_group_es IS NULL OR degree_group_sort NOT BETWEEN 1 AND 4 OR (is_fatality = 1 AND degree_group_sort <> 1) OR (is_fatality = 0 AND degree_group_sort = 1)
+UNION ALL
 SELECT 'violation profile not translated', CONCAT(negligence, '/', likelihood, '/', expected_injury)
 FROM dwh.dim_violation_profile
 WHERE negligence_es = negligence OR likelihood_es = likelihood OR citation_type_es = citation_type

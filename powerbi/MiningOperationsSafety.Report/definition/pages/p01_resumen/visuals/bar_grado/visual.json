@@ -5,7 +5,7 @@
     "x": 649,
     "y": 252,
     "z": 5,
-    "height": 448,
+    "height": 216,
     "width": 607,
     "tabOrder": 150
   },
@@ -23,11 +23,11 @@
                       "Entity": "GradoLesion"
                     }
                   },
-                  "Property": "Grado de lesión"
+                  "Property": "Grupo de gravedad"
                 }
               },
-              "queryRef": "GradoLesion.Grado de lesión",
-              "nativeQueryRef": "Grado de lesión",
+              "queryRef": "GradoLesion.Grupo de gravedad",
+              "nativeQueryRef": "Grupo de gravedad",
               "active": true
             }
           ]
@@ -61,7 +61,7 @@
                     "Entity": "GradoLesion"
                   }
                 },
-                "Property": "Grado de lesión"
+                "Property": "Grupo de gravedad"
               }
             },
             "direction": "Ascending"
@@ -126,7 +126,7 @@
                             "Entity": "GradoLesion"
                           }
                         },
-                        "Property": "Grado de lesión"
+                        "Property": "Grupo de gravedad"
                       }
                     },
                     "Right": {
@@ -207,7 +207,27 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Gráfico de barras'"
+                  "Value": "'Gráfico de barras: Gravedad de las lesiones (4 grupos)'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gravedad de las lesiones (4 grupos)'"
                 }
               }
             }

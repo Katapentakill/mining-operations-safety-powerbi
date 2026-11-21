@@ -19,6 +19,16 @@ table Mina
 		displayFolder: 8 Títulos
 		lineageTag: eb5ac230-48e7-4ad8-9d1d-89a062d392db
 
+	measure 'Accidentes (Top 5 minas)' = VAR r = RANKX(ALLSELECTED('Mina'), CALCULATE(COUNTROWS(Accidentes)), , DESC, DENSE) RETURN IF(r <= 5, COUNTROWS(Accidentes))
+		formatString: #,0
+		displayFolder: 9 Presentación
+		lineageTag: e6e123d0-b271-4243-afb0-33b85ebf4ccf
+
+	measure 'Accidentes (Top 8 minas)' = VAR r = RANKX(ALLSELECTED('Mina'), CALCULATE(COUNTROWS(Accidentes)), , DESC, DENSE) RETURN IF(r <= 8, COUNTROWS(Accidentes))
+		formatString: #,0
+		displayFolder: 9 Presentación
+		lineageTag: 6902a1e9-dbee-4495-a831-3d6a8bd9971a
+
 	column 'Clave de mina'
 		dataType: int64
 		isHidden

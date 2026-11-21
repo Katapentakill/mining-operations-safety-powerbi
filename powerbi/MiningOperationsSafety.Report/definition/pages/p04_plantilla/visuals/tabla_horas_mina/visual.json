@@ -128,6 +128,71 @@
         {
           "properties": {}
         }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#B9C7D8'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#C0392B'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#8F979F'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Plantilla.Horas trabajadas"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -166,5 +231,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4cec8c44ed8e4cd200e3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Mina"
+              }
+            },
+            "Property": "Mina"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e88d5440803d0aeca914",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Plantilla"
+              }
+            },
+            "Property": "Horas trabajadas"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "43113e706509cbd60cc6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Plantilla"
+              }
+            },
+            "Property": "Empleados promedio"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
