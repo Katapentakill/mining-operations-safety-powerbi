@@ -37,9 +37,13 @@ CREATE TABLE dwh.dim_mine (
     mine_name                 NVARCHAR(100) NOT NULL,
     mine_type                 NVARCHAR(20)  NULL,                  -- Surface / Underground / Facility
     mine_status               NVARCHAR(20)  NULL,
+    mine_status_es            NVARCHAR(20)  NOT NULL,
+    mine_type_es              NVARCHAR(30)  NOT NULL,
+    state_name                NVARCHAR(20)  NULL,
     is_active                 BIT           NOT NULL,
     status_date               DATE          NULL,
     commodity                 NVARCHAR(80)  NULL,                  -- MSHA primary SIC description
+    commodity_es              NVARCHAR(60)  NULL,
     state                     NCHAR(2)      NULL,
     county                    NVARCHAR(60)  NULL,
     latitude                  DECIMAL(9,6)  NULL,
@@ -64,7 +68,8 @@ CREATE TABLE dwh.dim_work_area (
     work_area_code  VARCHAR(3)    NOT NULL UNIQUE,
     work_area_desc  NVARCHAR(80)  NOT NULL,
     work_area_es    NVARCHAR(80)  NOT NULL,
-    work_area_group NVARCHAR(20)  NOT NULL                         -- Surface / Plant / Underground / Office / Other
+    work_area_group NVARCHAR(20)  NOT NULL,                        -- Surface / Plant / Underground / Office / Other
+    work_area_group_es NVARCHAR(20) NOT NULL
 );
 
 CREATE TABLE dwh.dim_injury_degree (
@@ -72,13 +77,16 @@ CREATE TABLE dwh.dim_injury_degree (
     degree_code       VARCHAR(3)    NOT NULL UNIQUE,
     degree_desc       NVARCHAR(80)  NOT NULL,
     degree_es         NVARCHAR(100) NOT NULL,
+    degree_sort       TINYINT       NOT NULL,                      -- severity order; unknown last
     is_fatality       BIT           NOT NULL,
     is_lost_time      BIT           NOT NULL,                      -- degrees 01 to 04
     counts_as_injury  BIT           NOT NULL                       -- degrees 01 to 06 (assumption, see docs/decisions.md)
 );
 
-CREATE TABLE dwh.dim_accident_type (accident_type_key INT IDENTITY(1,1) PRIMARY KEY, accident_type_code VARCHAR(10) NOT NULL UNIQUE, accident_type_desc NVARCHAR(150) NOT NULL);
-CREATE TABLE dwh.dim_body_part     (body_part_key     INT IDENTITY(1,1) PRIMARY KEY, body_part_code     VARCHAR(10) NOT NULL UNIQUE, body_part_desc     NVARCHAR(150) NOT NULL);
+CREATE TABLE dwh.dim_accident_type (accident_type_key INT IDENTITY(1,1) PRIMARY KEY, accident_type_code VARCHAR(10) NOT NULL UNIQUE, accident_type_desc NVARCHAR(150) NOT NULL, accident_type_es NVARCHAR(150) NULL,
+                                  accident_type_top NVARCHAR(150) NULL, accident_type_rank TINYINT NULL);
+CREATE TABLE dwh.dim_body_part     (body_part_key     INT IDENTITY(1,1) PRIMARY KEY, body_part_code     VARCHAR(10) NOT NULL UNIQUE, body_part_desc     NVARCHAR(150) NOT NULL, body_part_es     NVARCHAR(150) NULL,
+                                  body_part_top NVARCHAR(150) NULL, body_part_rank TINYINT NULL);
 
 CREATE TABLE dwh.dim_standard (                                    -- safety standard cited (CFR part and section)
     standard_key  INT IDENTITY(1,1) PRIMARY KEY,
@@ -93,6 +101,12 @@ CREATE TABLE dwh.dim_violation_profile (                           -- junk dimen
     likelihood                   NVARCHAR(30) NOT NULL,
     expected_injury              NVARCHAR(30) NOT NULL,            -- gravity expected by the inspector, not an actual outcome
     citation_type                NVARCHAR(30) NOT NULL,            -- Citation / Order
+    significant_and_substantial_es NVARCHAR(12) NOT NULL,          -- Spanish labels shown in the report; the MSHA values above are kept
+    negligence_es                NVARCHAR(30) NOT NULL,
+    negligence_sort              TINYINT      NOT NULL,
+    likelihood_es                NVARCHAR(30) NOT NULL,
+    expected_injury_es           NVARCHAR(30) NOT NULL,
+    citation_type_es             NVARCHAR(20) NOT NULL,
     mine_act_section             NVARCHAR(30) NOT NULL,
     CONSTRAINT UQ_violation_profile UNIQUE (significant_and_substantial, negligence, likelihood, expected_injury, citation_type, mine_act_section)
 );

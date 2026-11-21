@@ -19,7 +19,28 @@ table ParteCuerpo
 		dataType: string
 		lineageTag: cddcdb03-8854-473d-b4d4-9ee25d06c358
 		summarizeBy: none
+		sourceColumn: body_part_es
+
+	column 'Parte del cuerpo (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: cef7750a-235b-47fa-aff7-d89cb1a9c4f3
+		summarizeBy: none
 		sourceColumn: body_part_desc
+
+	column 'Orden de la parte (frecuencia)'
+		dataType: int64
+		isHidden
+		lineageTag: 176c8348-be13-467e-acde-6aeae2ee52ea
+		summarizeBy: none
+		sourceColumn: body_part_rank
+
+	column 'Parte del cuerpo (agrupada)'
+		dataType: string
+		lineageTag: 7d9563dd-b407-4b38-9625-f00aa2ad126c
+		summarizeBy: none
+		sourceColumn: body_part_top
+		sortByColumn: 'Orden de la parte (frecuencia)'
 
 	partition ParteCuerpo = m
 		mode: import

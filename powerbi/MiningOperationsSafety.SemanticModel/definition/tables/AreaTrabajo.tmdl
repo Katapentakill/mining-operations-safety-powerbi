@@ -32,6 +32,13 @@ table AreaTrabajo
 		dataType: string
 		lineageTag: 64922fcc-9f3d-4570-ac79-00035447a786
 		summarizeBy: none
+		sourceColumn: work_area_group_es
+
+	column 'Grupo de área (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: 8597d399-b05f-4096-9184-3b0ee54dadce
+		summarizeBy: none
 		sourceColumn: work_area_group
 
 	partition AreaTrabajo = m

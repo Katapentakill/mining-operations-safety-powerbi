@@ -19,7 +19,28 @@ table TipoAccidente
 		dataType: string
 		lineageTag: bf53bb2a-db05-4acd-b607-18e1a662f956
 		summarizeBy: none
+		sourceColumn: accident_type_es
+
+	column 'Tipo de accidente (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: 2e015dfa-7105-467d-9aff-085ff9d230f3
+		summarizeBy: none
 		sourceColumn: accident_type_desc
+
+	column 'Orden del tipo (frecuencia)'
+		dataType: int64
+		isHidden
+		lineageTag: f9dc9574-3d35-412b-bc58-43917c3e192f
+		summarizeBy: none
+		sourceColumn: accident_type_rank
+
+	column 'Tipo de accidente (agrupado)'
+		dataType: string
+		lineageTag: 49addafb-45e8-47e1-a816-82fbf062b2eb
+		summarizeBy: none
+		sourceColumn: accident_type_top
+		sortByColumn: 'Orden del tipo (frecuencia)'
 
 	partition TipoAccidente = m
 		mode: import

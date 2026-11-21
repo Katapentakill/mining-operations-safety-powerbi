@@ -12,37 +12,80 @@ table PerfilInfraccion
 		dataType: string
 		lineageTag: 11a275d2-fcc4-4e40-b615-5fb690333112
 		summarizeBy: none
-		sourceColumn: significant_and_substantial
+		sourceColumn: significant_and_substantial_es
 
 	column Negligencia
 		dataType: string
 		lineageTag: e1f099cb-0008-4e5c-92e3-8294406edf07
 		summarizeBy: none
-		sourceColumn: negligence
+		sourceColumn: negligence_es
+		sortByColumn: 'Orden de negligencia'
 
 	column Probabilidad
 		dataType: string
 		lineageTag: 1aea4f7b-574d-458d-9189-f987c58d16a0
 		summarizeBy: none
-		sourceColumn: likelihood
+		sourceColumn: likelihood_es
 
 	column 'Lesión esperada por el inspector'
 		dataType: string
 		lineageTag: c9e939d2-034e-45cd-9535-62b45d3c29a2
 		summarizeBy: none
-		sourceColumn: expected_injury
+		sourceColumn: expected_injury_es
 
 	column 'Tipo de citación'
 		dataType: string
 		lineageTag: 797da1fc-28c3-4a20-b0e9-a421b188da4a
 		summarizeBy: none
-		sourceColumn: citation_type
+		sourceColumn: citation_type_es
 
 	column 'Sección de la ley minera'
 		dataType: string
 		lineageTag: 95f1e0b1-329f-4696-81e8-e8318fe0b305
 		summarizeBy: none
 		sourceColumn: mine_act_section
+
+	column 'Significativa y sustancial (MSHA)'
+		dataType: string
+		isHidden
+		lineageTag: 58a22182-7645-4d1d-88fa-a9bb927d5878
+		summarizeBy: none
+		sourceColumn: significant_and_substantial
+
+	column 'Negligencia (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: 38c38b1d-828e-4ffa-aded-91c88a5f8377
+		summarizeBy: none
+		sourceColumn: negligence
+
+	column 'Probabilidad (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: abc99411-2e27-41e8-927b-7df5c68d7250
+		summarizeBy: none
+		sourceColumn: likelihood
+
+	column 'Lesión esperada (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: a5489ae0-c290-4d33-ac6f-21ec8b2bd325
+		summarizeBy: none
+		sourceColumn: expected_injury
+
+	column 'Tipo de citación (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: 6db357bb-e6d9-419c-bfd2-004f659919d4
+		summarizeBy: none
+		sourceColumn: citation_type
+
+	column 'Orden de negligencia'
+		dataType: int64
+		isHidden
+		lineageTag: 08858fed-4192-43c8-9391-c279f9f4c09b
+		summarizeBy: none
+		sourceColumn: negligence_sort
 
 	partition PerfilInfraccion = m
 		mode: import

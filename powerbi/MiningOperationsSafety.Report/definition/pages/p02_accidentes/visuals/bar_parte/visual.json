@@ -23,11 +23,11 @@
                       "Entity": "ParteCuerpo"
                     }
                   },
-                  "Property": "Parte del cuerpo"
+                  "Property": "Parte del cuerpo (agrupada)"
                 }
               },
-              "queryRef": "ParteCuerpo.Parte del cuerpo",
-              "nativeQueryRef": "Parte del cuerpo",
+              "queryRef": "ParteCuerpo.Parte del cuerpo (agrupada)",
+              "nativeQueryRef": "Parte del cuerpo (agrupada)",
               "active": true
             }
           ]
@@ -55,19 +55,18 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Accidentes"
+                    "Entity": "ParteCuerpo"
                   }
                 },
-                "Property": "Accidentes"
+                "Property": "Parte del cuerpo (agrupada)"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
@@ -95,6 +94,105 @@
                       "Value": "'#B8602A'"
                     }
                   }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A7ADB3'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "ParteCuerpo"
+                          }
+                        },
+                        "Property": "Parte del cuerpo (agrupada)"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Otras partes'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4A5058'"
+                    }
+                  }
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }

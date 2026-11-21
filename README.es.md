@@ -28,7 +28,7 @@ Cinco páginas: **Resumen**, **Accidentes**, **Infracciones y multas**, **Planti
 | ![Accidentes](docs/img/02-accidentes.jpg) | ![Infracciones y multas](docs/img/03-infracciones-multas.jpg) |
 | ![Plantilla y horas](docs/img/04-plantilla-horas.jpg) | ![Mapa y detalle por mina](docs/img/05-mapa-detalle-mina.jpg) |
 
-Los nombres de categorías (tipos de accidente, niveles de negligencia) vienen de MSHA en inglés y se muestran tal como se publican.
+Los nombres de categorías (tipos de accidente, niveles de negligencia, estado de la mina) se traducen al español en el data warehouse; el texto original de MSHA queda en columnas ocultas.
 
 Medida principal: **tasa de incidencia de lesiones por 200.000 horas trabajadas**, solo personal propio y solo en trimestres con horas (ver [decisiones](docs/decisions.md)).
 

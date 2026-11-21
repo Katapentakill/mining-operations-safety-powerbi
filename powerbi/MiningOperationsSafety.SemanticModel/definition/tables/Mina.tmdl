@@ -24,13 +24,13 @@ table Mina
 		dataType: string
 		lineageTag: e8f2d84e-c526-4183-9d27-fdcae822f8d9
 		summarizeBy: none
-		sourceColumn: mine_type
+		sourceColumn: mine_type_es
 
 	column 'Estado de la mina'
 		dataType: string
 		lineageTag: b0b907e7-0a2f-4eeb-a570-40c723afc65d
 		summarizeBy: none
-		sourceColumn: mine_status
+		sourceColumn: mine_status_es
 
 	column Activa
 		dataType: boolean
@@ -56,7 +56,7 @@ table Mina
 		dataType: string
 		lineageTag: b68510d9-59ad-48cf-be3d-5813472abd3a
 		summarizeBy: none
-		sourceColumn: commodity
+		sourceColumn: commodity_es
 
 	column 'Estado (EE.UU.)'
 		dataType: string
@@ -148,6 +148,34 @@ table Mina
 		level Mina
 			lineageTag: 5ebb4e8b-d812-4a6e-bb92-4043b28a07f8
 			column: Mina
+
+	column 'Tipo de mina (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: 1a00fdb2-6fbc-47ab-9007-23fc71b58014
+		summarizeBy: none
+		sourceColumn: mine_type
+
+	column 'Estado de la mina (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: 5a3f9d9c-42ed-472d-be5e-fac862b97d70
+		summarizeBy: none
+		sourceColumn: mine_status
+
+	column 'Mineral principal (MSHA, inglés)'
+		dataType: string
+		isHidden
+		lineageTag: 42e4761f-97ab-4649-9698-51756445e1d8
+		summarizeBy: none
+		sourceColumn: commodity
+
+	column 'Estado (EE.UU., nombre)'
+		dataType: string
+		isHidden
+		lineageTag: 19926588-9758-45cd-b230-f55a1b5cbeae
+		summarizeBy: none
+		sourceColumn: state_name
 
 	partition Mina = m
 		mode: import

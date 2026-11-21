@@ -6,7 +6,7 @@ table Infracciones
 		displayFolder: 1 Infracciones
 		lineageTag: a83a19d1-fb9b-48f5-a54e-a1878e6192a8
 
-	measure 'Infracciones S&S' = CALCULATE([Infracciones], PerfilInfraccion[Significativa y sustancial] = "Yes")
+	measure 'Infracciones S&S' = CALCULATE([Infracciones], PerfilInfraccion[Significativa y sustancial (MSHA)] = "Yes")
 		formatString: #,0
 		displayFolder: 1 Infracciones
 		lineageTag: 91dad761-50fa-49d2-ac32-f3265cb3f364
@@ -32,17 +32,17 @@ table Infracciones
 		lineageTag: 568faf02-498a-441f-a598-480adc1ff3c2
 
 	measure 'Multa propuesta' = SUM(Infracciones[Multa propuesta (registro)])
-		formatString: $ #,0
+		formatString: "US$ "#,0
 		displayFolder: 2 Multas
 		lineageTag: b7557d60-3253-4fe4-9835-6bbc614c75bf
 
 	measure 'Multa vigente' = SUM(Infracciones[Multa vigente (registro)])
-		formatString: $ #,0
+		formatString: "US$ "#,0
 		displayFolder: 2 Multas
 		lineageTag: c64faf83-752a-42f7-af71-c2dd297e94e6
 
 	measure 'Multa pagada' = SUM(Infracciones[Multa pagada (registro)])
-		formatString: $ #,0
+		formatString: "US$ "#,0
 		displayFolder: 2 Multas
 		lineageTag: 0ea4e16c-4d24-40d6-bf92-2be383b69f2b
 
@@ -52,7 +52,7 @@ table Infracciones
 		lineageTag: 4f63636c-852b-41a1-b97b-40c06beb5aed
 
 	measure 'Multa promedio' = DIVIDE([Multa vigente], [Infracciones con multa])
-		formatString: $ #,0
+		formatString: "US$ "#,0
 		displayFolder: 2 Multas
 		lineageTag: 0e0884fb-0253-4d92-a804-a4d75c057f9e
 
@@ -195,7 +195,7 @@ table Infracciones
 	column 'Multa propuesta (registro)'
 		dataType: double
 		isHidden
-		formatString: $ #
+		formatString: "US$ "#,0
 		lineageTag: 4a7eaeb9-b9ff-4069-bfc5-8d41bc1f6fbd
 		summarizeBy: sum
 		sourceColumn: proposed_penalty
@@ -205,7 +205,7 @@ table Infracciones
 	column 'Multa vigente (registro)'
 		dataType: double
 		isHidden
-		formatString: $ #
+		formatString: "US$ "#,0
 		lineageTag: ada4e566-4e44-4dec-aef8-db2e8434c0a0
 		summarizeBy: sum
 		sourceColumn: current_assessment
@@ -215,7 +215,7 @@ table Infracciones
 	column 'Multa pagada (registro)'
 		dataType: double
 		isHidden
-		formatString: $ #
+		formatString: "US$ "#,0
 		lineageTag: 4d5137eb-a1c6-4799-905a-73b8d96da866
 		summarizeBy: sum
 		sourceColumn: paid_penalty

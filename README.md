@@ -34,7 +34,7 @@ Five report pages: **Summary**, **Accidents**, **Violations and penalties**, **W
 | ![Accidents](docs/img/02-accidentes.jpg) | ![Violations and penalties](docs/img/03-infracciones-multas.jpg) |
 | ![Workforce and hours](docs/img/04-plantilla-horas.jpg) | ![Map and mine detail](docs/img/05-mapa-detalle-mina.jpg) |
 
-Category names such as accident types or negligence levels come from MSHA in English and are shown as published.
+Category names (accident types, negligence levels, mine status) are translated to Spanish in the warehouse; the original MSHA text stays in hidden columns.
 
 Headline measure: **injury incidence rate per 200,000 hours worked**, own staff only, computed for quarters that have hours data (see [decisions](docs/decisions.md)).
 

@@ -65,16 +65,28 @@ BEGIN
         FROM nums CROSS APPLY (SELECT DATEADD(DAY, n, @start) AS d) x;
 
         -- ---------------------------------------------------------------- dim_mine
-        INSERT dwh.dim_mine (mine_id, mine_name, mine_type, mine_status, is_active, status_date, commodity, state, county,
+        INSERT dwh.dim_mine (mine_id, mine_name, mine_type, mine_status, mine_status_es, mine_type_es, state_name, is_active, status_date, commodity, commodity_es, state, county,
                              latitude, longitude, has_coordinates, employees_reported,
                              current_controller_id, current_controller_name, current_operator_id, current_operator_name)
         SELECT m.MINE_ID,
                COALESCE(NULLIF(m.CURRENT_MINE_NAME, ''), N'(unnamed)'),
                NULLIF(m.CURRENT_MINE_TYPE, ''),
                NULLIF(m.CURRENT_MINE_STATUS, ''),
+               CASE m.CURRENT_MINE_STATUS WHEN 'Active' THEN N'Activa' WHEN 'Abandoned' THEN N'Abandonada'
+                    WHEN 'NonProducing' THEN N'Sin producción' ELSE N'Sin dato' END,
+               CASE m.CURRENT_MINE_TYPE WHEN 'Surface' THEN N'Superficie' WHEN 'Underground' THEN N'Subterránea'
+                    WHEN 'Facility' THEN N'Planta o instalación' ELSE N'Sin dato' END,
+               CASE m.STATE WHEN 'AZ' THEN N'Arizona' WHEN 'NM' THEN N'Nuevo México' WHEN 'CO' THEN N'Colorado'
+                    WHEN 'OR' THEN N'Oregón' ELSE NULLIF(m.STATE, '') END,
                CASE WHEN m.CURRENT_MINE_STATUS = 'Active' THEN 1 ELSE 0 END,
                TRY_CONVERT(DATE, NULLIF(m.CURRENT_STATUS_DT, ''), 101),
                NULLIF(m.PRIMARY_SIC, ''),
+               CASE m.PRIMARY_SIC WHEN 'Copper Ore NEC' THEN N'Cobre' WHEN 'Molybdenum Ore' THEN N'Molibdeno'
+                    WHEN 'Gold Ore' THEN N'Oro' WHEN 'Silver Ore' THEN N'Plata' WHEN 'Lead-Zinc Ore' THEN N'Plomo y zinc'
+                    WHEN 'Ground Silica' THEN N'Sílice molida' WHEN 'Construction Sand and Gravel' THEN N'Arena y grava'
+                    WHEN 'Crushed, Broken Limestone NEC' THEN N'Caliza triturada'
+                    WHEN 'Crushed, Broken Sandstone' THEN N'Arenisca triturada'
+                    WHEN 'Crushed, Broken Stone NEC' THEN N'Piedra triturada' ELSE NULLIF(m.PRIMARY_SIC, '') END,
                NULLIF(m.STATE, ''),
                NULLIF(m.FIPS_CNTY_NM, ''),
                c.lat, c.lon,
@@ -104,7 +116,7 @@ BEGIN
             INSERT dwh.dim_company (controller_id, controller_name, is_target_company) VALUES ('?', N'Unknown', 0);
 
         -- ---------------------------------------------------------------- dim_work_area
-        INSERT dwh.dim_work_area (work_area_code, work_area_desc, work_area_es, work_area_group)
+        INSERT dwh.dim_work_area (work_area_code, work_area_desc, work_area_es, work_area_group, work_area_group_es)
         SELECT u.code, MAX(u.descr),
                CASE u.code
                     WHEN '01' THEN N'Subterránea' WHEN '02' THEN N'Superficie de mina subterránea'
@@ -117,7 +129,12 @@ BEGIN
                     WHEN u.code IN ('02', '03', '04', '05', '06') THEN N'Surface'
                     WHEN u.code = '30' THEN N'Plant'
                     WHEN u.code = '99' THEN N'Office'
-                    ELSE N'Other' END
+                    ELSE N'Other' END,
+               CASE WHEN u.code = '01' THEN N'Subterránea'
+                    WHEN u.code IN ('02', '03', '04', '05', '06') THEN N'Superficie'
+                    WHEN u.code = '30' THEN N'Planta'
+                    WHEN u.code = '99' THEN N'Oficina'
+                    ELSE N'Otras' END
         FROM (
             SELECT COALESCE(NULLIF(SUBUNIT_CD, ''), '?') AS code, SUBUNIT AS descr FROM stg.accidents
             UNION ALL
@@ -125,10 +142,10 @@ BEGIN
         ) u
         GROUP BY u.code;
         IF NOT EXISTS (SELECT 1 FROM dwh.dim_work_area WHERE work_area_code = '?')
-            INSERT dwh.dim_work_area VALUES ('?', N'No value found', N'Sin clasificar', N'Other');
+            INSERT dwh.dim_work_area VALUES ('?', N'No value found', N'Sin clasificar', N'Other', N'Otras');
 
         -- ---------------------------------------------------------------- dim_injury_degree
-        INSERT dwh.dim_injury_degree (degree_code, degree_desc, degree_es, is_fatality, is_lost_time, counts_as_injury)
+        INSERT dwh.dim_injury_degree (degree_code, degree_desc, degree_es, degree_sort, is_fatality, is_lost_time, counts_as_injury)
         SELECT u.code, MAX(u.descr),
                CASE u.code
                     WHEN '00' THEN N'Solo accidente (sin lesión)' WHEN '01' THEN N'Fatalidad'
@@ -137,26 +154,121 @@ BEGIN
                     WHEN '06' THEN N'Sin días perdidos ni restricción' WHEN '07' THEN N'Enfermedad ocupacional'
                     WHEN '08' THEN N'Lesión por causas naturales' WHEN '09' THEN N'Lesión a no empleados'
                     WHEN '10' THEN N'Otros casos (incluye primeros auxilios)' ELSE N'Sin valor' END,
+               CASE WHEN u.code LIKE '[0-9][0-9]' THEN CONVERT(TINYINT, u.code) ELSE 99 END,
                CASE WHEN u.code = '01' THEN 1 ELSE 0 END,
                CASE WHEN u.code IN ('01', '02', '03', '04') THEN 1 ELSE 0 END,
                CASE WHEN u.code IN ('01', '02', '03', '04', '05', '06') THEN 1 ELSE 0 END
         FROM (SELECT COALESCE(NULLIF(DEGREE_INJURY_CD, ''), '?') AS code, DEGREE_INJURY AS descr FROM stg.accidents) u
         GROUP BY u.code;
         IF NOT EXISTS (SELECT 1 FROM dwh.dim_injury_degree WHERE degree_code = '?')
-            INSERT dwh.dim_injury_degree VALUES ('?', N'NO VALUE FOUND', N'Sin valor', 0, 0, 0);
+            INSERT dwh.dim_injury_degree VALUES ('?', N'NO VALUE FOUND', N'Sin valor', 99, 0, 0, 0);
 
         -- ---------------------------------------------------------------- simple code dimensions (only those the report shows)
         INSERT dwh.dim_accident_type (accident_type_code, accident_type_desc)
         SELECT COALESCE(NULLIF(ACCIDENT_TYPE_CD, ''), '?'), MAX(COALESCE(NULLIF(ACCIDENT_TYPE, ''), N'No value found'))
         FROM stg.accidents GROUP BY COALESCE(NULLIF(ACCIDENT_TYPE_CD, ''), '?');
         IF NOT EXISTS (SELECT 1 FROM dwh.dim_accident_type WHERE accident_type_code = '?')
-            INSERT dwh.dim_accident_type VALUES ('?', N'No value found');
+            INSERT dwh.dim_accident_type (accident_type_code, accident_type_desc) VALUES ('?', N'No value found');
+
+        -- Spanish labels (short); a code without a translation keeps the MSHA text so tests/sql/06 can flag it
+        UPDATE t SET accident_type_es = COALESCE(m.es, t.accident_type_desc)
+        FROM dwh.dim_accident_type t
+        LEFT JOIN (VALUES
+                   (N'01', N'Golpe contra objeto fijo'),
+                   (N'02', N'Golpe contra objeto en movimiento'),
+                   (N'04', N'Golpeado por objeto que cae'),
+                   (N'05', N'Golpeado por objeto proyectado'),
+                   (N'06', N'Golpeado por objeto que rueda o resbala'),
+                   (N'07', N'Golpeado por objeto motorizado en movimiento'),
+                   (N'08', N'Golpeado por otros objetos'),
+                   (N'09', N'Caída por chimenea, pique o galería'),
+                   (N'10', N'Caída desde andamio o plataforma'),
+                   (N'12', N'Caída desde maquinaria'),
+                   (N'13', N'Caída desde material apilado'),
+                   (N'14', N'Caída desde escalera'),
+                   (N'15', N'Caída por escaleras'),
+                   (N'16', N'Caída a un nivel inferior'),
+                   (N'17', N'Caída a nivel (superficie de trabajo)'),
+                   (N'18', N'Caída sobre o contra objetos'),
+                   (N'20', N'Atrapado entre engranajes u objetos en giro'),
+                   (N'21', N'Atrapado entre objeto móvil y objeto fijo'),
+                   (N'22', N'Atrapado entre objetos móviles'),
+                   (N'23', N'Atrapado por derrumbe de material o estructura'),
+                   (N'24', N'Atrapamiento (otros)'),
+                   (N'25', N'Roce o abrasión'),
+                   (N'26', N'Reacción corporal (otros)'),
+                   (N'27', N'Sobreesfuerzo al levantar'),
+                   (N'28', N'Sobreesfuerzo al jalar o empujar'),
+                   (N'29', N'Sobreesfuerzo al manipular o lanzar'),
+                   (N'30', N'Sobreesfuerzo (otros)'),
+                   (N'31', N'Contacto con corriente eléctrica'),
+                   (N'32', N'Contacto con calor'),
+                   (N'33', N'Contacto con objetos o sustancias calientes'),
+                   (N'36', N'Inhalación de sustancias tóxicas o cáusticas'),
+                   (N'38', N'Absorción de sustancias tóxicas o cáusticas'),
+                   (N'39', N'Quemadura por arco eléctrico'),
+                   (N'40', N'Quemadura por arco de soldadura'),
+                   (N'42', N'Otros'),
+                   (N'43', N'Sin clasificar'),
+                   (N'44', N'Accidente sin lesiones'),
+                   (N'?', N'Sin valor')
+        ) m(code, es) ON m.code = t.accident_type_code;
 
         INSERT dwh.dim_body_part (body_part_code, body_part_desc)
         SELECT COALESCE(NULLIF(INJ_BODY_PART_CD, ''), '?'), MAX(COALESCE(NULLIF(INJ_BODY_PART, ''), N'No value found'))
         FROM stg.accidents GROUP BY COALESCE(NULLIF(INJ_BODY_PART_CD, ''), '?');
         IF NOT EXISTS (SELECT 1 FROM dwh.dim_body_part WHERE body_part_code = '?')
-            INSERT dwh.dim_body_part VALUES ('?', N'No value found');
+            INSERT dwh.dim_body_part (body_part_code, body_part_desc) VALUES ('?', N'No value found');
+
+        UPDATE t SET body_part_es = COALESCE(m.es, t.body_part_desc)
+        FROM dwh.dim_body_part t
+        LEFT JOIN (VALUES
+                   (N'340', N'Dedos y pulgar'),
+                   (N'420', N'Espalda (músculos, columna, cóccix)'),
+                   (N'512', N'Rodilla y rótula'),
+                   (N'520', N'Tobillo'),
+                   (N'130', N'Ojos y nervio óptico'),
+                   (N'450', N'Hombros y clavícula'),
+                   (N'330', N'Mano (sin muñeca ni dedos)'),
+                   (N'700', N'Múltiples partes'),
+                   (N'320', N'Muñeca'),
+                   (N'600', N'Sistemas corporales'),
+                   (N'200', N'Cuello'),
+                   (N'530', N'Pie (sin tobillo ni dedos)'),
+                   (N'513', N'Pierna inferior (tibia y peroné)'),
+                   (N'142', N'Boca, labios, dientes y garganta'),
+                   (N'440', N'Caderas, pelvis y riñones'),
+                   (N'430', N'Tórax y costillas'),
+                   (N'312', N'Codo'),
+                   (N'100', N'Cabeza (otros)'),
+                   (N'313', N'Antebrazo'),
+                   (N'310', N'Brazo (otros)'),
+                   (N'511', N'Muslo y fémur'),
+                   (N'510', N'Pierna (otros)'),
+                   (N'140', N'Cara (otros)'),
+                   (N'311', N'Brazo superior y húmero'),
+                   (N'410', N'Abdomen y órganos internos'),
+                   (N'460', N'Tronco, múltiples partes'),
+                   (N'110', N'Cerebro'),
+                   (N'350', N'Extremidades superiores, múltiples'),
+                   (N'550', N'Extremidades inferiores, múltiples'),
+                   (N'540', N'Dedos del pie'),
+                   (N'122', N'Oído interno y audición'),
+                   (N'141', N'Mandíbula y mentón'),
+                   (N'144', N'Cara, múltiples partes'),
+                   (N'143', N'Nariz, senos paranasales y olfato'),
+                   (N'170', N'Cabeza, múltiples partes'),
+                   (N'121', N'Oído externo'),
+                   (N'314', N'Brazo, múltiples partes'),
+                   (N'900', N'Sin clasificar'),
+                   (N'514', N'Pierna, múltiples partes'),
+                   (N'400', N'Tronco (otros)'),
+                   (N'150', N'Cuero cabelludo'),
+                   (N'300', N'Extremidades superiores (otros)'),
+                   (N'160', N'Cráneo'),
+                   (N'500', N'Extremidades inferiores (otros)'),
+                   (N'?', N'Sin valor')
+        ) m(code, es) ON m.code = t.body_part_code;
 
         -- ---------------------------------------------------------------- dim_standard and dim_violation_profile
         INSERT dwh.dim_standard (part_section, cfr_part)
@@ -165,8 +277,22 @@ BEGIN
         FROM (SELECT DISTINCT COALESCE(NULLIF(PART_SECTION, ''), '?') AS ps FROM stg.violations) s;
 
         INSERT dwh.dim_violation_profile (significant_and_substantial, negligence, likelihood, expected_injury,
-                                          citation_type, mine_act_section)
-        SELECT DISTINCT n.sig, n.neg, n.lik, n.inj, n.cit, n.sec
+                                          citation_type, mine_act_section, significant_and_substantial_es,
+                                          negligence_es, negligence_sort, likelihood_es, expected_injury_es,
+                                          citation_type_es)
+        SELECT DISTINCT n.sig, n.neg, n.lik, n.inj, n.cit, n.sec,
+               CASE n.sig WHEN N'Yes' THEN N'Sí' WHEN N'No' THEN N'No' ELSE N'Sin dato' END,
+               CASE n.neg WHEN 'NoNegligence' THEN N'Sin negligencia' WHEN 'LowNegligence' THEN N'Negligencia baja'
+                    WHEN 'ModNegligence' THEN N'Negligencia moderada' WHEN 'HighNegligence' THEN N'Negligencia alta'
+                    WHEN 'Reckless' THEN N'Imprudencia temeraria' ELSE N'Sin dato' END,
+               CASE n.neg WHEN 'NoNegligence' THEN 1 WHEN 'LowNegligence' THEN 2 WHEN 'ModNegligence' THEN 3
+                    WHEN 'HighNegligence' THEN 4 WHEN 'Reckless' THEN 5 ELSE 9 END,
+               CASE n.lik WHEN 'NoLikelihood' THEN N'Sin probabilidad' WHEN 'Unlikely' THEN N'Improbable'
+                    WHEN 'Reasonably' THEN N'Razonablemente probable' WHEN 'Highly' THEN N'Muy probable'
+                    WHEN 'Occurred' THEN N'Ya ocurrió' ELSE N'Sin dato' END,
+               CASE n.inj WHEN 'NoLostDays' THEN N'Sin días perdidos' WHEN 'LostDays' THEN N'Con días perdidos'
+                    WHEN 'Permanent' THEN N'Incapacidad permanente' WHEN 'Fatal' THEN N'Fatal' ELSE N'Sin dato' END,
+               CASE n.cit WHEN 'Citation' THEN N'Citación' WHEN 'Order' THEN N'Orden' ELSE N'Sin dato' END
         FROM stg.violations v
         CROSS APPLY (SELECT sig = CASE v.SIG_SUB WHEN 'Y' THEN N'Yes' WHEN 'N' THEN N'No' ELSE N'Unknown' END,
                             neg = COALESCE(NULLIF(v.NEGLIGENCE, ''), N'Unknown'),
@@ -207,6 +333,26 @@ BEGIN
         JOIN dwh.dim_injury_degree ind ON ind.degree_code = COALESCE(NULLIF(a.DEGREE_INJURY_CD, ''), '?')
         JOIN dwh.dim_accident_type aty ON aty.accident_type_code = COALESCE(NULLIF(a.ACCIDENT_TYPE_CD, ''), '?')
         JOIN dwh.dim_body_part bp ON bp.body_part_code = COALESCE(NULLIF(a.INJ_BODY_PART_CD, ''), '?');
+
+        -- Top groups for charts: the 7 most frequent types / body parts keep their name, the rest is grouped.
+        -- Ranked by accident count at load time; the full detail stays in accident_type_es / body_part_es.
+        ;WITH r AS (
+            SELECT t.accident_type_key, rk = ROW_NUMBER() OVER (ORDER BY COUNT(a.accident_key) DESC, t.accident_type_code)
+            FROM dwh.dim_accident_type t LEFT JOIN dwh.fact_accident a ON a.accident_type_key = t.accident_type_key
+            WHERE t.accident_type_code <> '?' GROUP BY t.accident_type_key, t.accident_type_code)
+        UPDATE t SET accident_type_top = CASE WHEN r.rk <= 7 THEN t.accident_type_es ELSE N'Otros tipos' END,
+                     accident_type_rank = CASE WHEN r.rk <= 7 THEN r.rk ELSE 99 END
+        FROM dwh.dim_accident_type t LEFT JOIN r ON r.accident_type_key = t.accident_type_key;
+        UPDATE dwh.dim_accident_type SET accident_type_top = N'Otros tipos', accident_type_rank = 99 WHERE accident_type_top IS NULL;
+
+        ;WITH r AS (
+            SELECT t.body_part_key, rk = ROW_NUMBER() OVER (ORDER BY COUNT(a.accident_key) DESC, t.body_part_code)
+            FROM dwh.dim_body_part t LEFT JOIN dwh.fact_accident a ON a.body_part_key = t.body_part_key
+            WHERE t.body_part_code <> '?' GROUP BY t.body_part_key, t.body_part_code)
+        UPDATE t SET body_part_top = CASE WHEN r.rk <= 7 THEN t.body_part_es ELSE N'Otras partes' END,
+                     body_part_rank = CASE WHEN r.rk <= 7 THEN r.rk ELSE 99 END
+        FROM dwh.dim_body_part t LEFT JOIN r ON r.body_part_key = t.body_part_key;
+        UPDATE dwh.dim_body_part SET body_part_top = N'Otras partes', body_part_rank = 99 WHERE body_part_top IS NULL;
 
         INSERT dwh.accident_narrative (accident_key, narrative)
         SELECT f.accident_key, NULLIF(a.NARRATIVE, '')

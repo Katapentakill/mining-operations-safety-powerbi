@@ -27,7 +27,7 @@ table GradoLesion
 		lineageTag: 3f53e868-b0bd-4eb3-bd37-d0d4e4269bb7
 		summarizeBy: none
 		sourceColumn: degree_es
-		sortByColumn: 'Código de grado'
+		sortByColumn: 'Orden de grado'
 
 	column 'Es fatalidad'
 		dataType: boolean
@@ -46,6 +46,13 @@ table GradoLesion
 		lineageTag: ee19937c-e06d-4fdb-be46-40f14ba72b03
 		summarizeBy: none
 		sourceColumn: counts_as_injury
+
+	column 'Orden de grado'
+		dataType: int64
+		isHidden
+		lineageTag: 63745dad-5876-4506-a56f-0b35d3a03b75
+		summarizeBy: none
+		sourceColumn: degree_sort
 
 	partition GradoLesion = m
 		mode: import
