@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "card_1",
+  "position": {
+    "x": 220,
+    "y": 80,
+    "z": 11,
+    "height": 100,
+    "width": 248,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "Fatalidades"
+                }
+              },
+              "queryRef": "Accidentes.Fatalidades",
+              "nativeQueryRef": "Fatalidades"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

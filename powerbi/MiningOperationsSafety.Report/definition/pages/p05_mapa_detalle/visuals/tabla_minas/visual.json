@@ -1,0 +1,236 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "tabla_minas",
+  "position": {
+    "x": 676,
+    "y": 80,
+    "z": 37,
+    "height": 620,
+    "width": 584,
+    "tabOrder": 37
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mina"
+                    }
+                  },
+                  "Property": "Mina"
+                }
+              },
+              "queryRef": "Mina.Mina",
+              "nativeQueryRef": "Mina"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mina"
+                    }
+                  },
+                  "Property": "Estado de la mina"
+                }
+              },
+              "queryRef": "Mina.Estado de la mina",
+              "nativeQueryRef": "Estado de la mina"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "Accidentes"
+                }
+              },
+              "queryRef": "Accidentes.Accidentes",
+              "nativeQueryRef": "Accidentes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Infracciones"
+                    }
+                  },
+                  "Property": "Infracciones"
+                }
+              },
+              "queryRef": "Infracciones.Infracciones",
+              "nativeQueryRef": "Infracciones"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Infracciones"
+                    }
+                  },
+                  "Property": "Multa pagada"
+                }
+              },
+              "queryRef": "Infracciones.Multa pagada",
+              "nativeQueryRef": "Multa pagada"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Plantilla"
+                    }
+                  },
+                  "Property": "Horas trabajadas"
+                }
+              },
+              "queryRef": "Plantilla.Horas trabajadas",
+              "nativeQueryRef": "Horas trabajadas"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Accidentes"
+                  }
+                },
+                "Property": "Accidentes"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "170D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Mina.Mina"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "80D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Mina.Estado de la mina"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "70D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Accidentes.Accidentes"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Infracciones.Infracciones"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Infracciones.Multa pagada"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Plantilla.Horas trabajadas"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalle por mina'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

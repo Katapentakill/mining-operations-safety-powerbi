@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "card_3",
+  "position": {
+    "x": 924,
+    "y": 80,
+    "z": 40,
+    "height": 100,
+    "width": 336,
+    "tabOrder": 40
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ProduccionCobre"
+                    }
+                  },
+                  "Property": "Producción de cobre de mina (kt)"
+                }
+              },
+              "queryRef": "ProduccionCobre.Producción de cobre de mina (kt)",
+              "nativeQueryRef": "Producción de cobre de mina (kt)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "card_3",
+  "position": {
+    "x": 748,
+    "y": 80,
+    "z": 29,
+    "height": 100,
+    "width": 248,
+    "tabOrder": 29
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "Tasa de incidencia (por 200.000 h)"
+                }
+              },
+              "queryRef": "Accidentes.Tasa de incidencia (por 200.000 h)",
+              "nativeQueryRef": "Tasa de incidencia (por 200.000 h)",
+              "displayName": "Incidencia (por 200.000 h)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

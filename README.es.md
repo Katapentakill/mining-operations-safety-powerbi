@@ -19,7 +19,18 @@ Proyecto reproducible con **datos públicos reales**: horas trabajadas, accident
 
 ## Informe
 
-Seis páginas: **Resumen**, **Accidentes**, **Infracciones y multas**, **Plantilla y horas**, **Mapa y detalle por mina** y **Contexto Chile**. Las capturas y un video corto irán en `docs/img/` (pendiente).
+Seis páginas: **Resumen**, **Accidentes**, **Infracciones y multas**, **Plantilla y horas**, **Mapa y detalle por mina** y **Contexto Chile**. Un menú lateral lleva de una página a otra y un filtro de año se sincroniza entre todas. Un video corto vendrá más adelante.
+
+![Página Resumen](docs/img/01-resumen.jpg)
+
+| | |
+|---|---|
+| ![Accidentes](docs/img/02-accidentes.jpg) | ![Infracciones y multas](docs/img/03-infracciones-multas.jpg) |
+| ![Plantilla y horas](docs/img/04-plantilla-horas.jpg) | ![Mapa y detalle por mina](docs/img/05-mapa-detalle-mina.jpg) |
+
+![Contexto Chile](docs/img/06-contexto-chile.jpg)
+
+Los nombres de categorías (tipos de accidente, niveles de negligencia) vienen de MSHA en inglés y se muestran tal como se publican.
 
 Medida principal: **tasa de incidencia de lesiones por 200.000 horas trabajadas**, solo personal propio y solo en trimestres con horas (ver [decisiones](docs/decisions.md)).
 

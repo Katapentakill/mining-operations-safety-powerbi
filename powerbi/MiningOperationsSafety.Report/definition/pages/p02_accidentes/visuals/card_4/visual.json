@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "card_4",
+  "position": {
+    "x": 1012,
+    "y": 80,
+    "z": 14,
+    "height": 100,
+    "width": 248,
+    "tabOrder": 14
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "% de accidentes de contratistas"
+                }
+              },
+              "queryRef": "Accidentes.% de accidentes de contratistas",
+              "nativeQueryRef": "% de accidentes de contratistas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -25,7 +25,18 @@ A reproducible analytics project on **real public data**: workforce hours, accid
 
 ## Dashboard
 
-Six report pages: **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours**, **Map and mine detail**, **Chile context**. Screenshots and a short video will be added in `docs/img/` (pending).
+Six report pages: **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours**, **Map and mine detail**, **Chile context**. A side menu moves between pages and one year filter is synced across all of them. A short video will be added later.
+
+![Summary page](docs/img/01-resumen.jpg)
+
+| | |
+|---|---|
+| ![Accidents](docs/img/02-accidentes.jpg) | ![Violations and penalties](docs/img/03-infracciones-multas.jpg) |
+| ![Workforce and hours](docs/img/04-plantilla-horas.jpg) | ![Map and mine detail](docs/img/05-mapa-detalle-mina.jpg) |
+
+![Chile context](docs/img/06-contexto-chile.jpg)
+
+Category names such as accident types or negligence levels come from MSHA in English and are shown as published.
 
 Headline measure: **injury incidence rate per 200,000 hours worked**, own staff only, computed for quarters that have hours data (see [decisions](docs/decisions.md)).
 

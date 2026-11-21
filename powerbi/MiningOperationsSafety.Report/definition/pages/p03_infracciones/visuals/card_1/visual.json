@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "card_1",
+  "position": {
+    "x": 220,
+    "y": 80,
+    "z": 19,
+    "height": 100,
+    "width": 248,
+    "tabOrder": 19
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Infracciones"
+                    }
+                  },
+                  "Property": "Infracciones"
+                }
+              },
+              "queryRef": "Infracciones.Infracciones",
+              "nativeQueryRef": "Infracciones"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "card_2",
+  "position": {
+    "x": 484,
+    "y": 80,
+    "z": 12,
+    "height": 100,
+    "width": 248,
+    "tabOrder": 12
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "Casos con tiempo perdido"
+                }
+              },
+              "queryRef": "Accidentes.Casos con tiempo perdido",
+              "nativeQueryRef": "Casos con tiempo perdido"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

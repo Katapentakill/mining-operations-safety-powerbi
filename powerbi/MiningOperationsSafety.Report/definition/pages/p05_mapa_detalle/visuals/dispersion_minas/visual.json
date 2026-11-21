@@ -1,0 +1,126 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "dispersion_minas",
+  "position": {
+    "x": 220,
+    "y": 80,
+    "z": 35,
+    "height": 330,
+    "width": 440,
+    "tabOrder": 35
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Mina"
+                    }
+                  },
+                  "Property": "Mina"
+                }
+              },
+              "queryRef": "Mina.Mina",
+              "nativeQueryRef": "Mina"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Mina"
+                        }
+                      },
+                      "Property": "Longitud"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Average(Mina.Longitud)",
+              "nativeQueryRef": "Promedio de Longitud",
+              "displayName": "Longitud"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Mina"
+                        }
+                      },
+                      "Property": "Latitud"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Average(Mina.Latitud)",
+              "nativeQueryRef": "Promedio de Latitud",
+              "displayName": "Latitud"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "Accidentes"
+                }
+              },
+              "queryRef": "Accidentes.Accidentes",
+              "nativeQueryRef": "Accidentes"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ubicación de las minas (tamaño = accidentes)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

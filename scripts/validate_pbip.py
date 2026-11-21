@@ -114,14 +114,18 @@ def check_report(tables: dict, errors: list[str]) -> int:
     for f in PBI.rglob("visual.json"):
         data = json.loads(f.read_text(encoding="utf-8"))
         # navigator, text boxes and shapes have no query: nothing to check
-        for role in data["visual"].get("query", {}).get("queryState", {}).values():
-            for pr in role["projections"]:
-                (kind, body), = pr["field"].items()
-                ent, prop = body["Expression"]["SourceRef"]["Entity"], body["Property"]
-                pool = tables.get(ent, {}).get("measures" if kind == "Measure" else "columns", {})
-                if prop not in pool:
-                    errors.append(f"{f.relative_to(ROOT)}: {kind} {ent}[{prop}] does not exist")
-                n += 1
+        query = data["visual"].get("query", {})
+        fields = [pr["field"] for role in query.get("queryState", {}).values() for pr in role["projections"]]
+        fields += [s["field"] for s in query.get("sortDefinition", {}).get("sort", [])]
+        for field in fields:
+            (kind, body), = field.items()
+            if kind == "Aggregation":  # e.g. Average of a column on a scatter axis
+                (kind, body), = body["Expression"].items()
+            ent, prop = body["Expression"]["SourceRef"]["Entity"], body["Property"]
+            pool = tables.get(ent, {}).get("measures" if kind == "Measure" else "columns", {})
+            if prop not in pool:
+                errors.append(f"{f.relative_to(ROOT)}: {kind} {ent}[{prop}] does not exist")
+            n += 1
     return n
 
 

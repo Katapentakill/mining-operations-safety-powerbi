@@ -36,7 +36,7 @@ El modelo y el informe base están escritos como código y **no se han abierto n
 
 ## Después
 
-- El tema `CopperMining` ya viene aplicado (está registrado en el informe). Las 6 páginas traen barra lateral con navegación (Ctrl+clic en Desktop) y cabecera.
-- Construye el contenido de las páginas 2 a 6 (hoy dicen "En construcción"). Al **guardar como proyecto PBIP**, los cambios quedan en los archivos de texto y Git los muestra.
+- El tema `CopperMining` ya viene aplicado (está registrado en el informe). Las 6 páginas traen barra lateral con navegación (Ctrl+clic en Desktop), cabecera, filtro de año sincronizado y sus visuales.
+- Al **guardar como proyecto PBIP**, los cambios quedan en los archivos de texto y Git los muestra (Desktop reescribe el modelo completo, así que revisa el diff antes de comitear).
 - Si editas los archivos de `powerbi/` con Desktop abierto, ciérralo con **No guardar** y vuelve a abrir el `.pbip` (Desktop no recarga solo); luego *Actualizar* para ver los datos.
 - Anota lo estético pendiente en `docs/pendientes_esteticos.md`.
