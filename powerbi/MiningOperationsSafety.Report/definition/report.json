@@ -20,6 +20,21 @@
           "name": "CopperMining.json",
           "path": "CopperMining.json",
           "type": "CustomTheme"
+        },
+        {
+          "name": "mapa_suroeste.svg",
+          "path": "mapa_suroeste.svg",
+          "type": "Image"
+        },
+        {
+          "name": "insignia_msha.svg",
+          "path": "insignia_msha.svg",
+          "type": "Image"
+        },
+        {
+          "name": "insignia_freeport.svg",
+          "path": "insignia_freeport.svg",
+          "type": "Image"
         }
       ]
     }

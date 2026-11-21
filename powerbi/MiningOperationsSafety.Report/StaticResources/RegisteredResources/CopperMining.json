@@ -117,13 +117,30 @@
     },
     "legend": {
       "*": {
-        "labelColor": [{"solid": {"color": "#4A5058"}}],
-        "fontSize": [10]
+        "labelColor": [
+          {
+            "solid": {
+              "color": "#4A5058"
+            }
+          }
+        ],
+        "fontSize": [
+          10
+        ]
       }
     },
     "slicer": {
       "*": {
-        "items": [{"fontColor": {"solid": {"color": "#2B2F33"}}, "textSize": 11}]
+        "items": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#2B2F33"
+              }
+            },
+            "textSize": 11
+          }
+        ]
       }
     },
     "tableEx": {
@@ -140,7 +157,7 @@
                 "color": "#F4F1EC"
               }
             },
-            "fontSize": 10
+            "fontSize": 9
           }
         ],
         "values": [
@@ -160,7 +177,7 @@
                 "color": "#FAF8F5"
               }
             },
-            "fontSize": 10
+            "fontSize": 9
           }
         ]
       }

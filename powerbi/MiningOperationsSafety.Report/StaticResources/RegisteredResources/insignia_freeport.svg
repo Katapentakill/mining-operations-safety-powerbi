@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" font-family="Segoe UI, Arial, sans-serif">
+<rect x="3" y="3" width="954" height="294" rx="28" fill="#FFFFFF" stroke="#E3DED7" stroke-width="6"/>
+<rect x="3" y="3" width="26" height="294" rx="13" fill="#B8602A"/>
+<circle cx="150" cy="150" r="84" fill="#F4EADF"/>
+<path d="M90 196 L132 124 L156 160 L176 132 L212 196 Z" fill="#B8602A"/><path d="M132 124 L145 146 L132 142 L120 146 Z" fill="#F4EADF"/><rect x="90" y="196" width="122" height="10" fill="#4F6D8F"/>
+<text x="270" y="108" font-size="30" font-weight="600" letter-spacing="5" fill="#8A5A3A">MINAS ANALIZADAS</text>
+<text x="270" y="178" font-size="62" font-weight="700" fill="#2B2F33">Freeport-McMoRan</text>
+<text x="270" y="228" font-size="30" fill="#4A5058">43 minas en AZ, NM, CO y OR · 2000 a 2026</text>
+</svg>

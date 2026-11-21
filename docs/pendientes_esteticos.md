@@ -9,6 +9,8 @@ Lo funcional está primero; esto es lo que quedó sin pulir a propósito.
 - [x] Construir los visuales de las páginas 2 a 6 (mapa de minas como dispersión, porque Desktop trae los mapas desactivados).
 - [x] Alinear y dimensionar los visuales de *Resumen*; títulos y etiquetas en español.
 - [x] Filtro de año en las 6 páginas, sincronizado entre ellas.
-- [ ] Revisar con calma el contraste y los textos en inglés que vienen de MSHA (tipos de accidente, niveles de negligencia).
+- [x] Textos en inglés de MSHA traducidos en el data warehouse (decisión 25).
+- [x] Página «Acerca de los datos» con insignias propias (sin logos oficiales) y mapa con contorno de AZ, NM y CO.
+- [ ] Revisar el contraste (≥ 4,5:1) y agregar texto alternativo a cada visual (Fase 5).
 - [x] Capturas en `docs/img/` enlazadas en el README (se vuelven a tomar si cambia el diseño).
 - [ ] Grabar el video corto (guion en `docs/video_guion.md`) y enlazarlo en el README.

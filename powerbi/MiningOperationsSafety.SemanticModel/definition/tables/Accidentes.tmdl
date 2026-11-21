@@ -85,6 +85,16 @@ table Accidentes
 		displayFolder: 3 Tasas
 		lineageTag: 04a08a6d-a318-4e9c-9bac-9e94e78c6c8c
 
+	measure 'Accidentes (tabla)' = [Accidentes] + 0
+		formatString: #,0;-#,0;"—"
+		displayFolder: 9 Presentación
+		lineageTag: fda5a7fb-e3ae-4b28-8ed5-89dfa4e86f7f
+
+	measure 'Escala de burbuja' = SQRT([Accidentes])
+		formatString: 0.0
+		displayFolder: 9 Presentación
+		lineageTag: b217668a-673d-43f0-997c-75ed89c83819
+
 	column 'Clave de accidente'
 		dataType: int64
 		isHidden

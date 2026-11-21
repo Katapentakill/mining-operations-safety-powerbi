@@ -114,3 +114,4 @@ relationship b264f020-c1be-4abb-9401-bde5d10d7c44
 	joinOnDateBehavior: datePartOnly
 	fromColumn: Inspecciones.'Fecha de término'
 	toColumn: LocalDateTable_f153dcdf-79f2-4107-bc38-15fdd580e78b.Date
+

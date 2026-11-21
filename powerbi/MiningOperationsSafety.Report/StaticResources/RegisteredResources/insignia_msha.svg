@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" font-family="Segoe UI, Arial, sans-serif">
+<rect x="3" y="3" width="954" height="294" rx="28" fill="#FFFFFF" stroke="#E3DED7" stroke-width="6"/>
+<rect x="3" y="3" width="26" height="294" rx="13" fill="#B8602A"/>
+<circle cx="150" cy="150" r="84" fill="#F4EADF"/>
+<path d="M150 92 L196 108 L196 152 C196 182 176 202 150 212 C124 202 104 182 104 152 L104 108 Z" fill="#B8602A"/><path d="M128 150 L144 166 L174 130" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="270" y="108" font-size="30" font-weight="600" letter-spacing="5" fill="#8A5A3A">FUENTE DE DATOS</text>
+<text x="270" y="178" font-size="62" font-weight="700" fill="#2B2F33">MSHA</text>
+<text x="270" y="228" font-size="30" fill="#4A5058">Mine Safety and Health Administration (EE. UU.)</text>
+</svg>

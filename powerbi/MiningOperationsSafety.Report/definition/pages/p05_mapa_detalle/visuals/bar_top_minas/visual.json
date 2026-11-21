@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
-  "name": "bar_estado",
+  "name": "bar_top_minas",
   "position": {
-    "x": 220,
-    "y": 426,
+    "x": 748,
+    "y": 80,
     "z": 36,
-    "height": 274,
-    "width": 440,
+    "height": 300,
+    "width": 512,
     "tabOrder": 36
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "Mina"
                     }
                   },
-                  "Property": "Estado (EE.UU.)"
+                  "Property": "Mina"
                 }
               },
-              "queryRef": "Mina.Estado (EE.UU.)",
-              "nativeQueryRef": "Estado (EE.UU.)",
+              "queryRef": "Mina.Mina",
+              "nativeQueryRef": "Mina",
               "active": true
             }
           ]
@@ -39,14 +39,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Accidentes"
+                      "Entity": "Mina"
                     }
                   },
-                  "Property": "Accidentes"
+                  "Property": "Accidentes (Top 10 minas)"
                 }
               },
-              "queryRef": "Accidentes.Accidentes",
-              "nativeQueryRef": "Accidentes"
+              "queryRef": "Mina.Accidentes (Top 10 minas)",
+              "nativeQueryRef": "Accidentes (Top 10 minas)",
+              "displayName": "Accidentes"
             }
           ]
         }
@@ -58,10 +59,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Accidentes"
+                    "Entity": "Mina"
                   }
                 },
-                "Property": "Accidentes"
+                "Property": "Accidentes (Top 10 minas)"
               }
             },
             "direction": "Descending"
@@ -82,26 +83,6 @@
                       "Value": "'#B8602A'"
                     }
                   }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "labelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
                 }
               }
             }
@@ -145,6 +126,39 @@
             }
           }
         }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -161,7 +175,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Accidentes por estado de EE. UU.'"
+                  "Value": "'Las 10 minas con más accidentes'"
                 }
               }
             }

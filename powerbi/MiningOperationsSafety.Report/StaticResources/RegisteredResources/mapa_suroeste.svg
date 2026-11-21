@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="1237" viewBox="0 0 1040 1237" font-family="Segoe UI, Arial, sans-serif">
+<rect width="1040" height="1237" fill="#E2DCD1"/>
+<polygon points="-1481.5,-460.8 83.4,-460.8 83.4,606.4 14.7,618.5 26.5,751.9 32.4,776.2 46.1,840.4 74.6,836.8 37.3,910.8 17.7,944.7 37.3,990.8 17.7,1028.4 8.8,1056.3 -1481.5,1055.1" fill="#E2DCD1"/>
+<polygon points="83.4,-460.8 377.7,-460.8 377.7,24.3 574.0,24.3 574.0,509.4 83.4,509.4" fill="#E2DCD1"/>
+<polygon points="1167.5,509.4 2443.0,509.4 2443.0,2571.0 1020.4,1418.9 821.2,1142.4 812.4,1115.7 1161.7,1115.7" fill="#E2DCD1"/>
+<polygon points="-1481.5,2571.0 1461.9,2571.0 1020.4,1418.9 821.2,1142.4 656.4,1142.4 656.4,1197.0 375.8,1197.0 8.8,1056.3 -1481.5,1055.1" fill="#DAD3C7"/>
+<polygon points="83.4,509.4 574.0,509.4 574.0,1197.0 375.8,1197.0 8.8,1056.3 17.7,1028.4 37.3,990.8 17.7,944.7 37.3,910.8 74.6,836.8 46.1,840.4 32.4,776.2 26.5,751.9 14.7,618.5 83.4,606.4" fill="#FBF9F5" stroke="#9C9384" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="574.0,509.4 1167.5,509.4 1161.7,1115.7 812.4,1115.7 821.2,1142.4 656.4,1142.4 656.4,1197.0 574.0,1197.0" fill="#FBF9F5" stroke="#9C9384" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="574.0,24.3 1260.8,24.3 1260.8,509.4 574.0,509.4" fill="#FBF9F5" stroke="#9C9384" stroke-width="3" stroke-linejoin="round"/>
+<text x="245" y="764" text-anchor="middle" font-size="40" font-weight="600" letter-spacing="5" fill="#D8D0C2">ARIZONA</text>
+<text x="819" y="679" text-anchor="middle" font-size="40" font-weight="600" letter-spacing="5" fill="#D8D0C2">NUEVO MÉXICO</text>
+<text x="883" y="376" text-anchor="middle" font-size="40" font-weight="600" letter-spacing="5" fill="#D8D0C2">COLORADO</text>
+<text x="294" y="315" text-anchor="middle" font-size="30" font-weight="600" letter-spacing="5" fill="#C2BAAB">UTAH</text>
+<text x="481" y="1222" text-anchor="middle" font-size="30" font-weight="600" letter-spacing="5" fill="#C2BAAB">MÉXICO</text>
+<text x="558" y="977" text-anchor="start" font-size="25" font-weight="600" fill="#2B2F33" stroke="#FBF9F5" stroke-width="7" paint-order="stroke" stroke-linejoin="round">Morenci</text>
+<text x="361" y="1135" text-anchor="end" font-size="25" font-weight="600" fill="#2B2F33" stroke="#FBF9F5" stroke-width="7" paint-order="stroke" stroke-linejoin="round">Sierrita</text>
+<text x="182" y="805" text-anchor="start" font-size="25" font-weight="600" fill="#2B2F33" stroke="#FBF9F5" stroke-width="7" paint-order="stroke" stroke-linejoin="round">Bagdad</text>
+<text x="683" y="1050" text-anchor="start" font-size="25" font-weight="600" fill="#2B2F33" stroke="#FBF9F5" stroke-width="7" paint-order="stroke" stroke-linejoin="round">Chino · Tyrone</text>
+<text x="498" y="1022" text-anchor="end" font-size="25" font-weight="600" fill="#2B2F33" stroke="#FBF9F5" stroke-width="7" paint-order="stroke" stroke-linejoin="round">Safford</text>
+<text x="874" y="163" text-anchor="end" font-size="25" font-weight="600" fill="#2B2F33" stroke="#FBF9F5" stroke-width="7" paint-order="stroke" stroke-linejoin="round">Henderson</text>
+<text x="841" y="232" text-anchor="end" font-size="25" font-weight="600" fill="#2B2F33" stroke="#FBF9F5" stroke-width="7" paint-order="stroke" stroke-linejoin="round">Climax</text>
+</svg>

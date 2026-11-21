@@ -1,0 +1,191 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 582.21444199247583,
+            "y": -50
+          },
+          "nodeIndex": "Plantilla",
+          "nodeLineageTag": "7eeab451-4eac-4948-9a31-2c317a37d3fb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 443.45838050008609,
+            "y": 372.18757388985023
+          },
+          "nodeIndex": "Accidentes",
+          "nodeLineageTag": "88c5eae8-e42c-4d83-906c-ab4784cf28ee",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 292.99684194558728,
+            "y": 34.771699502097817
+          },
+          "nodeIndex": "AreaTrabajo",
+          "nodeLineageTag": "777df671-f6c4-4cce-ad76-f3b657c4cb04",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 977.759696733123,
+            "y": 663.17951621186137
+          },
+          "nodeIndex": "Empresa",
+          "nodeLineageTag": "ab117f3b-7df9-4b17-b108-98394acfc6b2",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 836.99651993688417,
+            "y": 307.24574280988924
+          },
+          "nodeIndex": "Fecha",
+          "nodeLineageTag": "fd06d36f-8930-43f6-bd2d-8dd942025a9c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 153.51972625420223,
+            "y": 593.91032385265794
+          },
+          "nodeIndex": "GradoLesion",
+          "nodeLineageTag": "d9110c56-1124-40c2-a021-d5ff107cc160",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1413.4393984956091,
+            "y": 549.26909439110955
+          },
+          "nodeIndex": "Infracciones",
+          "nodeLineageTag": "90ec6fec-1535-4606-9c84-3e33c3d9a2ad",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1126.6369618282347,
+            "y": 307.175113593819
+          },
+          "nodeIndex": "Inspecciones",
+          "nodeLineageTag": "76f28d47-c0f6-4436-8dc6-226cc8ffebbf",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 898.48972155866511,
+            "y": -49.89180546499324
+          },
+          "nodeIndex": "Mina",
+          "nodeLineageTag": "259c6317-4bab-4787-9fcb-4eddf20dfcf3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1703.3979955672239,
+            "y": 784.29724993604918
+          },
+          "nodeIndex": "Norma",
+          "nodeLineageTag": "4cd951bc-449c-4b6b-9807-4a844848be1f",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 443.41475625746608,
+            "y": 810.7278658890491
+          },
+          "nodeIndex": "ParteCuerpo",
+          "nodeLineageTag": "6fa3051d-b7db-4ee6-b7f4-688df7e64391",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1703.4169779860836,
+            "y": 428.8268628841156
+          },
+          "nodeIndex": "PerfilInfraccion",
+          "nodeLineageTag": "013a3454-aa87-4fc4-b5f0-332b2c2d29a6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 314.48948466044953
+          },
+          "nodeIndex": "TipoAccidente",
+          "nodeLineageTag": "9b172b51-56f7-42da-9562-ecb4cee6d664",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

@@ -1,6 +1,15 @@
 table Mina
 	lineageTag: 259c6317-4bab-4787-9fcb-4eddf20dfcf3
 
+	measure 'Color por estado' = SWITCH(MAX('Mina'[Estado de la mina]), "Activa", "#B8602A", "Sin producción", "#4F6D8F", "#8F979F")
+		displayFolder: 9 Presentación
+		lineageTag: 0b931e01-b6af-4b46-a6b2-34bbe2eef113
+
+	measure 'Accidentes (Top 10 minas)' = VAR r = RANKX(ALLSELECTED('Mina'), CALCULATE(COUNTROWS(Accidentes)), , DESC, DENSE) RETURN IF(r <= 10, COUNTROWS(Accidentes))
+		formatString: #,0
+		displayFolder: 9 Presentación
+		lineageTag: 74e78a3b-408c-44f9-a1ef-04032ea8dd3a
+
 	column 'Clave de mina'
 		dataType: int64
 		isHidden
@@ -134,21 +143,6 @@ table Mina
 		summarizeBy: none
 		sourceColumn: current_operator_name
 
-	hierarchy Ubicación
-		lineageTag: 3ff085ec-4e77-4a02-a313-d35e7bf74912
-
-		level 'Estado (EE.UU.)'
-			lineageTag: d48671c0-2e12-437f-94a8-6d612268eb46
-			column: 'Estado (EE.UU.)'
-
-		level Condado
-			lineageTag: d83a217e-f71c-4c71-8e6b-cb93622e1418
-			column: Condado
-
-		level Mina
-			lineageTag: 5ebb4e8b-d812-4a6e-bb92-4043b28a07f8
-			column: Mina
-
 	column 'Tipo de mina (MSHA, inglés)'
 		dataType: string
 		isHidden
@@ -176,6 +170,21 @@ table Mina
 		lineageTag: 19926588-9758-45cd-b230-f55a1b5cbeae
 		summarizeBy: none
 		sourceColumn: state_name
+
+	hierarchy Ubicación
+		lineageTag: 3ff085ec-4e77-4a02-a313-d35e7bf74912
+
+		level 'Estado (EE.UU.)'
+			lineageTag: d48671c0-2e12-437f-94a8-6d612268eb46
+			column: 'Estado (EE.UU.)'
+
+		level Condado
+			lineageTag: d83a217e-f71c-4c71-8e6b-cb93622e1418
+			column: Condado
+
+		level Mina
+			lineageTag: 5ebb4e8b-d812-4a6e-bb92-4043b28a07f8
+			column: Mina
 
 	partition Mina = m
 		mode: import

@@ -56,6 +56,16 @@ table Infracciones
 		displayFolder: 2 Multas
 		lineageTag: 0e0884fb-0253-4d92-a804-a4d75c057f9e
 
+	measure 'Infracciones (tabla)' = [Infracciones] + 0
+		formatString: #,0;-#,0;"—"
+		displayFolder: 9 Presentación
+		lineageTag: 408b247f-08fe-4518-aa56-ec68763c4a60
+
+	measure 'Multa pagada (tabla)' = [Multa pagada] + 0
+		formatString: """US$ ""#,0;-""US$ ""#,0;""—"""
+		displayFolder: 9 Presentación
+		lineageTag: 0f790ded-6e23-466b-ac76-58fa19d40085
+
 	column 'Clave de infracción'
 		dataType: int64
 		isHidden

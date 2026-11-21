@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "tabla_minas",
   "position": {
-    "x": 676,
-    "y": 80,
+    "x": 748,
+    "y": 396,
     "z": 37,
-    "height": 620,
-    "width": 584,
+    "height": 304,
+    "width": 512,
     "tabOrder": 37
   },
   "visual": {
@@ -51,11 +51,12 @@
                       "Entity": "Accidentes"
                     }
                   },
-                  "Property": "Accidentes"
+                  "Property": "Accidentes (tabla)"
                 }
               },
-              "queryRef": "Accidentes.Accidentes",
-              "nativeQueryRef": "Accidentes"
+              "queryRef": "Accidentes.Accidentes (tabla)",
+              "nativeQueryRef": "Accidentes (tabla)",
+              "displayName": "Accidentes"
             },
             {
               "field": {
@@ -65,11 +66,12 @@
                       "Entity": "Infracciones"
                     }
                   },
-                  "Property": "Infracciones"
+                  "Property": "Infracciones (tabla)"
                 }
               },
-              "queryRef": "Infracciones.Infracciones",
-              "nativeQueryRef": "Infracciones"
+              "queryRef": "Infracciones.Infracciones (tabla)",
+              "nativeQueryRef": "Infracciones (tabla)",
+              "displayName": "Infracciones"
             },
             {
               "field": {
@@ -79,25 +81,12 @@
                       "Entity": "Infracciones"
                     }
                   },
-                  "Property": "Multa pagada"
+                  "Property": "Multa pagada (tabla)"
                 }
               },
-              "queryRef": "Infracciones.Multa pagada",
-              "nativeQueryRef": "Multa pagada"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Plantilla"
-                    }
-                  },
-                  "Property": "Horas trabajadas"
-                }
-              },
-              "queryRef": "Plantilla.Horas trabajadas",
-              "nativeQueryRef": "Horas trabajadas"
+              "queryRef": "Infracciones.Multa pagada (tabla)",
+              "nativeQueryRef": "Multa pagada (tabla)",
+              "displayName": "Multa pagada"
             }
           ]
         }
@@ -112,7 +101,7 @@
                     "Entity": "Accidentes"
                   }
                 },
-                "Property": "Accidentes"
+                "Property": "Accidentes (tabla)"
               }
             },
             "direction": "Descending"
@@ -228,7 +217,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Detalle por mina'"
+                  "Value": "'Detalle de las 43 minas'"
                 }
               }
             }
