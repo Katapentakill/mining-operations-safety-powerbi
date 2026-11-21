@@ -5,7 +5,7 @@
     "x": 748,
     "y": 196,
     "z": 32,
-    "height": 242,
+    "height": 244,
     "width": 512,
     "tabOrder": 32
   },
@@ -73,6 +73,39 @@
               "expr": {
                 "Literal": {
                   "Value": "2026.5D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4F6D8F'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Plantilla.Empleados promedio"
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
                 }
               }
             }

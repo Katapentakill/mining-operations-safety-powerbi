@@ -5,7 +5,7 @@
     "x": 220,
     "y": 196,
     "z": 15,
-    "height": 242,
+    "height": 244,
     "width": 512,
     "tabOrder": 15
   },
@@ -77,6 +77,23 @@
               "expr": {
                 "Literal": {
                   "Value": "45D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#B8602A'"
+                    }
+                  }
                 }
               }
             }

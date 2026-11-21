@@ -129,6 +129,21 @@ def check_report(tables: dict, errors: list[str]) -> int:
     return n
 
 
+def check_layout(errors: list[str]) -> None:
+    """Chrome (sidebar, header, slicer, navigator) must sit in the exact same place on every page."""
+    seen: dict[str, tuple] = {}
+    for f in sorted(PBI.rglob("visual.json")):
+        data = json.loads(f.read_text(encoding="utf-8"))
+        name = data["name"]
+        if not name.startswith(("side_", "cab_", "nav_", "filtro_")):
+            continue
+        pos = data["position"]
+        box = (pos["x"], pos["y"], pos["width"], pos["height"])
+        first = seen.setdefault(name, box)
+        if box != first:
+            errors.append(f"{f.relative_to(ROOT)}: {name} at {box}, other pages use {first}")
+
+
 def main() -> int:
     if not PBI.exists():
         print("powerbi/ not found: nothing to validate yet")
@@ -153,6 +168,7 @@ def main() -> int:
                 errors.append(f"{rel}: unexpected first token {text.split()[0]!r}")
     tables = check_model(errors)
     fields = check_report(tables, errors)
+    check_layout(errors)
     for e in errors:
         print("ERROR", e)
     n_meas = sum(len(t["measures"]) for t in tables.values())

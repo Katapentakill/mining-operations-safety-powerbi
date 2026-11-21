@@ -3,9 +3,9 @@
   "name": "col_dias",
   "position": {
     "x": 748,
-    "y": 454,
+    "y": 456,
     "z": 18,
-    "height": 246,
+    "height": 244,
     "width": 512,
     "tabOrder": 18
   },
@@ -73,6 +73,23 @@
               "expr": {
                 "Literal": {
                   "Value": "2026.5D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#B8602A'"
+                    }
+                  }
                 }
               }
             }

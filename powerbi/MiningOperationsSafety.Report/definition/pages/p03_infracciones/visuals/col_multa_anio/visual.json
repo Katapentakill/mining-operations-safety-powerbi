@@ -5,7 +5,7 @@
     "x": 748,
     "y": 196,
     "z": 24,
-    "height": 242,
+    "height": 244,
     "width": 512,
     "tabOrder": 24
   },
@@ -73,6 +73,23 @@
               "expr": {
                 "Literal": {
                   "Value": "2026.5D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C0392B'"
+                    }
+                  }
                 }
               }
             }

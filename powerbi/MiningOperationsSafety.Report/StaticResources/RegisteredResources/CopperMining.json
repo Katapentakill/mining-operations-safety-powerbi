@@ -2,12 +2,12 @@
   "name": "Copper Mining",
   "dataColors": [
     "#B8602A",
-    "#3E8E85",
     "#4F6D8F",
-    "#D9B382",
-    "#8A8D3F",
-    "#C0392B",
+    "#3E8E85",
     "#7A5C8E",
+    "#D9B382",
+    "#C0392B",
+    "#8A8D3F",
     "#A7ADB3"
   ],
   "background": "#FFFFFF",
@@ -76,6 +76,38 @@
         "dropShadow": [
           {
             "show": false
+          }
+        ]
+      }
+    },
+    "valueAxis": {
+      "*": {
+        "gridlineColor": [{"solid": {"color": "#ECE8E1"}}],
+        "labelColor": [{"solid": {"color": "#6B7178"}}],
+        "fontSize": [9]
+      }
+    },
+    "categoryAxis": {
+      "*": {
+        "labelColor": [{"solid": {"color": "#4A5058"}}],
+        "fontSize": [9]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "columnHeaders": [
+          {
+            "fontColor": {"solid": {"color": "#2B2F33"}},
+            "backColor": {"solid": {"color": "#F4F1EC"}},
+            "fontSize": 10
+          }
+        ],
+        "values": [
+          {
+            "fontColor": {"solid": {"color": "#2B2F33"}},
+            "backColorPrimary": {"solid": {"color": "#FFFFFF"}},
+            "backColorSecondary": {"solid": {"color": "#FAF8F5"}},
+            "fontSize": 10
           }
         ]
       }
