@@ -32,6 +32,19 @@ table Plantilla
 		displayFolder: 3 Variación
 		lineageTag: 94568bb7-dbeb-4bf4-a11a-fe7b021d0695
 
+	measure 'Título Plantilla' =
+			VAR one = HASONEVALUE(Fecha[Año])
+			VAR sel = ISFILTERED(Fecha[Año])
+			VAR h = FORMAT([Horas trabajadas] / 1000000, "#,0", "es-CL")
+			RETURN
+			IF(one,
+				"En " & FORMAT(MAX(Fecha[Año]), "0") & " se trabajaron " & h & " millones de horas, con " & FORMAT([Empleados promedio], "#,0", "es-CL") & " empleados en promedio",
+				IF(sel,
+					"En los años elegidos se trabajaron " & h & " millones de horas",
+					"Se trabajaron " & h & " millones de horas: más horas, más exposición"))
+		displayFolder: 8 Títulos
+		lineageTag: 975c5280-fcd6-4cd0-8afc-9372559d7b83
+
 	column 'Clave de plantilla'
 		dataType: int64
 		isHidden

@@ -10,6 +10,15 @@ table Mina
 		displayFolder: 9 Presentación
 		lineageTag: 74e78a3b-408c-44f9-a1ef-04032ea8dd3a
 
+	measure 'Título Detalle' =
+			VAR one = HASONEVALUE('Mina'[Mina])
+			VAR sh = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(MAX('Mina'[Mina]), "Freeport-McMoRan ", ""), "Freeport McMoRan ", ""), " Inc.", ""), " Inc", "")
+			RETURN
+			IF(one, sh, "Las " & FORMAT(DISTINCTCOUNT('Mina'[Clave de mina]), "0") & " minas juntas")
+				& ": " & FORMAT([Accidentes], "#,0", "es-CL") & " accidentes e " & FORMAT([Infracciones], "#,0", "es-CL") & " infracciones"
+		displayFolder: 8 Títulos
+		lineageTag: eb5ac230-48e7-4ad8-9d1d-89a062d392db
+
 	column 'Clave de mina'
 		dataType: int64
 		isHidden

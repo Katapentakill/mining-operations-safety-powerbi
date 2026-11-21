@@ -151,6 +151,58 @@ table Accidentes
 		displayFolder: 3 Variación
 		lineageTag: a893ee04-ef99-4d2a-83bc-f179df3212c3
 
+	measure 'Título Resumen' =
+			VAR one = HASONEVALUE(Fecha[Año])
+			VAR sel = ISFILTERED(Fecha[Año])
+			VAR y = MAX(Fecha[Año])
+			VAR r = [Tasa de incidencia (por 200.000 h)]
+			VAR rp = CALCULATE([Tasa de incidencia (por 200.000 h)], SAMEPERIODLASTYEAR(Fecha[Fecha]))
+			VAR yrs = ADDCOLUMNS(VALUES(Fecha[Año]), "@r", [Tasa de incidencia (por 200.000 h)], "@p", CALCULATE([Tasa de incidencia (por 200.000 h)], SAMEPERIODLASTYEAR(Fecha[Fecha])), "@d", CALCULATE([Tasa de incidencia (por 200.000 h)], SAMEPERIODLASTYEAR(Fecha[Fecha])) - [Tasa de incidencia (por 200.000 h)])
+			VAR big = MAXX(yrs, [@d])
+			VAR yDrop = MAXX(FILTER(yrs, [@d] = big), Fecha[Año])
+			VAR vFrom = MAXX(FILTER(yrs, Fecha[Año] = yDrop), [@p])
+			VAR vTo = MAXX(FILTER(yrs, Fecha[Año] = yDrop), [@r])
+			RETURN
+			IF(one,
+				"En " & FORMAT(y, "0") & " la tasa de lesiones fue " & FORMAT(r, "0.0", "es-CL")
+					& IF(ISBLANK(rp), "", IF(r > rp, ", más alta que en ", ", más baja que en ") & FORMAT(y - 1, "0") & " (" & FORMAT(rp, "0.0", "es-CL") & ")"),
+				IF(sel,
+					"La tasa de lesiones de los años elegidos fue " & FORMAT(r, "0.0", "es-CL"),
+					"La tasa de lesiones cayó de " & FORMAT(vFrom, "0.0", "es-CL") & " a " & FORMAT(vTo, "0.0", "es-CL") & " en " & FORMAT(yDrop, "0") & " y desde entonces sube y baja"))
+		displayFolder: 8 Títulos
+		lineageTag: 09d51980-621e-4d37-af24-c3b9af731890
+
+	measure 'Título Accidentes' =
+			VAR one = HASONEVALUE(Fecha[Año])
+			VAR sel = ISFILTERED(Fecha[Año])
+			VAR f = [Fatalidades] + 0
+			VAR f1 = CALCULATE([Fatalidades], Fecha[Año] < 2010) + 0
+			VAR f2 = CALCULATE([Fatalidades], Fecha[Año] >= 2010, Fecha[Año] < 2020) + 0
+			VAR f3 = CALCULATE([Fatalidades], Fecha[Año] >= 2020) + 0
+			RETURN
+			IF(one,
+				"En " & FORMAT(MAX(Fecha[Año]), "0") & " hubo " & FORMAT([Accidentes], "#,0", "es-CL") & " accidentes, " & FORMAT(f, "0") & IF(f = 1, " fatalidad", " fatalidades") & " y " & FORMAT([Días perdidos], "#,0", "es-CL") & " días perdidos",
+				IF(sel,
+					FORMAT(f, "0") & IF(f = 1, " fatalidad", " fatalidades") & " en los años elegidos",
+					FORMAT(f, "0") & " fatalidades desde " & FORMAT(MIN(Fecha[Año]), "0") & ": " & FORMAT(f1, "0") & " en los 2000, " & FORMAT(f2, "0") & " en los 2010 y " & FORMAT(f3, "0") & " desde 2020"))
+		displayFolder: 8 Títulos
+		lineageTag: 854c36a3-f968-4fa7-a604-285ed93b7975
+
+	measure 'Título Mapa' =
+			VAR one = HASONEVALUE(Fecha[Año])
+			VAR t = ADDCOLUMNS(VALUES('Mina'[Mina]), "@a", [Accidentes])
+			VAR m = MAXX(t, [@a])
+			VAR nm = MAXX(FILTER(t, [@a] = m), 'Mina'[Mina])
+			VAR sh = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(nm, "Freeport-McMoRan ", ""), "Freeport McMoRan ", ""), " Inc.", ""), " Inc", "")
+			VAR share = DIVIDE(m, [Accidentes])
+			RETURN
+			IF(ISBLANK(m), "Sin accidentes en este período",
+				IF(one,
+					"En " & FORMAT(MAX(Fecha[Año]), "0") & ", el " & FORMAT(share, "0%", "es-CL") & " de los accidentes ocurrió en " & sh,
+					"El " & FORMAT(share, "0%", "es-CL") & " de los accidentes ocurre en una sola mina: " & sh))
+		displayFolder: 8 Títulos
+		lineageTag: 9ff9e8c4-b4dd-4251-ae7f-1be1911fe07b
+
 	column 'Clave de accidente'
 		dataType: int64
 		isHidden

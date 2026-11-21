@@ -98,6 +98,22 @@ table Infracciones
 		displayFolder: 3 Variación
 		lineageTag: 04c8a10f-bf4b-4911-9aed-0a52543158b1
 
+	measure 'Título Infracciones' =
+			VAR one = HASONEVALUE(Fecha[Año])
+			VAR sel = ISFILTERED(Fecha[Año])
+			VAR ss = [% S&S]
+			VAR n = ROUND(DIVIDE(1, ss), 0)
+			VAR nw = SWITCH(n, 2, "dos", 3, "tres", 4, "cuatro", 5, "cinco", 6, "seis", 7, "siete", FORMAT(n, "0"))
+			VAR tn = ADDCOLUMNS(VALUES(Norma[Norma (sección CFR)]), "@i", [Infracciones])
+			VAR mx = MAXX(tn, [@i])
+			VAR normaTop = MAXX(FILTER(tn, [@i] = mx), Norma[Norma (sección CFR)])
+			RETURN
+			IF(sel,
+				IF(one, "En " & FORMAT(MAX(Fecha[Año]), "0") & ": ", "En los años elegidos: ") & FORMAT([Infracciones], "#,0", "es-CL") & " infracciones, " & FORMAT(ss, "0%", "es-CL") & " significativas y sustanciales",
+				"Una de cada " & nw & " infracciones es significativa y sustancial; la norma " & normaTop & " lidera")
+		displayFolder: 8 Títulos
+		lineageTag: d27b3b3e-4688-411d-8489-daa4f35cea3a
+
 	column 'Clave de infracción'
 		dataType: int64
 		isHidden

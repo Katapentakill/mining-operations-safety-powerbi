@@ -200,7 +200,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "general": [
         {
@@ -215,6 +214,39 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e8b9e1c54072dc19d292",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "GradoLesion"
+              }
+            },
+            "Property": "Grado de lesión"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3e89aa02652b9689c232",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Accidentes"
+              }
+            },
+            "Property": "Accidentes"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

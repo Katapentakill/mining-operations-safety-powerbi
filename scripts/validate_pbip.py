@@ -113,7 +113,7 @@ def check_model(errors: list[str]) -> dict:
                 if rt not in tables or (rc not in tables[rt]["columns"] and rc not in tables[rt]["measures"]):
                     errors.append(f"measure {mname!r}: reference {rt}[{rc}] does not exist")
             for ref in re.findall(r"(?<![\w'\]])\[([^\]]+)\]", dax):
-                if ref not in names_measures:
+                if ref not in names_measures and not ref.startswith("@"):  # "@x" = ADDCOLUMNS alias
                     errors.append(f"measure {mname!r}: [{ref}] is not a measure")
     return tables
 

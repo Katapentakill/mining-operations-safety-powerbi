@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "filtro_anio",
   "position": {
     "x": 1104,
@@ -92,30 +92,10 @@
                   "Value": "'Segoe UI'"
                 }
               }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "outline": {
-              "expr": {
-                "Literal": {
-                  "Value": "'None'"
-                }
-              }
             }
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true,
-    "syncGroup": {
-      "groupName": "anio",
-      "fieldChanges": true,
-      "filterChanges": true
     },
     "visualContainerObjects": {
       "title": [
@@ -181,6 +161,12 @@
           }
         }
       ]
-    }
+    },
+    "syncGroup": {
+      "groupName": "anio",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
+    "drillFilterOtherVisuals": true
   }
 }

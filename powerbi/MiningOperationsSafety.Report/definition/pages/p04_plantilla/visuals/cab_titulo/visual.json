@@ -5,36 +5,141 @@
     "x": 24,
     "y": 58,
     "z": 2004,
-    "height": 50,
+    "height": 44,
     "width": 1232,
     "tabOrder": 10
   },
   "visual": {
-    "visualType": "textbox",
+    "visualType": "actionButton",
     "objects": {
-      "general": [
+      "icon": [
         {
           "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Se trabajaron 424 millones de horas: más horas, más exposición",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "22pt",
-                      "color": "#2B2F33"
+            "shapeType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'blank'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "text": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Plantilla"
+                    }
+                  },
+                  "Property": "Título Plantilla"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2B2F33'"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "left"
+                }
               }
-            ]
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "22D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "verticalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Middle'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "fill": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]
     },
     "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
       "background": [
         {
           "properties": {
@@ -67,7 +172,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Se trabajaron 424 millones de horas: más horas, más exposición'"
+                  "Value": "'Título de la página: conclusión principal'"
                 }
               }
             }

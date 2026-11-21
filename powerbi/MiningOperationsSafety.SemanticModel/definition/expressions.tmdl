@@ -1,6 +1,10 @@
 expression Servidor = "127.0.0.1,1433" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 	lineageTag: 8c3a8c47-bf8d-440f-92e4-d98c4dc45fd2
 
+	annotation PBI_ResultType = Text
+
 expression Base = "MiningOpsSafety" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 	lineageTag: da3e30ea-887d-4d52-bf9d-ebd517945c98
+
+	annotation PBI_ResultType = Text
 
