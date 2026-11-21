@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Cómo leerla: cada burbuja es una mina; su tamaño muestra los accidentes y su color, el estado. Elige una barra para destacarla.",
+                    "value": "Cómo leerla: burbuja = mina; tamaño = accidentes; color = estado (naranja activa, gris abandonada, azul sin producción).",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
@@ -67,7 +67,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cómo leerla: cada burbuja es una mina; su tamaño muestra los accidentes y su color, el estado. Elige una barra para destacarla.'"
+                  "Value": "'Cómo leerla: burbuja = mina; tamaño = accidentes; color = estado (naranja activa, gris abandonada, azul sin producción).'"
                 }
               }
             }

@@ -25,7 +25,7 @@ A reproducible analytics project on **real public data**: workforce hours, accid
 
 ## Dashboard
 
-Seven report pages: **About the data** (source, scope, definitions and limits), **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours**, **Map and mine detail** and **Mine detail** (one mine at a time). Each page has a one-line reading guide, a key figure in the sidebar and, with a single year selected, KPI cards that show the change against the previous year. A side menu moves between pages and one year filter is synced across all of them. A short video will be added later.
+Seven report pages (the map needs Power BI's map visuals enabled in *File → Options → Security*): **About the data** (source, scope, definitions and limits), **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours**, **Map and mine detail** and **Mine detail** (one mine at a time). Each page has a one-line reading guide, a key figure in the sidebar and, with a single year selected, KPI cards that show the change against the previous year. A side menu moves between pages and one year filter is synced across all of them. A short video will be added later.
 
 ![Summary page](docs/img/01-resumen.png)
 

@@ -73,7 +73,7 @@ Ojo con una trampa: la tabla se llama `Mina`, y en DAX `Mina[col]` se confunde c
 - **27 de 43 minas** tienen coordenadas; el resto aparece en la tabla pero no en el mapa.
 - **Dueños anteriores:** las minas pasaron por Phelps Dodge, Cyprus Amax y otros; por eso hay una dimensión Empresa y una marca «era del dueño actual».
 - **Traducción:** los textos de MSHA se traducen en SQL, no visual por visual; el original queda en columnas ocultas (decisión 25).
-- **Mapas nativos desactivados** en tu Desktop: el mapa es un gráfico de dispersión sobre un contorno dibujado a mano (decisión 22).
+- **Mapa nativo:** usa el visual de mapa de Power BI (Bing); requiere activar la opción de seguridad de mapas en Desktop (decisión 22). Si no está activada, no se ve.
 
 ## 8. Preguntas de entrevista (y cómo responder)
 
@@ -85,7 +85,7 @@ Ojo con una trampa: la tabla se llama `Mina`, y en DAX `Mina[col]` se confunde c
 6. **¿Qué es una dimensión «basura»?** Agrupa atributos pocos y repetidos (negligencia, probabilidad…) en una tabla para no ensanchar el hecho.
 7. **¿Por qué Docker y `BULK INSERT`?** Reproducibilidad: cualquiera levanta el mismo SQL Server con tres comandos y carga millones de filas rápido.
 8. **¿Qué hiciste con los textos en inglés?** Los traduje en el ETL (columnas `*_es`) y conservé el original; los DAX que filtran por valores de MSHA usan la columna original.
-9. **¿Por qué el mapa es un gráfico de dispersión?** Los visuales de mapa están desactivados por seguridad en Desktop; dibujé los contornos de AZ, NM y CO como SVG y fijé los ejes a sus límites.
+9. **¿Por qué el mapa es nativo y qué cuidado tiene?** Muestra burbujas sobre un mapa real con zoom; hay que filtrar a las minas con coordenadas (si no, las sin coordenadas caen en 0,0) y el administrador debe permitir los visuales de mapa.
 10. **¿Cómo manejas el año parcial?** Las tasas usan solo trimestres con horas (`has_hours_data`), y la comparación contra el año anterior usa el mismo período.
 11. **¿Cómo versionas Power BI?** Como código: PBIP con TMDL y PBIR, revisable en Git; un validador comprueba que cada columna y medida citada exista.
 12. **¿Qué mejorarías?** Incluir toneladas si hubiera fuente, comparar contra otras empresas y agregar un tooltip de página y drill-through (los probé y no funcionaron en Desktop; quedan como pendiente).

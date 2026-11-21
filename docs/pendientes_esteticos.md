@@ -10,7 +10,7 @@ Lo funcional está primero; esto es lo que quedó sin pulir a propósito.
 - [x] Alinear y dimensionar los visuales de *Resumen*; títulos y etiquetas en español.
 - [x] Filtro de año en las 6 páginas, sincronizado entre ellas.
 - [x] Textos en inglés de MSHA traducidos en el data warehouse (decisión 25).
-- [x] Página «Acerca de los datos» con insignias propias (sin logos oficiales) y mapa con contorno de AZ, NM y CO.
+- [x] Página «Acerca de los datos» con insignias propias (sin logos oficiales) y mapa nativo de Power BI (requiere activar los visuales de mapa).
 - [x] Texto alternativo en cada visual y orden de tabulación lógico.
 - [x] Tarjetas con variación vs año anterior, «cómo leerla» y dato clave por página; página «Detalle por mina».
 - [ ] Revisar el contraste final (≥ 4,5:1) con las capturas definitivas (Fase 6).

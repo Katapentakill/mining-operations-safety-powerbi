@@ -19,7 +19,7 @@ Proyecto reproducible con **datos públicos reales**: horas trabajadas, accident
 
 ## Informe
 
-Siete páginas: **Acerca de los datos** (fuente, universo, definiciones y límites), **Resumen**, **Accidentes**, **Infracciones y multas**, **Plantilla y horas**, **Mapa y detalle por mina** y **Detalle por mina** (una mina a la vez). Cada página trae una línea de «cómo leerla», un dato clave en la barra lateral y, con un solo año elegido, tarjetas que muestran la variación frente al año anterior. Un menú lateral lleva de una página a otra y un filtro de año se sincroniza entre todas. Un video corto vendrá más adelante.
+Siete páginas (el mapa requiere activar los visuales de mapa en *Archivo → Opciones → Seguridad*): **Acerca de los datos** (fuente, universo, definiciones y límites), **Resumen**, **Accidentes**, **Infracciones y multas**, **Plantilla y horas**, **Mapa y detalle por mina** y **Detalle por mina** (una mina a la vez). Cada página trae una línea de «cómo leerla», un dato clave en la barra lateral y, con un solo año elegido, tarjetas que muestran la variación frente al año anterior. Un menú lateral lleva de una página a otra y un filtro de año se sincroniza entre todas. Un video corto vendrá más adelante.
 
 ![Página Resumen](docs/img/01-resumen.png)
 

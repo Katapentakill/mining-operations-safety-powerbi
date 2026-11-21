@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
-  "name": "dispersion_minas",
+  "name": "mapa_minas",
   "position": {
     "x": 220,
     "y": 80,
     "z": 35,
     "height": 620,
     "width": 520,
-    "tabOrder": 40
+    "tabOrder": 35
   },
   "visual": {
-    "visualType": "scatterChart",
+    "visualType": "map",
     "query": {
       "queryState": {
         "Category": {
@@ -149,115 +149,6 @@
       }
     },
     "objects": {
-      "categoryAxis": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "start": {
-              "expr": {
-                "Literal": {
-                  "Value": "-114.9D"
-                }
-              }
-            },
-            "end": {
-              "expr": {
-                "Literal": {
-                  "Value": "-104.3D"
-                }
-              }
-            },
-            "gridlineShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "axisType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Scalar'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "start": {
-              "expr": {
-                "Literal": {
-                  "Value": "31.0D"
-                }
-              }
-            },
-            "end": {
-              "expr": {
-                "Literal": {
-                  "Value": "41.2D"
-                }
-              }
-            },
-            "gridlineShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "axisType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Scalar'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "legend": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "dataPoint": [
         {
           "properties": {
@@ -289,39 +180,13 @@
           }
         }
       ],
-      "bubbles": [
-        {
-          "properties": {
-            "bubbleSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "-60L"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "categoryLabels": [
+      "legend": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "plotArea": [
-        {
-          "properties": {
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "100D"
                 }
               }
             }
@@ -336,20 +201,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
-            }
-          }
-        }
-      ],
-      "background": [
-        {
-          "properties": {
-            "show": {
+            },
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'Dónde están las minas (27 de 43 con coordenadas)'"
                 }
               }
             }
@@ -362,7 +221,25 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E3DED7'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
                 }
               }
             }
@@ -375,7 +252,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mapa de burbujas'"
+                  "Value": "'Mapa de las minas de Freeport-McMoRan, burbuja por mina'"
                 }
               }
             }
@@ -384,5 +261,62 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f_coord",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Mina"
+              }
+            },
+            "Property": "Tiene coordenadas"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "Mina",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "m"
+                          }
+                        },
+                        "Property": "Tiene coordenadas"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 }
