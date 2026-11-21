@@ -1,4 +1,4 @@
-"""Run the whole pipeline: download, filter, Chile context, staging DDL, SQL Server load.
+"""Run the whole pipeline: download, filter, staging DDL, SQL Server load.
 
 Usage: python scripts/run_all.py [--skip-download]
 Requires Docker and a .env file (copy .env.example).
@@ -26,7 +26,6 @@ def main() -> int:
     if not args.skip_download:
         run("01_download_msha.py")
     run("02_filter_company.py")
-    run("03_prepare_cochilco.py")
     run("generate_staging_ddl.py")
     run("04_load_sqlserver.py")
     return 0

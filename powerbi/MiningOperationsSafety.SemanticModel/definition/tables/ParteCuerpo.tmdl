@@ -1,27 +1,32 @@
 table ParteCuerpo
+	lineageTag: 6fa3051d-b7db-4ee6-b7f4-688df7e64391
 
 	column 'Clave de parte'
 		dataType: int64
 		isHidden
+		lineageTag: 1acf3ed7-48e4-4891-aec8-f27343d8efe7
 		summarizeBy: none
 		sourceColumn: body_part_key
 
 	column 'Código de parte'
 		dataType: string
 		isHidden
+		lineageTag: f857a616-587b-49c0-93b8-36f8919e9c02
 		summarizeBy: none
 		sourceColumn: body_part_code
 
 	column 'Parte del cuerpo'
 		dataType: string
+		lineageTag: cddcdb03-8854-473d-b4d4-9ee25d06c358
 		summarizeBy: none
 		sourceColumn: body_part_desc
 
 	partition ParteCuerpo = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_body_part"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_body_part"]}[Data]
+				in
+					Vista
+

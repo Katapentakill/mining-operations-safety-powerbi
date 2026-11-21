@@ -1,244 +1,280 @@
 table Accidentes
+	lineageTag: 88c5eae8-e42c-4d83-906c-ab4784cf28ee
 
-	measure Accidentes =
-			COUNTROWS(Accidentes)
+	measure Accidentes = COUNTROWS(Accidentes)
 		formatString: #,0
 		displayFolder: 1 Accidentes
+		lineageTag: 226ed65c-7698-42ef-82af-d7cacb0dd7e7
 
-	measure 'Lesiones declaradas' =
-			SUM(Accidentes[Lesiones declaradas (registro)])
+	measure 'Lesiones declaradas' = SUM(Accidentes[Lesiones declaradas (registro)])
 		formatString: #,0
 		displayFolder: 1 Accidentes
+		lineageTag: 2438f046-8c89-4e5a-9beb-bbaa2f44247f
 
-	measure Fatalidades =
-			CALCULATE(COUNTROWS(Accidentes), GradoLesion[Es fatalidad] = TRUE())
+	measure Fatalidades = CALCULATE(COUNTROWS(Accidentes), GradoLesion[Es fatalidad] = TRUE())
 		formatString: #,0
 		displayFolder: 1 Accidentes
+		lineageTag: 5d581cb7-4bfc-4fb9-8af4-520fde8cec62
 
-	measure 'Casos con tiempo perdido' =
-			CALCULATE(COUNTROWS(Accidentes), GradoLesion[Con tiempo perdido] = TRUE())
+	measure 'Casos con tiempo perdido' = CALCULATE(COUNTROWS(Accidentes), GradoLesion[Con tiempo perdido] = TRUE())
 		formatString: #,0
 		displayFolder: 1 Accidentes
+		lineageTag: 744d31cb-4276-44b8-9792-1ba050895a62
 
-	measure 'Días perdidos' =
-			SUM(Accidentes[Días perdidos (registro)])
+	measure 'Días perdidos' = SUM(Accidentes[Días perdidos (registro)])
 		formatString: #,0
 		displayFolder: 1 Accidentes
+		lineageTag: f9b42c8c-9730-48aa-b338-64b8ddba7ac0
 
-	measure 'Días restringidos' =
-			SUM(Accidentes[Días restringidos (registro)])
+	measure 'Días restringidos' = SUM(Accidentes[Días restringidos (registro)])
 		formatString: #,0
 		displayFolder: 1 Accidentes
+		lineageTag: e80f771b-5675-4dce-8a88-297d07993a25
 
-	measure 'Accidentes de contratistas' =
-			CALCULATE(COUNTROWS(Accidentes), Accidentes[Es contratista] = TRUE())
+	measure 'Accidentes de contratistas' = CALCULATE(COUNTROWS(Accidentes), Accidentes[Es contratista] = TRUE())
 		formatString: #,0
 		displayFolder: 1 Accidentes
+		lineageTag: aef5a689-06e1-4e09-a0d4-0abc8cb3b5e5
 
-	measure '% de accidentes de contratistas' =
-			DIVIDE([Accidentes de contratistas], [Accidentes])
+	measure '% de accidentes de contratistas' = DIVIDE([Accidentes de contratistas], [Accidentes])
 		formatString: 0.0%
 		displayFolder: 1 Accidentes
+		lineageTag: e7e95bcc-dd1e-4e5f-b4c5-fec9b277b304
 
-	measure 'Experiencia promedio en la mina (años)' =
-			AVERAGE(Accidentes[Experiencia en la mina (años)])
+	measure 'Experiencia promedio en la mina (años)' = AVERAGE(Accidentes[Experiencia en la mina (años)])
 		formatString: 0.0
 		displayFolder: 1 Accidentes
+		lineageTag: adfd19b7-e2ed-4865-9fea-9e3cd231b4ee
 
-	measure 'Accidentes año anterior' =
-			CALCULATE([Accidentes], SAMEPERIODLASTYEAR(Fecha[Fecha]))
+	measure 'Accidentes año anterior' = CALCULATE([Accidentes], SAMEPERIODLASTYEAR(Fecha[Fecha]))
 		formatString: #,0
 		displayFolder: 2 Tiempo
+		lineageTag: 9ab53e43-1f3a-4f49-a996-b524ed79ab1b
 
-	measure 'Variación vs año anterior' =
-			DIVIDE([Accidentes] - [Accidentes año anterior], [Accidentes año anterior])
+	measure 'Variación vs año anterior' = DIVIDE([Accidentes] - [Accidentes año anterior], [Accidentes año anterior])
 		formatString: 0.0%
 		displayFolder: 2 Tiempo
+		lineageTag: 265464ab-c22f-4b9e-a5ea-2d419ff03fdf
 
-	measure 'Accidentes acumulados del año' =
-			TOTALYTD([Accidentes], Fecha[Fecha])
+	measure 'Accidentes acumulados del año' = TOTALYTD([Accidentes], Fecha[Fecha])
 		formatString: #,0
 		displayFolder: 2 Tiempo
+		lineageTag: 2da2e05b-bbfa-4cd8-820d-f330f1a74549
 
-	measure 'Accidentes últimos 12 meses' =
-			CALCULATE([Accidentes], DATESINPERIOD(Fecha[Fecha], MAX(Fecha[Fecha]), -12, MONTH))
+	measure 'Accidentes últimos 12 meses' = CALCULATE([Accidentes], DATESINPERIOD(Fecha[Fecha], MAX(Fecha[Fecha]), -12, MONTH))
 		formatString: #,0
 		displayFolder: 2 Tiempo
+		lineageTag: f765f48c-4e4b-4be3-937b-a91b7e0895ac
 
-	measure 'Casos de lesión (personal propio)' =
-			CALCULATE(COUNTROWS(Accidentes), GradoLesion[Cuenta como lesión] = TRUE(), Accidentes[Es contratista] = FALSE())
+	measure 'Casos de lesión (personal propio)' = CALCULATE(COUNTROWS(Accidentes), GradoLesion[Cuenta como lesión] = TRUE(), Accidentes[Es contratista] = FALSE())
 		formatString: #,0
 		displayFolder: 3 Tasas
+		lineageTag: 67125106-2ea3-4b8c-9b5c-8cfa4d041752
 
 	measure 'Tasa de incidencia (por 200.000 h)' =
 			VAR Casos = CALCULATE([Casos de lesión (personal propio)], Fecha[Con horas disponibles] = TRUE())
 			RETURN DIVIDE(Casos * 200000, [Horas trabajadas])
 		formatString: 0.00
 		displayFolder: 3 Tasas
+		lineageTag: 1fda4460-931a-49be-bb01-0cbe538893b2
 
 	measure 'Tasa de días perdidos (por 200.000 h)' =
 			VAR Dias = CALCULATE(SUM(Accidentes[Días perdidos (registro)]), Accidentes[Es contratista] = FALSE(), Fecha[Con horas disponibles] = TRUE())
 			RETURN DIVIDE(Dias * 200000, [Horas trabajadas])
 		formatString: 0.00
 		displayFolder: 3 Tasas
+		lineageTag: 04a08a6d-a318-4e9c-9bac-9e94e78c6c8c
 
 	column 'Clave de accidente'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: ed615ae5-f6fe-4bb0-829a-852193d8ac90
+		summarizeBy: sum
 		sourceColumn: accident_key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'N.º de documento'
 		dataType: string
+		lineageTag: dbbbe63d-4f53-4381-bdb0-5fa2a7d9e5a0
 		summarizeBy: none
 		sourceColumn: document_no
 
 	column mine_key
 		dataType: int64
 		isHidden
+		lineageTag: 20d06455-8c47-4001-82ea-fca313263d58
 		summarizeBy: none
 		sourceColumn: mine_key
 
 	column date_key
 		dataType: int64
 		isHidden
+		lineageTag: ee3b0f14-b060-422d-ac97-d46ffbd3a5e5
 		summarizeBy: none
 		sourceColumn: date_key
 
 	column company_key
 		dataType: int64
 		isHidden
+		lineageTag: c3b87f3e-7ff7-46c8-b37a-269ba2dc0b68
 		summarizeBy: none
 		sourceColumn: company_key
 
 	column work_area_key
 		dataType: int64
 		isHidden
+		lineageTag: 3bfce8bc-df3c-433a-a863-c9768c43bf5e
 		summarizeBy: none
 		sourceColumn: work_area_key
 
 	column injury_degree_key
 		dataType: int64
 		isHidden
+		lineageTag: 615fcab7-0569-4bef-aeae-9bd2ac8e104b
 		summarizeBy: none
 		sourceColumn: injury_degree_key
 
 	column accident_type_key
 		dataType: int64
 		isHidden
+		lineageTag: de40b764-1aa0-4c51-b0b0-aa5f150b9c5d
 		summarizeBy: none
 		sourceColumn: accident_type_key
-
-	column occupation_key
-		dataType: int64
-		isHidden
-		summarizeBy: none
-		sourceColumn: occupation_key
 
 	column body_part_key
 		dataType: int64
 		isHidden
+		lineageTag: 9c997b79-d5d1-4c82-a1b7-1da692c632bd
 		summarizeBy: none
 		sourceColumn: body_part_key
-
-	column nature_injury_key
-		dataType: int64
-		isHidden
-		summarizeBy: none
-		sourceColumn: nature_injury_key
-
-	column activity_key
-		dataType: int64
-		isHidden
-		summarizeBy: none
-		sourceColumn: activity_key
-
-	column equipment_key
-		dataType: int64
-		isHidden
-		summarizeBy: none
-		sourceColumn: equipment_key
 
 	column 'Fecha del accidente'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: 25160251-ce6d-45d4-a2c8-2616c8da3137
 		summarizeBy: none
 		sourceColumn: accident_date
+
+		variation Variation
+			isDefault
+			relationship: c6d1aebb-33f2-46f2-9784-817addabd502
+			defaultHierarchy: LocalDateTable_7e37af42-df19-48ea-95df-46d920243409.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Hora del accidente'
 		dataType: int64
 		formatString: 0
-		summarizeBy: none
+		lineageTag: acf813c1-e13a-4b77-950d-0ee67ea30247
+		summarizeBy: sum
 		sourceColumn: accident_hour
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Hora de inicio del turno'
 		dataType: int64
 		formatString: 0
-		summarizeBy: none
+		lineageTag: 73a93093-f2f9-430e-975a-0b0e5776bd61
+		summarizeBy: sum
 		sourceColumn: shift_start_hour
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Es contratista'
 		dataType: boolean
+		lineageTag: 0dff706f-88c3-409c-82e9-418b94718e0f
 		summarizeBy: none
 		sourceColumn: is_contractor
 
 	column 'Bajo la empresa analizada'
 		dataType: boolean
+		lineageTag: 55bb3a82-078d-4ae4-a147-c6763b3122f0
 		summarizeBy: none
 		sourceColumn: is_target_company_era
 
 	column 'Lesiones declaradas (registro)'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: 9004aa23-4ef3-4b3a-a669-f0f8b1ba05c6
+		summarizeBy: sum
 		sourceColumn: injuries_reported
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Días perdidos (registro)'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: 7e77976a-2d3b-44cb-bb17-6a9707140da2
+		summarizeBy: sum
 		sourceColumn: days_lost
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Días restringidos (registro)'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: 163186a3-3392-43cd-8514-7c987a1f6e31
+		summarizeBy: sum
 		sourceColumn: days_restricted
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Cargo programado (días)'
 		dataType: int64
-		summarizeBy: none
+		lineageTag: e539c55a-1105-4ac4-9ec6-5f8e91d6bf73
+		summarizeBy: sum
 		sourceColumn: schedule_charge
 
+		annotation SummarizationSetBy = Automatic
+
 	column 'Experiencia total (años)'
-		dataType: decimal
+		dataType: double
 		formatString: 0.00
-		summarizeBy: none
+		lineageTag: a185e804-6774-4cb2-96e7-7684706f8fe3
+		summarizeBy: sum
 		sourceColumn: total_experience_years
 
+		annotation SummarizationSetBy = Automatic
+
 	column 'Experiencia en la mina (años)'
-		dataType: decimal
+		dataType: double
 		formatString: 0.00
-		summarizeBy: none
+		lineageTag: 8f867b1f-d705-4c0b-ace1-bb1919b99c2a
+		summarizeBy: sum
 		sourceColumn: mine_experience_years
 
+		annotation SummarizationSetBy = Automatic
+
 	column 'Experiencia en el cargo (años)'
-		dataType: decimal
+		dataType: double
 		formatString: 0.00
-		summarizeBy: none
+		lineageTag: 080f2ba6-69d2-49de-8c23-e56d995c0352
+		summarizeBy: sum
 		sourceColumn: job_experience_years
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Fecha de retorno al trabajo'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: 69b3aafd-0649-4f58-957b-eb4ac88654b3
 		summarizeBy: none
 		sourceColumn: return_to_work_date
+
+		variation Variation
+			isDefault
+			relationship: eac78590-d8c9-4b57-834c-474bd48216a6
+			defaultHierarchy: LocalDateTable_40dda6f7-0381-428b-b4ef-2edae703de9d.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	partition Accidentes = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="fact_accident"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="fact_accident"]}[Data]
+				in
+					Vista
+

@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import csv
-import datetime as dt
 import re
 import shutil
 import urllib.request
@@ -144,108 +143,6 @@ def csv_to_load_file(src: Path, dst: Path) -> int:
 def count_csv_rows(path: Path) -> int:
     with open(path, encoding="utf-8-sig", newline="") as f:
         return sum(1 for _ in csv.reader(f)) - 1
-
-
-# ------------------------------------------------------------ Cochilco Excel
-
-MONTHLY_AGGREGATES = {"Chuqui y R.Tomic", "Total Codelco", "Angloamerican Sur", "Capstone Copper", "TOTAL CHILE"}
-ANNUAL_AGGREGATES = {"total codelco", "total chile"}
-
-
-def _rows(xlsx: Path, sheet: str | None = None) -> list[tuple]:
-    import openpyxl
-
-    wb = openpyxl.load_workbook(xlsx, read_only=True, data_only=True)
-    ws = wb[sheet] if sheet else wb.worksheets[0]
-    rows = list(ws.iter_rows(values_only=True))
-    wb.close()
-    return rows
-
-
-def _num(x):
-    return float(x) if isinstance(x, (int, float)) and not isinstance(x, bool) else None
-
-
-def _first_row(rows, predicate) -> int:
-    for i, r in enumerate(rows):
-        if r and r[0] is not None and predicate(str(r[0]).strip().lower()):
-            return i
-    raise ValueError("header row not found")
-
-
-def tidy_price_monthly(xlsx: Path) -> list[dict]:
-    rows = _rows(xlsx)
-    start = _first_row(rows, lambda s: s.startswith("mes"))
-    out = []
-    for r in rows[start + 1 :]:
-        if isinstance(r[0], dt.datetime):
-            out.append({"month": r[0].date().isoformat(), "bml_cusd_lb": _num(r[1]), "comex_cusd_lb": _num(r[2])})
-    return out
-
-
-def tidy_price_annual(xlsx: Path) -> list[dict]:
-    rows = _rows(xlsx)
-    start = _first_row(rows, lambda s: s.startswith("año"))
-    out = []
-    for r in rows[start + 1 :]:
-        if isinstance(r[0], int) and not isinstance(r[0], bool):
-            out.append({"year": r[0], "bml_cusd_lb": _num(r[1]), "comex_cusd_lb": _num(r[2])})
-    return out
-
-
-def tidy_production_monthly(xlsx: Path) -> list[dict]:
-    """Long format: one row per month and mine/company column (thousand metric tons of fine copper).
-
-    Months without a positive TOTAL CHILE are placeholders and are dropped.
-    """
-    rows = _rows(xlsx)
-    start = _first_row(rows, lambda s: s.startswith("mes"))
-    header = [str(c).strip() if c is not None else None for c in rows[start]]
-    total_col = header.index("TOTAL CHILE")
-    out = []
-    for r in rows[start + 1 :]:
-        if not isinstance(r[0], dt.datetime):
-            continue
-        total = _num(r[total_col])
-        if not total or total <= 0:
-            continue
-        for i, name in enumerate(header):
-            if i == 0 or not name:
-                continue
-            v = _num(r[i])
-            if v is not None:
-                out.append(
-                    {
-                        "month": r[0].date().isoformat(),
-                        "faena": name,
-                        "is_aggregate": int(name in MONTHLY_AGGREGATES),
-                        "kt_fine_cu": v,
-                    }
-                )
-    return out
-
-
-def tidy_production_annual(xlsx: Path) -> list[dict]:
-    rows = _rows(xlsx, "Hoja1")
-    years = {i: int(y) for i, y in enumerate(rows[0]) if isinstance(y, int) and not isinstance(y, bool)}
-    out = []
-    for r in rows[1:]:
-        name, unit = r[0], r[1]
-        if not name or unit != "Miles TM":
-            continue
-        clean = re.sub(r"\s*\(\d+\)\s*$", "", str(name)).strip()
-        for i, year in years.items():
-            v = _num(r[i]) if i < len(r) else None
-            if v is not None:
-                out.append(
-                    {
-                        "year": year,
-                        "faena": clean,
-                        "is_aggregate": int(clean.lower() in ANNUAL_AGGREGATES),
-                        "kt_fine_cu": v,
-                    }
-                )
-    return out
 
 
 def write_csv(path: Path, rows: list[dict]) -> int:

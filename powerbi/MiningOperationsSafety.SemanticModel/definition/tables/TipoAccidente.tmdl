@@ -1,27 +1,32 @@
 table TipoAccidente
+	lineageTag: 9b172b51-56f7-42da-9562-ecb4cee6d664
 
 	column 'Clave de tipo'
 		dataType: int64
 		isHidden
+		lineageTag: b13c8bc4-e467-4c19-aab5-7a35b610af72
 		summarizeBy: none
 		sourceColumn: accident_type_key
 
 	column 'Código de tipo'
 		dataType: string
 		isHidden
+		lineageTag: 5738dd28-7c07-48b1-91af-6fb6febb9bae
 		summarizeBy: none
 		sourceColumn: accident_type_code
 
 	column 'Tipo de accidente'
 		dataType: string
+		lineageTag: bf53bb2a-db05-4acd-b607-18e1a662f956
 		summarizeBy: none
 		sourceColumn: accident_type_desc
 
 	partition TipoAccidente = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_accident_type"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_accident_type"]}[Data]
+				in
+					Vista
+

@@ -82,31 +82,73 @@
     },
     "valueAxis": {
       "*": {
-        "gridlineColor": [{"solid": {"color": "#ECE8E1"}}],
-        "labelColor": [{"solid": {"color": "#6B7178"}}],
-        "fontSize": [9]
+        "gridlineColor": [
+          {
+            "solid": {
+              "color": "#ECE8E1"
+            }
+          }
+        ],
+        "labelColor": [
+          {
+            "solid": {
+              "color": "#6B7178"
+            }
+          }
+        ],
+        "fontSize": [
+          9
+        ]
       }
     },
     "categoryAxis": {
       "*": {
-        "labelColor": [{"solid": {"color": "#4A5058"}}],
-        "fontSize": [9]
+        "labelColor": [
+          {
+            "solid": {
+              "color": "#4A5058"
+            }
+          }
+        ],
+        "fontSize": [
+          9
+        ]
       }
     },
     "tableEx": {
       "*": {
         "columnHeaders": [
           {
-            "fontColor": {"solid": {"color": "#2B2F33"}},
-            "backColor": {"solid": {"color": "#F4F1EC"}},
+            "fontColor": {
+              "solid": {
+                "color": "#2B2F33"
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": "#F4F1EC"
+              }
+            },
             "fontSize": 10
           }
         ],
         "values": [
           {
-            "fontColor": {"solid": {"color": "#2B2F33"}},
-            "backColorPrimary": {"solid": {"color": "#FFFFFF"}},
-            "backColorSecondary": {"solid": {"color": "#FAF8F5"}},
+            "fontColor": {
+              "solid": {
+                "color": "#2B2F33"
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": "#FAF8F5"
+              }
+            },
             "fontSize": 10
           }
         ]

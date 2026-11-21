@@ -5,9 +5,9 @@ GO
 
 -- Facts first (they reference the dimensions)
 DROP TABLE IF EXISTS dwh.accident_narrative, dwh.fact_accident, dwh.fact_violation, dwh.fact_inspection,
-                     dwh.fact_workforce, dwh.fact_cu_production_month, dwh.fact_cu_price_month;
+                     dwh.fact_workforce;
 DROP TABLE IF EXISTS dwh.dim_mine, dwh.dim_company, dwh.dim_work_area, dwh.dim_injury_degree, dwh.dim_accident_type,
-                     dwh.dim_occupation, dwh.dim_body_part, dwh.dim_nature_injury, dwh.dim_activity, dwh.dim_equipment,
+                     dwh.dim_body_part,
                      dwh.dim_standard, dwh.dim_violation_profile, dwh.dim_date;
 DROP TABLE IF EXISTS dwh.etl_log;
 GO
@@ -78,11 +78,7 @@ CREATE TABLE dwh.dim_injury_degree (
 );
 
 CREATE TABLE dwh.dim_accident_type (accident_type_key INT IDENTITY(1,1) PRIMARY KEY, accident_type_code VARCHAR(10) NOT NULL UNIQUE, accident_type_desc NVARCHAR(150) NOT NULL);
-CREATE TABLE dwh.dim_occupation    (occupation_key    INT IDENTITY(1,1) PRIMARY KEY, occupation_code    VARCHAR(10) NOT NULL UNIQUE, occupation_desc    NVARCHAR(150) NOT NULL);
 CREATE TABLE dwh.dim_body_part     (body_part_key     INT IDENTITY(1,1) PRIMARY KEY, body_part_code     VARCHAR(10) NOT NULL UNIQUE, body_part_desc     NVARCHAR(150) NOT NULL);
-CREATE TABLE dwh.dim_nature_injury (nature_injury_key INT IDENTITY(1,1) PRIMARY KEY, nature_injury_code VARCHAR(10) NOT NULL UNIQUE, nature_injury_desc NVARCHAR(150) NOT NULL);
-CREATE TABLE dwh.dim_activity      (activity_key      INT IDENTITY(1,1) PRIMARY KEY, activity_code      VARCHAR(10) NOT NULL UNIQUE, activity_desc      NVARCHAR(150) NOT NULL);
-CREATE TABLE dwh.dim_equipment     (equipment_key     INT IDENTITY(1,1) PRIMARY KEY, equipment_code     VARCHAR(10) NOT NULL UNIQUE, equipment_desc     NVARCHAR(150) NOT NULL);
 
 CREATE TABLE dwh.dim_standard (                                    -- safety standard cited (CFR part and section)
     standard_key  INT IDENTITY(1,1) PRIMARY KEY,
@@ -111,11 +107,7 @@ CREATE TABLE dwh.fact_accident (                                   -- grain: one
     work_area_key           INT NOT NULL REFERENCES dwh.dim_work_area(work_area_key),
     injury_degree_key       INT NOT NULL REFERENCES dwh.dim_injury_degree(injury_degree_key),
     accident_type_key       INT NOT NULL REFERENCES dwh.dim_accident_type(accident_type_key),
-    occupation_key          INT NOT NULL REFERENCES dwh.dim_occupation(occupation_key),
     body_part_key           INT NOT NULL REFERENCES dwh.dim_body_part(body_part_key),
-    nature_injury_key       INT NOT NULL REFERENCES dwh.dim_nature_injury(nature_injury_key),
-    activity_key            INT NOT NULL REFERENCES dwh.dim_activity(activity_key),
-    equipment_key           INT NOT NULL REFERENCES dwh.dim_equipment(equipment_key),
     accident_date           DATE NOT NULL,
     accident_hour           TINYINT NULL,                          -- NULL when MSHA stored 9999 (unknown)
     shift_start_hour        TINYINT NULL,
@@ -182,23 +174,6 @@ CREATE TABLE dwh.fact_workforce (                                  -- grain: min
     avg_employees     INT NULL,
     hours_worked      BIGINT NULL,
     CONSTRAINT UQ_fact_workforce UNIQUE (mine_key, work_area_key, date_key)
-);
-
--- Chile context (Cochilco): all Chilean companies, not related to dim_mine
-CREATE TABLE dwh.fact_cu_price_month (
-    date_key      INT NOT NULL PRIMARY KEY REFERENCES dwh.dim_date(date_key),   -- first day of the month
-    month_start   DATE NOT NULL,
-    bml_cusd_lb   DECIMAL(9,3) NULL,                               -- London Metal Exchange, cents US$ per pound
-    comex_cusd_lb DECIMAL(9,3) NULL
-);
-
-CREATE TABLE dwh.fact_cu_production_month (
-    date_key      INT NOT NULL REFERENCES dwh.dim_date(date_key),
-    month_start   DATE NOT NULL,
-    faena         NVARCHAR(60) NOT NULL,
-    is_aggregate  BIT NOT NULL,                                    -- subtotals and totals: exclude when summing
-    kt_fine_cu    DECIMAL(12,4) NOT NULL,                          -- thousand metric tons of fine copper
-    CONSTRAINT PK_fact_cu_production_month PRIMARY KEY (date_key, faena)
 );
 
 CREATE TABLE dwh.etl_log (

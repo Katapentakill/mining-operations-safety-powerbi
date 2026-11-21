@@ -1,102 +1,138 @@
 table Inspecciones
+	lineageTag: 76f28d47-c0f6-4436-8dc6-226cc8ffebbf
 
-	measure Inspecciones =
-			COUNTROWS(Inspecciones)
+	measure Inspecciones = COUNTROWS(Inspecciones)
 		formatString: #,0
 		displayFolder: Inspecciones
+		lineageTag: b4ee90fc-e0c9-4a9b-a675-0e33983e4936
 
-	measure 'Horas de inspección' =
-			SUM(Inspecciones[Horas de inspección (registro)])
+	measure 'Horas de inspección' = SUM(Inspecciones[Horas de inspección (registro)])
 		formatString: #,0
 		displayFolder: Inspecciones
+		lineageTag: 79e64a9e-293f-4107-b94c-00447c49cc45
 
-	measure 'Horas en sitio' =
-			SUM(Inspecciones[Horas en sitio (registro)])
+	measure 'Horas en sitio' = SUM(Inspecciones[Horas en sitio (registro)])
 		formatString: #,0
 		displayFolder: Inspecciones
+		lineageTag: 4d36b31c-eb67-401f-9b83-5396aa5b46eb
 
-	measure 'Infracciones por 100 h de inspección' =
-			DIVIDE([Infracciones] * 100, [Horas de inspección])
+	measure 'Infracciones por 100 h de inspección' = DIVIDE([Infracciones] * 100, [Horas de inspección])
 		formatString: 0.0
 		displayFolder: Inspecciones
+		lineageTag: 711ff4db-3272-41f1-b36f-43ef7bad602e
 
 	column 'Clave de inspección'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: c9d34d68-6326-4683-a983-888271660793
+		summarizeBy: sum
 		sourceColumn: inspection_key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'N.º de evento'
 		dataType: string
+		lineageTag: f1f426c9-e09a-4a27-9540-8cdca462c19e
 		summarizeBy: none
 		sourceColumn: event_no
 
 	column mine_key
 		dataType: int64
 		isHidden
+		lineageTag: 94b70b7b-d137-42f3-b546-a5f6502a9422
 		summarizeBy: none
 		sourceColumn: mine_key
 
 	column date_key
 		dataType: int64
 		isHidden
+		lineageTag: 39d9304f-43bd-4d17-9309-2d820c3ba8d0
 		summarizeBy: none
 		sourceColumn: date_key
 
 	column company_key
 		dataType: int64
 		isHidden
+		lineageTag: 6b68368a-e9e4-4584-9704-73a3d447c8c3
 		summarizeBy: none
 		sourceColumn: company_key
 
 	column 'Fecha de inicio'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: feb6d0a2-d1ae-4899-9674-f70c180c5256
 		summarizeBy: none
 		sourceColumn: begin_date
+
+		variation Variation
+			isDefault
+			relationship: ae83de04-3318-47e7-8f4c-4c15caccb5d0
+			defaultHierarchy: LocalDateTable_137ca0a2-0be5-4c47-81f3-41427ad8b1b4.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Fecha de término'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: 4a7a0e26-b2ef-4a2c-b23b-da7c49f65553
 		summarizeBy: none
 		sourceColumn: end_date
+
+		variation Variation
+			isDefault
+			relationship: b264f020-c1be-4abb-9401-bde5d10d7c44
+			defaultHierarchy: LocalDateTable_f153dcdf-79f2-4107-bc38-15fdd580e78b.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Inspectores (registro)'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: 1c90ee10-ee53-44ca-822b-3f4a4d74bc93
+		summarizeBy: sum
 		sourceColumn: inspector_count
 
+		annotation SummarizationSetBy = Automatic
+
 	column 'Horas de inspección (registro)'
-		dataType: decimal
-		formatString: #
+		dataType: double
 		isHidden
-		summarizeBy: none
+		formatString: #
+		lineageTag: cc2f9f2e-f763-4c52-908a-ca163f72bdfb
+		summarizeBy: sum
 		sourceColumn: inspection_hours
 
+		annotation SummarizationSetBy = Automatic
+
 	column 'Horas en sitio (registro)'
-		dataType: decimal
-		formatString: #
+		dataType: double
 		isHidden
-		summarizeBy: none
+		formatString: #
+		lineageTag: ec8d0d36-8f2d-465a-9c04-56459cb952e8
+		summarizeBy: sum
 		sourceColumn: on_site_hours
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Código de actividad'
 		dataType: string
 		isHidden
+		lineageTag: e6651ec6-18bf-42e2-b2bb-c0c7ec4de521
 		summarizeBy: none
 		sourceColumn: activity_code
 
 	column 'Tipo de inspección'
 		dataType: string
+		lineageTag: 08a70d7c-7ad6-49f5-a4ae-284e78454b4b
 		summarizeBy: none
 		sourceColumn: activity
 
 	partition Inspecciones = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="fact_inspection"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="fact_inspection"]}[Data]
+				in
+					Vista
+

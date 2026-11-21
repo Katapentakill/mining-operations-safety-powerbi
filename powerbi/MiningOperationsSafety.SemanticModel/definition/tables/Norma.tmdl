@@ -1,26 +1,31 @@
 table Norma
+	lineageTag: 4cd951bc-449c-4b6b-9807-4a844848be1f
 
 	column 'Clave de norma'
 		dataType: int64
 		isHidden
+		lineageTag: 997cb220-fa8d-457f-bf91-755f8c37a44c
 		summarizeBy: none
 		sourceColumn: standard_key
 
 	column 'Norma (sección CFR)'
 		dataType: string
+		lineageTag: d9d552f6-ee4c-4bbc-808f-54094aea022c
 		summarizeBy: none
 		sourceColumn: part_section
 
 	column 'Parte CFR'
 		dataType: string
+		lineageTag: d28e5261-a5b2-4e56-a6ad-49a981e3eb41
 		summarizeBy: none
 		sourceColumn: cfr_part
 
 	partition Norma = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_standard"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_standard"]}[Data]
+				in
+					Vista
+

@@ -358,20 +358,3 @@ CREATE TABLE stg.controller_operator_history (
     [OPERATOR_END_DT] varchar(500) NULL
 );
 GO
-
-DROP TABLE IF EXISTS stg.cu_price_monthly;
-CREATE TABLE stg.cu_price_monthly (
-    [month] varchar(500) NULL,
-    [bml_cusd_lb] varchar(500) NULL,
-    [comex_cusd_lb] varchar(500) NULL
-);
-GO
-
-DROP TABLE IF EXISTS stg.cu_production_monthly;
-CREATE TABLE stg.cu_production_monthly (
-    [month] varchar(500) NULL,
-    [faena] varchar(500) NULL,
-    [is_aggregate] varchar(500) NULL,
-    [kt_fine_cu] varchar(500) NULL
-);
-GO

@@ -1,173 +1,233 @@
 table Infracciones
+	lineageTag: 90ec6fec-1535-4606-9c84-3e33c3d9a2ad
 
-	measure Infracciones =
-			COUNTROWS(Infracciones)
+	measure Infracciones = COUNTROWS(Infracciones)
 		formatString: #,0
 		displayFolder: 1 Infracciones
+		lineageTag: a83a19d1-fb9b-48f5-a54e-a1878e6192a8
 
-	measure 'Infracciones S&S' =
-			CALCULATE([Infracciones], PerfilInfraccion[Significativa y sustancial] = "Yes")
+	measure 'Infracciones S&S' = CALCULATE([Infracciones], PerfilInfraccion[Significativa y sustancial] = "Yes")
 		formatString: #,0
 		displayFolder: 1 Infracciones
+		lineageTag: 91dad761-50fa-49d2-ac32-f3265cb3f364
 
-	measure '% S&S' =
-			DIVIDE([Infracciones S&S], [Infracciones])
+	measure '% S&S' = DIVIDE([Infracciones S&S], [Infracciones])
 		formatString: 0.0%
 		displayFolder: 1 Infracciones
+		lineageTag: 98ff258c-0926-4419-8f20-fb9c450210c9
 
-	measure 'Personas afectadas' =
-			SUM(Infracciones[Personas afectadas (registro)])
+	measure 'Personas afectadas' = SUM(Infracciones[Personas afectadas (registro)])
 		formatString: #,0
 		displayFolder: 1 Infracciones
+		lineageTag: ec8eef88-78ee-40d1-8d45-1b1bbc8e98be
 
-	measure 'Días promedio para corregir' =
-			AVERAGE(Infracciones[Días para corregir (registro)])
+	measure 'Días promedio para corregir' = AVERAGE(Infracciones[Días para corregir (registro)])
 		formatString: 0.0
 		displayFolder: 1 Infracciones
+		lineageTag: d2b4875c-f4d4-4f70-91a2-338e3bbc9097
 
-	measure 'Infracciones con multa' =
-			CALCULATE([Infracciones], Infracciones[Tiene multa] = TRUE())
+	measure 'Infracciones con multa' = CALCULATE([Infracciones], Infracciones[Tiene multa] = TRUE())
 		formatString: #,0
 		displayFolder: 2 Multas
+		lineageTag: 568faf02-498a-441f-a598-480adc1ff3c2
 
-	measure 'Multa propuesta' =
-			SUM(Infracciones[Multa propuesta (registro)])
+	measure 'Multa propuesta' = SUM(Infracciones[Multa propuesta (registro)])
 		formatString: $ #,0
 		displayFolder: 2 Multas
+		lineageTag: b7557d60-3253-4fe4-9835-6bbc614c75bf
 
-	measure 'Multa vigente' =
-			SUM(Infracciones[Multa vigente (registro)])
+	measure 'Multa vigente' = SUM(Infracciones[Multa vigente (registro)])
 		formatString: $ #,0
 		displayFolder: 2 Multas
+		lineageTag: c64faf83-752a-42f7-af71-c2dd297e94e6
 
-	measure 'Multa pagada' =
-			SUM(Infracciones[Multa pagada (registro)])
+	measure 'Multa pagada' = SUM(Infracciones[Multa pagada (registro)])
 		formatString: $ #,0
 		displayFolder: 2 Multas
+		lineageTag: 0ea4e16c-4d24-40d6-bf92-2be383b69f2b
 
-	measure '% de multa pagada' =
-			DIVIDE([Multa pagada], [Multa vigente])
+	measure '% de multa pagada' = DIVIDE([Multa pagada], [Multa vigente])
 		formatString: 0.0%
 		displayFolder: 2 Multas
+		lineageTag: 4f63636c-852b-41a1-b97b-40c06beb5aed
 
-	measure 'Multa promedio' =
-			DIVIDE([Multa vigente], [Infracciones con multa])
+	measure 'Multa promedio' = DIVIDE([Multa vigente], [Infracciones con multa])
 		formatString: $ #,0
 		displayFolder: 2 Multas
+		lineageTag: 0e0884fb-0253-4d92-a804-a4d75c057f9e
 
 	column 'Clave de infracción'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: 61e7f088-8968-47e5-912a-af9a334492a2
+		summarizeBy: sum
 		sourceColumn: violation_key
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'N.º de evento'
 		dataType: string
+		lineageTag: 8db0d42b-d5d7-4304-8dbd-63dd541409d9
 		summarizeBy: none
 		sourceColumn: event_no
 
 	column 'N.º de infracción'
 		dataType: string
+		lineageTag: fbc7acb0-176f-4a60-8b25-d6344c8a1823
 		summarizeBy: none
 		sourceColumn: violation_no
 
 	column mine_key
 		dataType: int64
 		isHidden
+		lineageTag: 2eae7c18-8da7-4d90-bc79-771428714a90
 		summarizeBy: none
 		sourceColumn: mine_key
 
 	column date_key
 		dataType: int64
 		isHidden
+		lineageTag: 48e545c3-d339-4134-96b0-d3de47d7ede5
 		summarizeBy: none
 		sourceColumn: date_key
 
 	column company_key
 		dataType: int64
 		isHidden
+		lineageTag: 7be52913-c297-4818-982a-6d4fb11fc46b
 		summarizeBy: none
 		sourceColumn: company_key
 
 	column standard_key
 		dataType: int64
 		isHidden
+		lineageTag: a48cc19d-d9a7-4199-ab95-16355a7c699e
 		summarizeBy: none
 		sourceColumn: standard_key
 
 	column violation_profile_key
 		dataType: int64
 		isHidden
+		lineageTag: ee542473-a2a7-49ea-bb48-fe2ee0754911
 		summarizeBy: none
 		sourceColumn: violation_profile_key
 
 	column 'Fecha de emisión'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: 66720802-fe2a-4e44-bea6-cc87405bd88c
 		summarizeBy: none
 		sourceColumn: issue_date
+
+		variation Variation
+			isDefault
+			relationship: f58cee85-a46a-4b04-b80a-54e2d9d40bd6
+			defaultHierarchy: LocalDateTable_d84125a4-b822-4672-a4ec-80b67ffdcd53.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Fecha de ocurrencia'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: 7eb30d02-7320-40d7-b92c-086fcbb2c34c
 		summarizeBy: none
 		sourceColumn: occurrence_date
+
+		variation Variation
+			isDefault
+			relationship: 591c0135-90fb-4046-89fd-73d2c59b7909
+			defaultHierarchy: LocalDateTable_ff3ebb39-0b0a-44dc-b632-3906a7f56b4f.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Fecha de término'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: 70d027a3-27ea-423a-8be1-8a9f7416a5d6
 		summarizeBy: none
 		sourceColumn: termination_date
+
+		variation Variation
+			isDefault
+			relationship: 694c6832-3fc1-46f8-a289-2e72a4996089
+			defaultHierarchy: LocalDateTable_8777b07b-af47-4770-a4b2-909d7750f240.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Fecha de orden final'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: 22df041f-9d82-4090-a26c-371c8a3d8997
 		summarizeBy: none
 		sourceColumn: final_order_date
+
+		variation Variation
+			isDefault
+			relationship: 1471046b-99eb-4d69-b9f2-1dd9d1369498
+			defaultHierarchy: LocalDateTable_89f7be41-a2f5-46bd-901a-fde92d82ec42.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Días para corregir (registro)'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: 313ecead-58da-4768-8906-98c82ee616a4
+		summarizeBy: sum
 		sourceColumn: days_to_terminate
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Personas afectadas (registro)'
 		dataType: int64
 		isHidden
-		summarizeBy: none
+		lineageTag: 37e45e8c-4167-43ea-8d77-6a4964aca5f0
+		summarizeBy: sum
 		sourceColumn: people_affected
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'Tiene multa'
 		dataType: boolean
+		lineageTag: 73b4d47a-576a-49aa-9739-f9f2034df217
 		summarizeBy: none
 		sourceColumn: has_assessment
 
 	column 'Multa propuesta (registro)'
-		dataType: decimal
-		formatString: $ #
+		dataType: double
 		isHidden
-		summarizeBy: none
+		formatString: $ #
+		lineageTag: 4a7eaeb9-b9ff-4069-bfc5-8d41bc1f6fbd
+		summarizeBy: sum
 		sourceColumn: proposed_penalty
 
+		annotation SummarizationSetBy = Automatic
+
 	column 'Multa vigente (registro)'
-		dataType: decimal
-		formatString: $ #
+		dataType: double
 		isHidden
-		summarizeBy: none
+		formatString: $ #
+		lineageTag: ada4e566-4e44-4dec-aef8-db2e8434c0a0
+		summarizeBy: sum
 		sourceColumn: current_assessment
 
+		annotation SummarizationSetBy = Automatic
+
 	column 'Multa pagada (registro)'
-		dataType: decimal
-		formatString: $ #
+		dataType: double
 		isHidden
-		summarizeBy: none
+		formatString: $ #
+		lineageTag: 4d5137eb-a1c6-4799-905a-73b8d96da866
+		summarizeBy: sum
 		sourceColumn: paid_penalty
+
+		annotation SummarizationSetBy = Automatic
 
 	partition Infracciones = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="fact_violation"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="fact_violation"]}[Data]
+				in
+					Vista
+

@@ -1,46 +1,55 @@
 table PerfilInfraccion
+	lineageTag: 013a3454-aa87-4fc4-b5f0-332b2c2d29a6
 
 	column 'Clave de perfil'
 		dataType: int64
 		isHidden
+		lineageTag: 5c43c1c5-481b-4b67-a185-15394d67a040
 		summarizeBy: none
 		sourceColumn: violation_profile_key
 
 	column 'Significativa y sustancial'
 		dataType: string
+		lineageTag: 11a275d2-fcc4-4e40-b615-5fb690333112
 		summarizeBy: none
 		sourceColumn: significant_and_substantial
 
 	column Negligencia
 		dataType: string
+		lineageTag: e1f099cb-0008-4e5c-92e3-8294406edf07
 		summarizeBy: none
 		sourceColumn: negligence
 
 	column Probabilidad
 		dataType: string
+		lineageTag: 1aea4f7b-574d-458d-9189-f987c58d16a0
 		summarizeBy: none
 		sourceColumn: likelihood
 
 	column 'Lesión esperada por el inspector'
 		dataType: string
+		lineageTag: c9e939d2-034e-45cd-9535-62b45d3c29a2
 		summarizeBy: none
 		sourceColumn: expected_injury
 
 	column 'Tipo de citación'
 		dataType: string
+		lineageTag: 797da1fc-28c3-4a20-b0e9-a421b188da4a
 		summarizeBy: none
 		sourceColumn: citation_type
 
 	column 'Sección de la ley minera'
 		dataType: string
+		lineageTag: 95f1e0b1-329f-4696-81e8-e8318fe0b305
 		summarizeBy: none
 		sourceColumn: mine_act_section
 
 	partition PerfilInfraccion = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_violation_profile"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_violation_profile"]}[Data]
+				in
+					Vista
+

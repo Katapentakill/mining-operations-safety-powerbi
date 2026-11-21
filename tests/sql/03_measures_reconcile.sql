@@ -52,16 +52,4 @@ JOIN (
     GROUP BY y.MINE_ID, y.SUBUNIT_CD, y.CALENDAR_YR
 ) yy ON yy.MINE_ID = qq.MINE_ID AND yy.SUBUNIT_CD = qq.SUBUNIT_CD AND yy.CALENDAR_YR = qq.CAL_YR
 WHERE qq.q_hours <> yy.y_hours
-HAVING COUNT(*) > 0
-UNION ALL
--- Chile context: non-aggregate columns add up to TOTAL CHILE for every month
-SELECT 'Chile production: faenas add up to TOTAL CHILE', CONCAT(COUNT(*), ' months off by more than 0.05 kt')
-FROM (
-    SELECT p.date_key,
-           SUM(CASE WHEN p.is_aggregate = 0 THEN p.kt_fine_cu ELSE 0 END) AS parts,
-           MAX(CASE WHEN p.faena = 'TOTAL CHILE' THEN p.kt_fine_cu END) AS total
-    FROM dwh.fact_cu_production_month p
-    GROUP BY p.date_key
-) m
-WHERE ABS(m.parts - m.total) > 0.05
 HAVING COUNT(*) > 0;

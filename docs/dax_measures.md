@@ -1,6 +1,6 @@
 # DAX measures
 
-37 measures, stored in the fact tables and grouped in display folders. The source of truth is the TMDL in `powerbi/MiningOperationsSafety.SemanticModel/definition/tables/`.
+34 measures, stored in the fact tables and grouped in display folders. The source of truth is the TMDL in `powerbi/MiningOperationsSafety.SemanticModel/definition/tables/`.
 
 | Table | Folder | Measures |
 |---|---|---|
@@ -11,8 +11,6 @@
 | Infracciones | 2 Multas | Infracciones con multa, Multa propuesta, Multa vigente, Multa pagada, % de multa pagada, Multa promedio |
 | Inspecciones | Inspecciones | Inspecciones, Horas de inspección, Horas en sitio, Infracciones por 100 h de inspección |
 | Plantilla | Plantilla | Horas trabajadas, Empleados promedio, Horas por empleado |
-| PrecioCobre | Contexto Chile | Precio BML promedio (cUS$/lb), Precio COMEX promedio (cUS$/lb) |
-| ProduccionCobre | Contexto Chile | Producción de cobre de mina (kt) |
 
 ## The main rate
 

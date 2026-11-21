@@ -1,38 +1,45 @@
 table AreaTrabajo
+	lineageTag: 777df671-f6c4-4cce-ad76-f3b657c4cb04
 
 	column 'Clave de área'
 		dataType: int64
 		isHidden
+		lineageTag: 52b603ab-1aca-454e-af51-3b664f9fe3bf
 		summarizeBy: none
 		sourceColumn: work_area_key
 
 	column 'Código de área'
 		dataType: string
 		isHidden
+		lineageTag: b737d2a0-c32d-4991-abc7-dd770994f78c
 		summarizeBy: none
 		sourceColumn: work_area_code
 
 	column 'Área (descripción MSHA)'
 		dataType: string
 		isHidden
+		lineageTag: b1c22887-7a7b-49bd-a866-30b38a48f836
 		summarizeBy: none
 		sourceColumn: work_area_desc
 
 	column 'Área de trabajo'
 		dataType: string
+		lineageTag: 0ebb135a-0e6d-4c5f-a262-b7ed63c7e650
 		summarizeBy: none
 		sourceColumn: work_area_es
 
 	column 'Grupo de área'
 		dataType: string
+		lineageTag: 64922fcc-9f3d-4570-ac79-00035447a786
 		summarizeBy: none
 		sourceColumn: work_area_group
 
 	partition AreaTrabajo = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_work_area"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_work_area"]}[Data]
+				in
+					Vista
+

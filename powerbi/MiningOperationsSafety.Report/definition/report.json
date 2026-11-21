@@ -4,9 +4,9 @@
     "customTheme": {
       "name": "CopperMining.json",
       "reportVersionAtImport": {
-        "visual": "2.13.0",
-        "report": "3.3.0",
-        "page": "2.1.0"
+        "visual": "2.14.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
       },
       "type": "RegisteredResources"
     }
@@ -23,5 +23,8 @@
         }
       ]
     }
-  ]
+  ],
+  "settings": {
+    "useEnhancedTooltips": false
+  }
 }

@@ -22,25 +22,9 @@ relationship 2680a962-9092-56f3-a4c1-caefa0974b20
 	fromColumn: Accidentes.accident_type_key
 	toColumn: TipoAccidente.'Clave de tipo'
 
-relationship 41b7ca5b-c09a-5dbd-99f9-a5bfef43eb87
-	fromColumn: Accidentes.occupation_key
-	toColumn: Ocupacion.'Clave de ocupación'
-
 relationship 8e667ea6-ee31-5a8e-a270-4c6f23622b5e
 	fromColumn: Accidentes.body_part_key
 	toColumn: ParteCuerpo.'Clave de parte'
-
-relationship 0bf4121f-f968-5993-9142-f9c1cb2ec5b3
-	fromColumn: Accidentes.nature_injury_key
-	toColumn: NaturalezaLesion.'Clave de naturaleza'
-
-relationship 9ee07927-64af-58dd-85aa-975aee90ee1f
-	fromColumn: Accidentes.activity_key
-	toColumn: Actividad.'Clave de actividad'
-
-relationship 977350c5-f3c4-5660-9f85-10b2976d131b
-	fromColumn: Accidentes.equipment_key
-	toColumn: Equipo.'Clave de equipo'
 
 relationship 7d9b20a6-4b2b-5db6-9642-bafd7143d2f9
 	fromColumn: Infracciones.date_key
@@ -86,10 +70,47 @@ relationship 63c8b8c6-5a57-55eb-aa3b-6185366190c1
 	fromColumn: Plantilla.work_area_key
 	toColumn: AreaTrabajo.'Clave de área'
 
-relationship b0873143-9c37-5859-bab2-89ab867d2bac
-	fromColumn: PrecioCobre.date_key
-	toColumn: Fecha.'Clave de fecha'
+relationship bf80c6ec-5c76-4267-8163-95456fda1c77
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Mina.'Fecha de estado'
+	toColumn: LocalDateTable_750e7e73-c3bf-4aca-b1b0-82772f588c62.Date
 
-relationship 9bcae2e9-6348-516a-90c2-1179d2660c87
-	fromColumn: ProduccionCobre.date_key
-	toColumn: Fecha.'Clave de fecha'
+relationship c6d1aebb-33f2-46f2-9784-817addabd502
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Accidentes.'Fecha del accidente'
+	toColumn: LocalDateTable_7e37af42-df19-48ea-95df-46d920243409.Date
+
+relationship eac78590-d8c9-4b57-834c-474bd48216a6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Accidentes.'Fecha de retorno al trabajo'
+	toColumn: LocalDateTable_40dda6f7-0381-428b-b4ef-2edae703de9d.Date
+
+relationship f58cee85-a46a-4b04-b80a-54e2d9d40bd6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Infracciones.'Fecha de emisión'
+	toColumn: LocalDateTable_d84125a4-b822-4672-a4ec-80b67ffdcd53.Date
+
+relationship 591c0135-90fb-4046-89fd-73d2c59b7909
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Infracciones.'Fecha de ocurrencia'
+	toColumn: LocalDateTable_ff3ebb39-0b0a-44dc-b632-3906a7f56b4f.Date
+
+relationship 694c6832-3fc1-46f8-a289-2e72a4996089
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Infracciones.'Fecha de término'
+	toColumn: LocalDateTable_8777b07b-af47-4770-a4b2-909d7750f240.Date
+
+relationship 1471046b-99eb-4d69-b9f2-1dd9d1369498
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Infracciones.'Fecha de orden final'
+	toColumn: LocalDateTable_89f7be41-a2f5-46bd-901a-fde92d82ec42.Date
+
+relationship ae83de04-3318-47e7-8f4c-4c15caccb5d0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Inspecciones.'Fecha de inicio'
+	toColumn: LocalDateTable_137ca0a2-0be5-4c47-81f3-41427ad8b1b4.Date
+
+relationship b264f020-c1be-4abb-9401-bde5d10d7c44
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Inspecciones.'Fecha de término'
+	toColumn: LocalDateTable_f153dcdf-79f2-4107-bc38-15fdd580e78b.Date

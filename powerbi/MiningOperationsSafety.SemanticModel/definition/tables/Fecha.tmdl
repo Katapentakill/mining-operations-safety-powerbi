@@ -1,77 +1,96 @@
 table Fecha
+	lineageTag: fd06d36f-8930-43f6-bd2d-8dd942025a9c
 	dataCategory: Time
 
 	column 'Clave de fecha'
 		dataType: int64
 		isHidden
+		lineageTag: 062f3551-f998-4fdb-b3cb-d516391023c3
 		summarizeBy: none
 		sourceColumn: date_key
 
 	column Fecha
 		dataType: dateTime
-		formatString: dd/MM/yyyy
 		isKey
+		formatString: dd/MM/yyyy
+		lineageTag: d424128a-76f3-4e97-ab4a-ef71ae51d905
 		summarizeBy: none
 		sourceColumn: calendar_date
 
-	column 'Año'
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Año
 		dataType: int64
 		formatString: 0
+		lineageTag: 59a21387-0b8c-4222-8d06-cc5393f06344
 		summarizeBy: none
 		sourceColumn: calendar_year
 
 	column 'Trimestre (nº)'
 		dataType: int64
 		isHidden
+		lineageTag: af6d764d-9e2b-416c-af45-dff8417e83b4
 		summarizeBy: none
 		sourceColumn: calendar_quarter
 
-	column 'Año-Trimestre'
+	column Año-Trimestre
 		dataType: string
+		lineageTag: 4121697d-d6a0-4fd5-9828-1cc5d5b52cac
 		summarizeBy: none
 		sourceColumn: year_quarter
 		sortByColumn: 'Inicio de trimestre'
 
 	column 'Inicio de trimestre'
 		dataType: dateTime
-		formatString: dd/MM/yyyy
 		isHidden
+		formatString: dd/MM/yyyy
+		lineageTag: 0bc376e2-65d7-4952-8396-c2878baa24fd
 		summarizeBy: none
 		sourceColumn: quarter_start
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Mes (nº)'
 		dataType: int64
 		isHidden
+		lineageTag: 4ff1e000-dcc7-485e-8c2d-dff7d0694f83
 		summarizeBy: none
 		sourceColumn: calendar_month
 
 	column Mes
 		dataType: string
+		lineageTag: c72cca85-7d1e-4039-892a-5bc30cd0694f
 		summarizeBy: none
 		sourceColumn: month_name_es
 		sortByColumn: 'Mes (nº)'
 
-	column 'Año-Mes'
+	column Año-Mes
 		dataType: string
+		lineageTag: 2bde09c1-d62d-4d71-9bf8-a62fd24bdbb0
 		summarizeBy: none
 		sourceColumn: year_month
 		sortByColumn: 'Inicio de mes'
 
 	column 'Inicio de mes'
 		dataType: dateTime
-		formatString: dd/MM/yyyy
 		isHidden
+		formatString: dd/MM/yyyy
+		lineageTag: 3968fc3a-fd87-4145-b333-08dcfde27ab6
 		summarizeBy: none
 		sourceColumn: month_start
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Día de la semana (nº)'
 		dataType: int64
 		isHidden
+		lineageTag: 0f8fb897-7d16-4fa3-8e60-da70e72ff4d4
 		summarizeBy: none
 		sourceColumn: weekday_number
 
 	column 'Día de la semana'
 		dataType: string
+		lineageTag: 6891308e-11d4-4534-b6fb-a7ddf9b6a637
 		summarizeBy: none
 		sourceColumn: weekday_name_es
 		sortByColumn: 'Día de la semana (nº)'
@@ -79,33 +98,44 @@ table Fecha
 	column 'Año fiscal (MSHA)'
 		dataType: int64
 		formatString: 0
+		lineageTag: d6ab41cf-bd7b-416d-931e-2240e44ec8c2
 		summarizeBy: none
 		sourceColumn: fiscal_year
 
 	column 'Trimestre fiscal'
 		dataType: int64
+		lineageTag: 3660c5c5-7a50-4415-b17e-841218805a9c
 		summarizeBy: none
 		sourceColumn: fiscal_quarter
 
 	column 'Con horas disponibles'
 		dataType: boolean
 		isHidden
+		lineageTag: b23f17e7-f36f-47a5-8a30-1f63f9fa8007
 		summarizeBy: none
 		sourceColumn: has_hours_data
 
 	hierarchy 'Año > Trimestre > Mes'
-		level 'Año'
-			column: 'Año'
-		level 'Año-Trimestre'
-			column: 'Año-Trimestre'
-		level 'Año-Mes'
-			column: 'Año-Mes'
+		lineageTag: f8f95bb0-0336-4674-8b93-6b01bf7ccece
+
+		level Año
+			lineageTag: 6698590a-e0e1-4e9a-a325-e82e18c0e7c9
+			column: Año
+
+		level Año-Trimestre
+			lineageTag: f364cb2a-bb8a-491b-806d-6c16b2a1c66e
+			column: Año-Trimestre
+
+		level Año-Mes
+			lineageTag: b81318bc-1e74-47ef-96cc-b163b361a960
+			column: Año-Mes
 
 	partition Fecha = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_date"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_date"]}[Data]
+				in
+					Vista
+

@@ -1,0 +1,53 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "accidentes.tasa_de_incidencia_por_200_000_h": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Accidentes",
+			          "ConceptualProperty": "Tasa de incidencia (por 200.000 h)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Incidencia (por 200.000 h)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "accidentes.tasa_de_días_perdidos_por_200_000_h": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Accidentes",
+			          "ConceptualProperty": "Tasa de días perdidos (por 200.000 h)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Días perdidos (por 200.000 h)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

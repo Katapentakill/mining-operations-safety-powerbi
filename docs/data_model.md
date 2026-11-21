@@ -10,11 +10,7 @@ erDiagram
     dim_work_area ||--o{ fact_accident : work_area_key
     dim_injury_degree ||--o{ fact_accident : injury_degree_key
     dim_accident_type ||--o{ fact_accident : accident_type_key
-    dim_occupation ||--o{ fact_accident : occupation_key
     dim_body_part ||--o{ fact_accident : body_part_key
-    dim_nature_injury ||--o{ fact_accident : nature_injury_key
-    dim_activity ||--o{ fact_accident : activity_key
-    dim_equipment ||--o{ fact_accident : equipment_key
     fact_accident ||--|| accident_narrative : accident_key
 
     dim_date ||--o{ fact_violation : date_key
@@ -30,9 +26,6 @@ erDiagram
     dim_date ||--o{ fact_workforce : date_key
     dim_mine ||--o{ fact_workforce : mine_key
     dim_work_area ||--o{ fact_workforce : work_area_key
-
-    dim_date ||--o{ fact_cu_price_month : date_key
-    dim_date ||--o{ fact_cu_production_month : date_key
 ```
 
 ## Grains
@@ -43,8 +36,6 @@ erDiagram
 | `fact_violation` | one violation, with its penalty on the same row (`has_assessment` tells if a penalty exists) |
 | `fact_inspection` | one inspection event |
 | `fact_workforce` | one mine, work area and calendar quarter |
-| `fact_cu_price_month` | one month (Chile context) |
-| `fact_cu_production_month` | one month and mine or company column (Chile context) |
 
 ## Dimensions worth knowing
 
@@ -62,4 +53,4 @@ erDiagram
 | `dwh` | typed star schema, rebuilt by `dwh.usp_load_all` in one transaction |
 | `rpt` | one view per `dwh` table; the only schema the `pbi_reader` login can read |
 
-The Chile context tables are not related to `dim_mine`: they cover every Chilean company.
+Only dimensions that the report shows are kept: occupation, nature of injury, activity and equipment were dropped (decision 24).

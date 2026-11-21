@@ -124,12 +124,6 @@ def main() -> int:
     write(fx / "mines_prod_yearly.csv", h_y, yearly_out)
     write(fx / "mines_prod_quarterly.csv", h_q, quarterly_out)
     write(fx / "controller_operator_history.csv", h_c, hist_out)
-
-    ctx = DST / "chile_context"
-    h_p, price = read(SRC / "chile_context" / "cu_price_monthly.csv")
-    write(ctx / "cu_price_monthly.csv", h_p, [r for r in price if "1999-12-01" <= r["month"] <= "2000-02-01" or r["month"] >= "2023-01-01"])
-    h_k, prod = read(SRC / "chile_context" / "cu_production_monthly.csv")
-    write(ctx / "cu_production_monthly.csv", h_k, [r for r in prod if "2024-01-01" <= r["month"] <= "2024-03-01"])
     return 0
 
 

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "MiningOperationsSafety"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3c8bd1bd-2afc-4d41-95a5-5744b8801433"
+  }
+}

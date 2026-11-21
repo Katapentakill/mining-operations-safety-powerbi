@@ -1,49 +1,58 @@
 table GradoLesion
+	lineageTag: d9110c56-1124-40c2-a021-d5ff107cc160
 
 	column 'Clave de grado'
 		dataType: int64
 		isHidden
+		lineageTag: b006b82a-5d3f-40cf-9a6d-94533aa828a4
 		summarizeBy: none
 		sourceColumn: injury_degree_key
 
 	column 'Código de grado'
 		dataType: string
 		isHidden
+		lineageTag: 96981a85-ec68-41fd-86d7-568153dcd569
 		summarizeBy: none
 		sourceColumn: degree_code
 
 	column 'Grado (descripción MSHA)'
 		dataType: string
 		isHidden
+		lineageTag: 2eb34f49-7118-4673-a953-8791eb5f8ebf
 		summarizeBy: none
 		sourceColumn: degree_desc
 
 	column 'Grado de lesión'
 		dataType: string
+		lineageTag: 3f53e868-b0bd-4eb3-bd37-d0d4e4269bb7
 		summarizeBy: none
 		sourceColumn: degree_es
 		sortByColumn: 'Código de grado'
 
 	column 'Es fatalidad'
 		dataType: boolean
+		lineageTag: 3319c2e8-6450-4780-ad1d-9f7d89a4260d
 		summarizeBy: none
 		sourceColumn: is_fatality
 
 	column 'Con tiempo perdido'
 		dataType: boolean
+		lineageTag: 27a8cb3c-e323-4617-830d-d7b5eaccb406
 		summarizeBy: none
 		sourceColumn: is_lost_time
 
 	column 'Cuenta como lesión'
 		dataType: boolean
+		lineageTag: ee19937c-e06d-4fdb-be46-40f14ba72b03
 		summarizeBy: none
 		sourceColumn: counts_as_injury
 
 	partition GradoLesion = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_injury_degree"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_injury_degree"]}[Data]
+				in
+					Vista
+

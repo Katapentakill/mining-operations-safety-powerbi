@@ -19,18 +19,12 @@ BEGIN
         DELETE FROM dwh.fact_violation;
         DELETE FROM dwh.fact_inspection;
         DELETE FROM dwh.fact_workforce;
-        DELETE FROM dwh.fact_cu_production_month;
-        DELETE FROM dwh.fact_cu_price_month;
         DELETE FROM dwh.dim_mine;
         DELETE FROM dwh.dim_company;
         DELETE FROM dwh.dim_work_area;
         DELETE FROM dwh.dim_injury_degree;
         DELETE FROM dwh.dim_accident_type;
-        DELETE FROM dwh.dim_occupation;
         DELETE FROM dwh.dim_body_part;
-        DELETE FROM dwh.dim_nature_injury;
-        DELETE FROM dwh.dim_activity;
-        DELETE FROM dwh.dim_equipment;
         DELETE FROM dwh.dim_standard;
         DELETE FROM dwh.dim_violation_profile;
         DELETE FROM dwh.dim_date;
@@ -151,42 +145,18 @@ BEGIN
         IF NOT EXISTS (SELECT 1 FROM dwh.dim_injury_degree WHERE degree_code = '?')
             INSERT dwh.dim_injury_degree VALUES ('?', N'NO VALUE FOUND', N'Sin valor', 0, 0, 0);
 
-        -- ---------------------------------------------------------------- simple code dimensions
+        -- ---------------------------------------------------------------- simple code dimensions (only those the report shows)
         INSERT dwh.dim_accident_type (accident_type_code, accident_type_desc)
         SELECT COALESCE(NULLIF(ACCIDENT_TYPE_CD, ''), '?'), MAX(COALESCE(NULLIF(ACCIDENT_TYPE, ''), N'No value found'))
         FROM stg.accidents GROUP BY COALESCE(NULLIF(ACCIDENT_TYPE_CD, ''), '?');
         IF NOT EXISTS (SELECT 1 FROM dwh.dim_accident_type WHERE accident_type_code = '?')
             INSERT dwh.dim_accident_type VALUES ('?', N'No value found');
 
-        INSERT dwh.dim_occupation (occupation_code, occupation_desc)
-        SELECT COALESCE(NULLIF(OCCUPATION_CD, ''), '?'), MAX(COALESCE(NULLIF(OCCUPATION, ''), N'No value found'))
-        FROM stg.accidents GROUP BY COALESCE(NULLIF(OCCUPATION_CD, ''), '?');
-        IF NOT EXISTS (SELECT 1 FROM dwh.dim_occupation WHERE occupation_code = '?')
-            INSERT dwh.dim_occupation VALUES ('?', N'No value found');
-
         INSERT dwh.dim_body_part (body_part_code, body_part_desc)
         SELECT COALESCE(NULLIF(INJ_BODY_PART_CD, ''), '?'), MAX(COALESCE(NULLIF(INJ_BODY_PART, ''), N'No value found'))
         FROM stg.accidents GROUP BY COALESCE(NULLIF(INJ_BODY_PART_CD, ''), '?');
         IF NOT EXISTS (SELECT 1 FROM dwh.dim_body_part WHERE body_part_code = '?')
             INSERT dwh.dim_body_part VALUES ('?', N'No value found');
-
-        INSERT dwh.dim_nature_injury (nature_injury_code, nature_injury_desc)
-        SELECT COALESCE(NULLIF(NATURE_INJURY_CD, ''), '?'), MAX(COALESCE(NULLIF(NATURE_INJURY, ''), N'No value found'))
-        FROM stg.accidents GROUP BY COALESCE(NULLIF(NATURE_INJURY_CD, ''), '?');
-        IF NOT EXISTS (SELECT 1 FROM dwh.dim_nature_injury WHERE nature_injury_code = '?')
-            INSERT dwh.dim_nature_injury VALUES ('?', N'No value found');
-
-        INSERT dwh.dim_activity (activity_code, activity_desc)
-        SELECT COALESCE(NULLIF(ACTIVITY_CD, ''), '?'), MAX(COALESCE(NULLIF(ACTIVITY, ''), N'No value found'))
-        FROM stg.accidents GROUP BY COALESCE(NULLIF(ACTIVITY_CD, ''), '?');
-        IF NOT EXISTS (SELECT 1 FROM dwh.dim_activity WHERE activity_code = '?')
-            INSERT dwh.dim_activity VALUES ('?', N'No value found');
-
-        INSERT dwh.dim_equipment (equipment_code, equipment_desc)
-        SELECT COALESCE(NULLIF(MINING_EQUIP_CD, ''), '?'), MAX(COALESCE(NULLIF(MINING_EQUIP, ''), N'No value found'))
-        FROM stg.accidents GROUP BY COALESCE(NULLIF(MINING_EQUIP_CD, ''), '?');
-        IF NOT EXISTS (SELECT 1 FROM dwh.dim_equipment WHERE equipment_code = '?')
-            INSERT dwh.dim_equipment VALUES ('?', N'No value found');
 
         -- ---------------------------------------------------------------- dim_standard and dim_violation_profile
         INSERT dwh.dim_standard (part_section, cfr_part)
@@ -207,14 +177,13 @@ BEGIN
 
         -- ---------------------------------------------------------------- fact_accident
         INSERT dwh.fact_accident (document_no, mine_key, date_key, company_key, work_area_key, injury_degree_key,
-                                  accident_type_key, occupation_key, body_part_key, nature_injury_key, activity_key,
-                                  equipment_key, accident_date, accident_hour, shift_start_hour, is_contractor,
+                                  accident_type_key, body_part_key, accident_date, accident_hour, shift_start_hour, is_contractor,
                                   is_target_company_era, injuries_reported, days_lost, days_restricted, schedule_charge,
                                   total_experience_years, mine_experience_years, job_experience_years, return_to_work_date)
         SELECT a.DOCUMENT_NO, m.mine_key,
                YEAR(d.v) * 10000 + MONTH(d.v) * 100 + DAY(d.v),
-               co.company_key, wa.work_area_key, ind.injury_degree_key, aty.accident_type_key, oc.occupation_key,
-               bp.body_part_key, ni.nature_injury_key, ac.activity_key, eq.equipment_key,
+               co.company_key, wa.work_area_key, ind.injury_degree_key, aty.accident_type_key,
+               bp.body_part_key,
                d.v,
                CASE WHEN a.ACCIDENT_TIME LIKE '[0-2][0-9][0-5][0-9]' AND LEFT(a.ACCIDENT_TIME, 2) < '24'
                     THEN CONVERT(TINYINT, LEFT(a.ACCIDENT_TIME, 2)) END,
@@ -237,11 +206,7 @@ BEGIN
         JOIN dwh.dim_work_area wa ON wa.work_area_code = COALESCE(NULLIF(a.SUBUNIT_CD, ''), '?')
         JOIN dwh.dim_injury_degree ind ON ind.degree_code = COALESCE(NULLIF(a.DEGREE_INJURY_CD, ''), '?')
         JOIN dwh.dim_accident_type aty ON aty.accident_type_code = COALESCE(NULLIF(a.ACCIDENT_TYPE_CD, ''), '?')
-        JOIN dwh.dim_occupation oc ON oc.occupation_code = COALESCE(NULLIF(a.OCCUPATION_CD, ''), '?')
-        JOIN dwh.dim_body_part bp ON bp.body_part_code = COALESCE(NULLIF(a.INJ_BODY_PART_CD, ''), '?')
-        JOIN dwh.dim_nature_injury ni ON ni.nature_injury_code = COALESCE(NULLIF(a.NATURE_INJURY_CD, ''), '?')
-        JOIN dwh.dim_activity ac ON ac.activity_code = COALESCE(NULLIF(a.ACTIVITY_CD, ''), '?')
-        JOIN dwh.dim_equipment eq ON eq.equipment_code = COALESCE(NULLIF(a.MINING_EQUIP_CD, ''), '?');
+        JOIN dwh.dim_body_part bp ON bp.body_part_code = COALESCE(NULLIF(a.INJ_BODY_PART_CD, ''), '?');
 
         INSERT dwh.accident_narrative (accident_key, narrative)
         SELECT f.accident_key, NULLIF(a.NARRATIVE, '')
@@ -313,23 +278,6 @@ BEGIN
         WHERE d.quarter_start <= (SELECT MAX(dd.calendar_date) FROM dwh.dim_date dd
                                   WHERE dd.date_key = (SELECT MAX(date_key) FROM dwh.fact_workforce));
 
-        -- ---------------------------------------------------------------- Chile context (Cochilco)
-        INSERT dwh.fact_cu_price_month (date_key, month_start, bml_cusd_lb, comex_cusd_lb)
-        SELECT YEAR(x.m) * 10000 + MONTH(x.m) * 100 + 1, x.m,
-               TRY_CONVERT(DECIMAL(9,3), NULLIF(p.bml_cusd_lb, '')),
-               TRY_CONVERT(DECIMAL(9,3), NULLIF(p.comex_cusd_lb, ''))
-        FROM stg.cu_price_monthly p
-        CROSS APPLY (SELECT m = TRY_CONVERT(DATE, NULLIF(p.[month], ''), 23)) x
-        WHERE x.m >= @start;
-
-        INSERT dwh.fact_cu_production_month (date_key, month_start, faena, is_aggregate, kt_fine_cu)
-        SELECT YEAR(x.m) * 10000 + MONTH(x.m) * 100 + 1, x.m, p.faena,
-               TRY_CONVERT(BIT, NULLIF(p.is_aggregate, '')),
-               TRY_CONVERT(DECIMAL(12,4), NULLIF(p.kt_fine_cu, ''))
-        FROM stg.cu_production_monthly p
-        CROSS APPLY (SELECT m = TRY_CONVERT(DATE, NULLIF(p.[month], ''), 23)) x
-        WHERE x.m >= @start;
-
         -- ---------------------------------------------------------------- log
         DECLARE @run INT = COALESCE((SELECT MAX(run_id) FROM dwh.etl_log), 0) + 1;
         INSERT dwh.etl_log (run_id, table_name, row_count)
@@ -342,9 +290,7 @@ BEGIN
             ('fact_accident', (SELECT COUNT(*) FROM dwh.fact_accident)),
             ('fact_violation', (SELECT COUNT(*) FROM dwh.fact_violation)),
             ('fact_inspection', (SELECT COUNT(*) FROM dwh.fact_inspection)),
-            ('fact_workforce', (SELECT COUNT(*) FROM dwh.fact_workforce)),
-            ('fact_cu_price_month', (SELECT COUNT(*) FROM dwh.fact_cu_price_month)),
-            ('fact_cu_production_month', (SELECT COUNT(*) FROM dwh.fact_cu_production_month))) t(n, c);
+            ('fact_workforce', (SELECT COUNT(*) FROM dwh.fact_workforce))) t(n, c);
 
         COMMIT TRANSACTION;
     END TRY

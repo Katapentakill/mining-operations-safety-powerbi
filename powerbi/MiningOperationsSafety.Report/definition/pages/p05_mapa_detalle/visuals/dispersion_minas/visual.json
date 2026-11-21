@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "dispersion_minas",
   "position": {
     "x": 220,
@@ -27,7 +27,26 @@
                 }
               },
               "queryRef": "Mina.Mina",
-              "nativeQueryRef": "Mina"
+              "nativeQueryRef": "Mina",
+              "active": true
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Accidentes"
+                    }
+                  },
+                  "Property": "Accidentes"
+                }
+              },
+              "queryRef": "Accidentes.Accidentes",
+              "nativeQueryRef": "Accidentes"
             }
           ]
         },
@@ -51,6 +70,7 @@
               },
               "queryRef": "Average(Mina.Longitud)",
               "nativeQueryRef": "Promedio de Longitud",
+              "active": true,
               "displayName": "Longitud"
             }
           ]
@@ -76,24 +96,6 @@
               "queryRef": "Average(Mina.Latitud)",
               "nativeQueryRef": "Promedio de Latitud",
               "displayName": "Latitud"
-            }
-          ]
-        },
-        "Size": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Accidentes"
-                    }
-                  },
-                  "Property": "Accidentes"
-                }
-              },
-              "queryRef": "Accidentes.Accidentes",
-              "nativeQueryRef": "Accidentes"
             }
           ]
         }

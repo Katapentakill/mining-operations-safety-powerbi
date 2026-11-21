@@ -37,12 +37,4 @@ BULK INSERT stg.mines_prod_quarterly FROM '/data/load/$(COMPANY_SLUG)/mines_prod
 TRUNCATE TABLE stg.controller_operator_history;
 BULK INSERT stg.controller_operator_history FROM '/data/load/$(COMPANY_SLUG)/controller_operator_history.txt'
     WITH (FIRSTROW = 2, FIELDTERMINATOR = '|', ROWTERMINATOR = '\n', DATAFILETYPE = 'widechar', KEEPNULLS, TABLOCK);
-
-TRUNCATE TABLE stg.cu_price_monthly;
-BULK INSERT stg.cu_price_monthly FROM '/data/load/chile_context/cu_price_monthly.txt'
-    WITH (FIRSTROW = 2, FIELDTERMINATOR = '|', ROWTERMINATOR = '\n', DATAFILETYPE = 'widechar', KEEPNULLS, TABLOCK);
-
-TRUNCATE TABLE stg.cu_production_monthly;
-BULK INSERT stg.cu_production_monthly FROM '/data/load/chile_context/cu_production_monthly.txt'
-    WITH (FIRSTROW = 2, FIELDTERMINATOR = '|', ROWTERMINATOR = '\n', DATAFILETYPE = 'widechar', KEEPNULLS, TABLOCK);
 GO

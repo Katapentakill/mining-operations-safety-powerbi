@@ -1,116 +1,160 @@
 table Mina
+	lineageTag: 259c6317-4bab-4787-9fcb-4eddf20dfcf3
 
 	column 'Clave de mina'
 		dataType: int64
 		isHidden
+		lineageTag: ed873ae3-4528-4b5e-a5c1-a97ab88b73e3
 		summarizeBy: none
 		sourceColumn: mine_key
 
 	column 'ID de mina'
 		dataType: string
+		lineageTag: 24a261a9-7298-424b-bf01-fe0bb5aceba7
 		summarizeBy: none
 		sourceColumn: mine_id
 
 	column Mina
 		dataType: string
+		lineageTag: b5a81e48-8168-4ede-8a5e-2695f72e2164
 		summarizeBy: none
 		sourceColumn: mine_name
 
 	column 'Tipo de mina'
 		dataType: string
+		lineageTag: e8f2d84e-c526-4183-9d27-fdcae822f8d9
 		summarizeBy: none
 		sourceColumn: mine_type
 
 	column 'Estado de la mina'
 		dataType: string
+		lineageTag: b0b907e7-0a2f-4eeb-a570-40c723afc65d
 		summarizeBy: none
 		sourceColumn: mine_status
 
 	column Activa
 		dataType: boolean
+		lineageTag: e888ae63-a2f4-4cfb-95a9-8541ad4bacbf
 		summarizeBy: none
 		sourceColumn: is_active
 
 	column 'Fecha de estado'
 		dataType: dateTime
 		formatString: dd/MM/yyyy
+		lineageTag: 2282ab34-d622-487c-adff-b46e3201aa7d
 		summarizeBy: none
 		sourceColumn: status_date
 
+		variation Variation
+			isDefault
+			relationship: bf80c6ec-5c76-4267-8163-95456fda1c77
+			defaultHierarchy: LocalDateTable_750e7e73-c3bf-4aca-b1b0-82772f588c62.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
 	column 'Mineral principal'
 		dataType: string
+		lineageTag: b68510d9-59ad-48cf-be3d-5813472abd3a
 		summarizeBy: none
 		sourceColumn: commodity
 
 	column 'Estado (EE.UU.)'
 		dataType: string
+		lineageTag: 9ee5bebc-6d55-4539-b830-80e274bff214
 		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: state
 
 	column Condado
 		dataType: string
+		lineageTag: 2f7e132b-b511-45fd-a7cf-40b331400484
 		summarizeBy: none
 		sourceColumn: county
 
 	column Latitud
-		dataType: decimal
+		dataType: double
+		lineageTag: e4c7e63b-201b-4d1b-9260-2bedb249290e
 		dataCategory: Latitude
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: latitude
 
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Longitud
-		dataType: decimal
+		dataType: double
+		lineageTag: 5d913ab5-fc55-4670-ad85-16c4bc1ff894
 		dataCategory: Longitude
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column 'Tiene coordenadas'
 		dataType: boolean
+		lineageTag: 4f07f138-ee41-47c1-a8d5-5369c6f6b671
 		summarizeBy: none
 		sourceColumn: has_coordinates
 
 	column 'Empleados declarados'
 		dataType: int64
 		formatString: #
-		summarizeBy: none
+		lineageTag: d9b458cc-282c-4abc-9bae-b51f71ffd5e0
+		summarizeBy: sum
 		sourceColumn: employees_reported
+
+		annotation SummarizationSetBy = Automatic
 
 	column 'ID controlador actual'
 		dataType: string
 		isHidden
+		lineageTag: 789b05e7-7b14-4df2-9006-ec505ad08d62
 		summarizeBy: none
 		sourceColumn: current_controller_id
 
 	column 'Empresa controladora actual'
 		dataType: string
+		lineageTag: ba8e3028-f72d-40ad-8bd6-52d2e956537a
 		summarizeBy: none
 		sourceColumn: current_controller_name
 
 	column 'ID operador actual'
 		dataType: string
 		isHidden
+		lineageTag: 34b66e75-6e4e-4cf6-846a-0eca737c8d23
 		summarizeBy: none
 		sourceColumn: current_operator_id
 
 	column 'Operador actual'
 		dataType: string
+		lineageTag: b364f65b-c32c-4e32-99ba-ecfc8f7cb25c
 		summarizeBy: none
 		sourceColumn: current_operator_name
 
-	hierarchy 'Ubicación'
+	hierarchy Ubicación
+		lineageTag: 3ff085ec-4e77-4a02-a313-d35e7bf74912
+
 		level 'Estado (EE.UU.)'
+			lineageTag: d48671c0-2e12-437f-94a8-6d612268eb46
 			column: 'Estado (EE.UU.)'
+
 		level Condado
+			lineageTag: d83a217e-f71c-4c71-8e6b-cb93622e1418
 			column: Condado
+
 		level Mina
+			lineageTag: 5ebb4e8b-d812-4a6e-bb92-4043b28a07f8
 			column: Mina
 
 	partition Mina = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_mine"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_mine"]}[Data]
+				in
+					Vista
+

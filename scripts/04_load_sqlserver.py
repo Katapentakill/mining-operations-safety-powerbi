@@ -36,10 +36,6 @@ def prepare_load_files(slug: str) -> None:
     base = common.ROOT / os.environ.get("CSV_DIR", str(common.data_dir(common.load_config()) / "csv"))
     load = common.data_dir(common.load_config()) / "load"
     jobs = [(base / slug / meta["csv"], load / slug / (meta["csv"][:-4] + ".txt")) for meta in common.TABLES.values()]
-    jobs += [
-        (base / "chile_context" / f"{n}.csv", load / "chile_context" / f"{n}.txt")
-        for n in ("cu_price_monthly", "cu_production_monthly")
-    ]
     for src, dst in jobs:
         pipeline.csv_to_load_file(src, dst)
     print(f"-> {len(jobs)} load files written to {load}")

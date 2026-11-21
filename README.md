@@ -7,7 +7,7 @@
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-3A3F44)
 ![Power BI](https://img.shields.io/badge/Power%20BI-PBIP%20%2F%20TMDL-3E8E85)
 
-A reproducible analytics project on **real public data**: workforce hours, accidents, inspections, violations and penalties of the **43 mines of one copper company** (Freeport-McMoRan, US operations, 2000 to 2026), published by the U.S. Mine Safety and Health Administration (MSHA). A Chile copper price and production page (Cochilco) gives regional context.
+A reproducible analytics project on **real public data**: workforce hours, accidents, inspections, violations and penalties of the **43 mines of one copper company** (Freeport-McMoRan, US operations, 2000 to 2026), published by the U.S. Mine Safety and Health Administration (MSHA).
 
 > Español: [README.es.md](README.es.md)
 
@@ -18,14 +18,14 @@ A reproducible analytics project on **real public data**: workforce hours, accid
 | Dimensional modeling (star schema, junk dimension, grains) | [`docs/data_model.md`](docs/data_model.md), [`sql/02_dwh_tables.sql`](sql/02_dwh_tables.sql) |
 | T-SQL ETL: staging, typed load, `TRY_CONVERT`, reload in one transaction | [`sql/03_etl.sql`](sql/03_etl.sql) |
 | SQL Server in Docker, `BULK INSERT`, indexes, reporting views, least-privilege login | [`docker-compose.yml`](docker-compose.yml), [`sql/`](sql) |
-| Power BI as code (PBIP + TMDL), parameters, hierarchies, 37 DAX measures | [`powerbi/`](powerbi), [`docs/dax_measures.md`](docs/dax_measures.md) |
+| Power BI as code (PBIP + TMDL), parameters, hierarchies, 34 DAX measures | [`powerbi/`](powerbi), [`docs/dax_measures.md`](docs/dax_measures.md) |
 | Data profiling and honest limits | [`docs/data_profile.md`](docs/data_profile.md), [`docs/decisions.md`](docs/decisions.md) |
 | Automated tests (unit, SQL reconciliation) and CI | [`tests/`](tests), [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 | Reproducible pipeline (download, filter, load) | [`scripts/`](scripts) |
 
 ## Dashboard
 
-Six report pages: **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours**, **Map and mine detail**, **Chile context**. A side menu moves between pages and one year filter is synced across all of them. A short video will be added later.
+Five report pages: **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours** and **Map and mine detail**. A side menu moves between pages and one year filter is synced across all of them. A short video will be added later.
 
 ![Summary page](docs/img/01-resumen.jpg)
 
@@ -33,8 +33,6 @@ Six report pages: **Summary**, **Accidents**, **Violations and penalties**, **Wo
 |---|---|
 | ![Accidents](docs/img/02-accidentes.jpg) | ![Violations and penalties](docs/img/03-infracciones-multas.jpg) |
 | ![Workforce and hours](docs/img/04-plantilla-horas.jpg) | ![Map and mine detail](docs/img/05-mapa-detalle-mina.jpg) |
-
-![Chile context](docs/img/06-contexto-chile.jpg)
 
 Category names such as accident types or negligence levels come from MSHA in English and are shown as published.
 
@@ -64,7 +62,6 @@ Step by step with troubleshooting (Spanish): [`docs/primera_apertura_power_bi.md
 flowchart LR
     A[MSHA open data<br/>9 pipe-delimited sets] -->|01 download| B[(data/raw)]
     B -->|02 filter by company| C[CSV per company]
-    D[Cochilco Excel] -->|03 tidy| C
     C -->|BULK INSERT| E[stg: text copy]
     E -->|usp_load_all| F[dwh: star schema]
     F --> G[rpt: views]
@@ -76,13 +73,12 @@ The company is one line in [`config.toml`](config.toml) (`company.controller_nam
 ## Data and attribution
 
 - **MSHA Open Government Data Sets** ([source](https://arlweb.msha.gov/OpenGovernmentData/OGIMSHA.asp)). Files are replaced every Friday; this project fixes a snapshot (`data/manifest.json` records dates, sizes and checksums). The MSHA page does not state a license, so **no data is stored in this repository**; the scripts download it. `tests/fixtures/` holds a few hundred rows used only by CI.
-- **Cochilco** (Comisión Chilena del Cobre) Excel files for copper price and production in Chile. Context only: all Chilean companies, not related to the mines above.
-- This is an independent project. It is not affiliated with MSHA, Freeport-McMoRan or Cochilco.
+- This is an independent project. It is not affiliated with MSHA or Freeport-McMoRan.
 
 ### Known limits
 
 - MSHA production columns are zero or empty for these mines, so there is **no tonnage**: the analysis is workforce, safety and compliance.
-- Mines are in the United States (AZ, NM, CO, OR), not Chile.
+- Mines are in the United States (AZ, NM, CO, OR).
 - 2026 is a partial year; workforce hours reach the third quarter, so rates use only quarters with hours.
 - Only 27 of the 43 mines have coordinates.
 
@@ -99,7 +95,7 @@ CI starts SQL Server, loads the small fixtures, runs the SQL assertions (row rec
 
 ```
 config.toml · docker-compose.yml · .env.example
-scripts/   download, filter, Cochilco, staging DDL generator, SQL Server loader, run_all
+scripts/   download, filter, staging DDL generator, SQL Server loader, run_all
 sql/       database, staging, star schema, ETL, views, indexes, security, load scripts
 powerbi/   PBIP project (TMDL model + PBIR report with the Copper Mining theme)
 tests/     unit tests, SQL assertions, fixtures

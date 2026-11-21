@@ -1,32 +1,38 @@
 table Empresa
+	lineageTag: ab117f3b-7df9-4b17-b108-98394acfc6b2
 
 	column 'Clave de empresa'
 		dataType: int64
 		isHidden
+		lineageTag: 6f6c354b-c54d-49d1-ba9b-8be85fb57702
 		summarizeBy: none
 		sourceColumn: company_key
 
 	column 'ID controlador'
 		dataType: string
 		isHidden
+		lineageTag: 70d2759c-3513-404f-b8e4-a43de5aac754
 		summarizeBy: none
 		sourceColumn: controller_id
 
 	column 'Empresa controladora (al momento del evento)'
 		dataType: string
+		lineageTag: d8e7e20b-8404-47f4-b780-fd312747955d
 		summarizeBy: none
 		sourceColumn: controller_name
 
 	column 'Es la empresa analizada'
 		dataType: boolean
+		lineageTag: 39e5e325-9d69-4a29-9e5b-02fc666ab1bc
 		summarizeBy: none
 		sourceColumn: is_target_company
 
 	partition Empresa = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="dim_company"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="dim_company"]}[Data]
+				in
+					Vista
+

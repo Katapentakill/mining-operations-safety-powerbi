@@ -1,73 +1,83 @@
 table Plantilla
+	lineageTag: 7eeab451-4eac-4948-9a31-2c317a37d3fb
 
-	measure 'Horas trabajadas' =
-			SUM(Plantilla[Horas trabajadas (registro)])
+	measure 'Horas trabajadas' = SUM(Plantilla[Horas trabajadas (registro)])
 		formatString: #,0
 		displayFolder: Plantilla
+		lineageTag: da4ddffc-dd2d-425f-b68e-9b7317a5c293
 
-	measure 'Empleados promedio' =
-			AVERAGEX(VALUES(Fecha[Año-Trimestre]), CALCULATE(SUM(Plantilla[Empleados promedio (registro)])))
+	measure 'Empleados promedio' = AVERAGEX(VALUES(Fecha[Año-Trimestre]), CALCULATE(SUM(Plantilla[Empleados promedio (registro)])))
 		formatString: #,0
 		displayFolder: Plantilla
+		lineageTag: 98364fab-9069-49d7-a41b-86c6f78d7643
 
-	measure 'Horas por empleado' =
-			DIVIDE([Horas trabajadas], [Empleados promedio])
+	measure 'Horas por empleado' = DIVIDE([Horas trabajadas], [Empleados promedio])
 		formatString: #,0
 		displayFolder: Plantilla
+		lineageTag: 6e151669-261e-4ecc-99dc-444e28d9ac00
 
 	column 'Clave de plantilla'
 		dataType: int64
 		isHidden
+		lineageTag: eec7cba8-43e1-4efc-a1a3-0dc36c3ccd8c
 		summarizeBy: none
 		sourceColumn: workforce_key
 
 	column mine_key
 		dataType: int64
 		isHidden
+		lineageTag: 639e6fb1-1e1a-4fa0-8afe-28cb4df306b0
 		summarizeBy: none
 		sourceColumn: mine_key
 
 	column work_area_key
 		dataType: int64
 		isHidden
+		lineageTag: cc9d0dbb-1508-45f0-ac12-b45f634f83a0
 		summarizeBy: none
 		sourceColumn: work_area_key
 
 	column date_key
 		dataType: int64
 		isHidden
+		lineageTag: 90511c04-a22e-40e1-985b-7c87627de657
 		summarizeBy: none
 		sourceColumn: date_key
 
 	column 'Año (registro)'
 		dataType: int64
 		isHidden
+		lineageTag: 799646f6-ab35-4de0-9c4d-ab55e4d6543a
 		summarizeBy: none
 		sourceColumn: calendar_year
 
 	column 'Trimestre (registro)'
 		dataType: int64
 		isHidden
+		lineageTag: 4539c000-cd43-45e5-84bd-e6365f7f4118
 		summarizeBy: none
 		sourceColumn: calendar_quarter
 
 	column 'Empleados promedio (registro)'
 		dataType: int64
 		isHidden
+		lineageTag: 829d5269-a333-41cc-98d9-ddd094a94531
 		summarizeBy: none
 		sourceColumn: avg_employees
 
 	column 'Horas trabajadas (registro)'
 		dataType: int64
 		isHidden
+		lineageTag: 25d2496f-74f7-4641-9a4f-8570c640174b
 		summarizeBy: none
 		sourceColumn: hours_worked
 
 	partition Plantilla = m
 		mode: import
 		source =
-			let
-				Source = Sql.Database(Servidor, Base),
-				Vista = Source{[Schema="rpt", Item="fact_workforce"]}[Data]
-			in
-				Vista
+				let
+					Source = Sql.Database(Servidor, Base),
+					Vista = Source{[Schema="rpt", Item="fact_workforce"]}[Data]
+				in
+					Vista
+

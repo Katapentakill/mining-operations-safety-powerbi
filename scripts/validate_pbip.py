@@ -22,6 +22,9 @@ TMDL_START = ("model", "table", "relationship", "expression", "database", "cultu
               "role", "ref", "createOrReplace", "///", "//", "annotation", "dataSource")
 
 
+AUTO_DATE = ("LocalDateTable_", "DateTableTemplate_")
+
+
 def unq(name: str) -> str:
     name = name.strip()
     return name[1:-1].replace("''", "'") if name.startswith("'") and name.endswith("'") else name
@@ -36,15 +39,19 @@ def parse_tables(model_dir: Path) -> dict:
         for line in f.read_text(encoding="utf-8").splitlines():
             if line.startswith("table "):
                 table = unq(line[6:])
+                if table.startswith(AUTO_DATE):  # tables Desktop generates for auto date/time: not ours to check
+                    table = None
+                    continue
                 out[table] = {"view": None, "columns": {}, "measures": {}}
             elif table is None:
                 continue
             elif m := re.match(r"^\tcolumn (.+)$", line):
                 cur = ("column", unq(m.group(1)))
                 out[table]["columns"][cur[1]] = None
-            elif m := re.match(r"^\tmeasure (.+?) =$", line):
+            elif m := re.match(r"^\tmeasure ('(?:[^']|'')+'|\S+) =(?: (.*))?$", line):
+                # Desktop writes short expressions inline ("measure X = expr"); hand-written ones sit on the next lines
                 cur = ("measure", unq(m.group(1)))
-                out[table]["measures"][cur[1]] = []
+                out[table]["measures"][cur[1]] = [m.group(2).strip()] if m.group(2) else []
             elif line.startswith("\t\t\t") and cur and cur[0] == "measure":
                 out[table]["measures"][cur[1]].append(line.strip())
             elif m := re.match(r"^\t\tsourceColumn: (.+)$", line):
@@ -94,6 +101,8 @@ def check_model(errors: list[str]) -> dict:
     rel = (model_dir / "relationships.tmdl").read_text(encoding="utf-8")
     for m in re.finditer(r"(?:from|to)Column: (\S+?)\.(.+)$", rel, re.M):
         t, c = unq(m.group(1)), unq(m.group(2))
+        if t.startswith(AUTO_DATE):
+            continue
         if t not in tables or c not in tables[t]["columns"]:
             errors.append(f"relationship points to missing column {t}.{c}")
     for t, spec in tables.items():
@@ -150,7 +159,7 @@ def main() -> int:
         return 0
     errors: list[str] = []
     for p in sorted(PBI.rglob("*")):
-        if p.is_dir():
+        if p.is_dir() or ".pbi" in p.parts:  # .pbi holds Desktop's local cache; .gitignore keeps it out of Git
             continue
         rel = p.relative_to(ROOT)
         if p.name in FORBIDDEN or p.suffix in FORBIDDEN_SUFFIX:
