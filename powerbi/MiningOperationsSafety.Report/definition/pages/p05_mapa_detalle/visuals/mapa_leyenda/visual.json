@@ -3,10 +3,10 @@
   "name": "mapa_leyenda",
   "position": {
     "x": 232,
-    "y": 640,
+    "y": 152,
     "z": 41,
-    "height": 52,
-    "width": 500,
+    "height": 58,
+    "width": 330,
     "tabOrder": 90
   },
   "visual": {

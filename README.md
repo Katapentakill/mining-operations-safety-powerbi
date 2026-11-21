@@ -27,12 +27,17 @@ A reproducible analytics project on **real public data**: workforce hours, accid
 
 Seven report pages: **About the data** (source, scope, definitions and limits), **Summary**, **Accidents**, **Violations and penalties**, **Workforce and hours**, **Map and mine detail** and **Mine detail** (one mine at a time). Each page has a one-line reading guide, a key figure in the sidebar and, with a single year selected, KPI cards that show the change against the previous year. A side menu moves between pages and one year filter is synced across all of them. A short video will be added later.
 
-![Summary page](docs/img/01-resumen.jpg)
+![Summary page](docs/img/01-resumen.png)
 
 | | |
 |---|---|
-| ![Accidents](docs/img/02-accidentes.jpg) | ![Violations and penalties](docs/img/03-infracciones-multas.jpg) |
-| ![Workforce and hours](docs/img/04-plantilla-horas.jpg) | ![Map and mine detail](docs/img/05-mapa-detalle-mina.jpg) |
+| ![About the data](docs/img/00-acerca-de-los-datos.png) | ![Accidents](docs/img/02-accidentes.png) |
+| ![Violations and penalties](docs/img/03-infracciones-multas.png) | ![Workforce and hours](docs/img/04-plantilla-horas.png) |
+| ![Map and mine detail](docs/img/05-mapa-detalle-mina.png) | ![Mine detail](docs/img/06-detalle-por-mina.png) |
+
+With one year selected (2024) the cards show the change against the previous year:
+
+![Summary for 2024](docs/img/01-resumen-2024.png)
 
 Category names (accident types, negligence levels, mine status) are translated to Spanish in the warehouse; the original MSHA text stays in hidden columns.
 

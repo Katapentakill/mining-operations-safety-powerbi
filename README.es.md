@@ -21,12 +21,17 @@ Proyecto reproducible con **datos públicos reales**: horas trabajadas, accident
 
 Siete páginas: **Acerca de los datos** (fuente, universo, definiciones y límites), **Resumen**, **Accidentes**, **Infracciones y multas**, **Plantilla y horas**, **Mapa y detalle por mina** y **Detalle por mina** (una mina a la vez). Cada página trae una línea de «cómo leerla», un dato clave en la barra lateral y, con un solo año elegido, tarjetas que muestran la variación frente al año anterior. Un menú lateral lleva de una página a otra y un filtro de año se sincroniza entre todas. Un video corto vendrá más adelante.
 
-![Página Resumen](docs/img/01-resumen.jpg)
+![Página Resumen](docs/img/01-resumen.png)
 
 | | |
 |---|---|
-| ![Accidentes](docs/img/02-accidentes.jpg) | ![Infracciones y multas](docs/img/03-infracciones-multas.jpg) |
-| ![Plantilla y horas](docs/img/04-plantilla-horas.jpg) | ![Mapa y detalle por mina](docs/img/05-mapa-detalle-mina.jpg) |
+| ![Acerca de los datos](docs/img/00-acerca-de-los-datos.png) | ![Accidentes](docs/img/02-accidentes.png) |
+| ![Infracciones y multas](docs/img/03-infracciones-multas.png) | ![Plantilla y horas](docs/img/04-plantilla-horas.png) |
+| ![Mapa y detalle por mina](docs/img/05-mapa-detalle-mina.png) | ![Detalle por mina](docs/img/06-detalle-por-mina.png) |
+
+Con un solo año elegido (2024) las tarjetas muestran la variación frente al año anterior:
+
+![Resumen con 2024](docs/img/01-resumen-2024.png)
 
 Los nombres de categorías (tipos de accidente, niveles de negligencia, estado de la mina) se traducen al español en el data warehouse; el texto original de MSHA queda en columnas ocultas.
 

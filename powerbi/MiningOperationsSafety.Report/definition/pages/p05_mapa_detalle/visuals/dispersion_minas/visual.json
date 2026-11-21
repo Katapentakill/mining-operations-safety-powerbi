@@ -295,7 +295,7 @@
             "bubbleSize": {
               "expr": {
                 "Literal": {
-                  "Value": "3D"
+                  "Value": "-60L"
                 }
               }
             }

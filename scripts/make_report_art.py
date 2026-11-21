@@ -39,17 +39,17 @@ MEX = [(-130, 20), (-100, 20), (-104.5, 29.5), (-106.53, 31.78), (-108.21, 31.78
        (-114.81, 32.49), (-130, 32.5)]
 TX = [(-103.0, 37.0), (-90, 37.0), (-90, 20), (-104.5, 29.5), (-106.53, 31.78), (-106.62, 32.0), (-103.06, 32.0)]
 
-LABELS = [  # (text, lon, lat, dx, dy, anchor)
-    ("Morenci", -109.335, 33.063, 12, -10, "start"),
-    ("Sierrita", -111.101, 31.876, -12, 4, "end"),
-    ("Bagdad", -113.169, 34.595, 12, 4, "start"),
-    ("Chino · Tyrone", -108.084, 32.790, 14, 30, "start"),
-    ("Safford", -109.701, 32.955, -12, 22, "end"),
-    ("Henderson", -105.846, 39.771, -14, -10, "end"),
-    ("Climax", -106.184, 39.369, -14, 10, "end"),
+LABELS = [  # (text, lon, lat, dx, dy, anchor): offsets keep the names outside the bubbles
+    ("Morenci", -109.335, 33.063, 6, -100, "middle"),
+    ("Sierrita", -111.101, 31.876, -72, 8, "end"),
+    ("Bagdad", -113.169, 34.595, 0, -66, "middle"),
+    ("Chino · Tyrone", -108.084, 32.790, 62, 92, "start"),
+    ("Safford", -109.701, 32.955, -6, 92, "middle"),
+    ("Henderson", -105.846, 39.771, -62, -22, "end"),
+    ("Climax", -106.184, 39.369, -56, 38, "end"),
 ]
-STATES = [("ARIZONA", -112.4, 34.9), ("NUEVO MÉXICO", -106.55, 35.6), ("COLORADO", -105.9, 38.1)]
-NEIGH = [("UTAH", -111.9, 38.6), ("MÉXICO", -110.0, 31.12)]
+STATES = [("ARIZONA", -111.6, 36.0), ("NUEVO MÉXICO", -106.55, 35.6), ("COLORADO", -105.9, 38.1)]
+NEIGH = [("UTAH", -111.9, 38.6)]
 
 svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="Segoe UI, Arial, sans-serif">',
        f'<rect width="{W}" height="{H}" fill="#E2DCD1"/>',

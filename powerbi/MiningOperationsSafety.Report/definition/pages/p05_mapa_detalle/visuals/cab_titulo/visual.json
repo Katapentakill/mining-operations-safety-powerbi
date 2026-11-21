@@ -3,9 +3,9 @@
   "name": "cab_titulo",
   "position": {
     "x": 220,
-    "y": 4,
+    "y": 0,
     "z": 2004,
-    "height": 46,
+    "height": 58,
     "width": 820,
     "tabOrder": 10
   },
