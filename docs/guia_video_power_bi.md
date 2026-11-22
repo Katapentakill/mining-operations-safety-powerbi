@@ -84,7 +84,8 @@ Qué funciona con eventos sintéticos en el Service: botones del navegador de p�
 ## 6. Estado al cierre de esta nota
 
 - Informe rediseñado y subido a GitHub (`main` = `0e5fdc1`).
-- Sin commit: corrección de `Fatalidades` (`+ 0`) en `Accidentes.tmdl`, el guion `docs/video_guion.md`, esta guía y `tools/video/`. Propuesta: rama `kit-video` (sin MP4).
-- Informe publicado en el área de trabajo **privada** del dueño (21-11-2026). No está público ni compartido.
+- Todo lo anterior (corrección de `Fatalidades`, guion, esta guía y `tools/video/`) está en `main`. Release **v1.0.0** con el `.pbit` publicado el 21-11-2026; el repositorio se hizo **público** el 22-11-2026.
+- Informe publicado en el área de trabajo **privada** del dueño en el Power BI Service (21-11-2026). No está público ni compartido.
+- CI: mientras el repo fue privado, GitHub Actions no arrancaba por un bloqueo de facturación de la cuenta («recent account payments have failed»); no era un error del código.
 - Videos locales en `video_local/` (excluida de git): `video_web_es.mp4` y `video_web_en.mp4` (la versión buena, desde el Service) y los `video_es/en.mp4` de la primera prueba en Desktop; todos con sus `.srt`.
 - Pendiente (Fase 8, solo si el dueño lo pide): subir el video a README/LinkedIn/CV, `.pbit` como release, marcar habilidades «Fuerte», verificar el CI.
