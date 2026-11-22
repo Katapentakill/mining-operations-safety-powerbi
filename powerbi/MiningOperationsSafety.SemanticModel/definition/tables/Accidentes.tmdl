@@ -11,7 +11,7 @@ table Accidentes
 		displayFolder: 1 Accidentes
 		lineageTag: 2438f046-8c89-4e5a-9beb-bbaa2f44247f
 
-	measure Fatalidades = CALCULATE(COUNTROWS(Accidentes), GradoLesion[Es fatalidad] = TRUE())
+	measure Fatalidades = CALCULATE(COUNTROWS(Accidentes), GradoLesion[Es fatalidad] = TRUE()) + 0
 		formatString: #,0
 		displayFolder: 1 Accidentes
 		lineageTag: 5d581cb7-4bfc-4fb9-8af4-520fde8cec62
