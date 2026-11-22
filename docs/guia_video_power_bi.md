@@ -86,6 +86,8 @@ Qué funciona con eventos sintéticos en el Service: botones del navegador de p�
 - Informe rediseñado y subido a GitHub (`main` = `0e5fdc1`).
 - Todo lo anterior (corrección de `Fatalidades`, guion, esta guía y `tools/video/`) está en `main`. Release **v1.0.0** con el `.pbit` publicado el 21-11-2026; el repositorio se hizo **público** el 22-11-2026.
 - Informe publicado en el área de trabajo **privada** del dueño en el Power BI Service (21-11-2026). No está público ni compartido.
-- CI: mientras el repo fue privado, GitHub Actions no arrancaba por un bloqueo de facturación de la cuenta («recent account payments have failed»); no era un error del código.
+- CI: GitHub Actions no arranca ni con el repo público: «your account is locked due to a billing issue» (bloqueo de facturación de la cuenta, no un error del código). Se quitó el badge y los textos dicen que las pruebas corren en local.
+- Videos en YouTube (canal del dueño, **No listados**, 22-11-2026): español https://youtu.be/kPz3GsVUmrg e inglés https://youtu.be/CGQXQ1UF1GM. Se suben con YouTube Studio desde Chrome: la herramienta de carga acepta un archivo por llamada (< 10 MB) y el campo de archivo aparece al abrir «Subir videos».
+- Un canal de YouTube nuevo se crea desde la cuenta de Google del dueño (acepta las condiciones de YouTube): pedir permiso antes.
 - Videos locales en `video_local/` (excluida de git): `video_web_es.mp4` y `video_web_en.mp4` (la versión buena, desde el Service) y los `video_es/en.mp4` de la primera prueba en Desktop; todos con sus `.srt`.
 - Pendiente (Fase 8, solo si el dueño lo pide): subir el video a README/LinkedIn/CV, `.pbit` como release, marcar habilidades «Fuerte», verificar el CI.
