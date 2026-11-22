@@ -82,6 +82,12 @@ Las pruebas reconcilian filas entre origen, almacén y medidas, y revisan fechas
 
 El repositorio incluye además un workflow de GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) que levanta SQL Server, carga unos fixtures pequeños y corre las mismas comprobaciones sin descargar todos los datos de MSHA. Hoy no se ejecuta: GitHub detiene el trabajo al arrancar por un bloqueo de facturación de la cuenta del autor, no por una prueba que falle.
 
+## Complemento en Excel
+
+Las mismas cifras agregadas alimentan también un libro de Excel: un panel con fórmulas vivas y gráficos nativos, una tabla de minas con minigráficos y tablas dinámicas con segmentadores. Se genera desde la base de datos con [`excel/build_excel.py`](excel/build_excel.py); ver [`excel/README.es.md`](excel/README.es.md).
+
+![Panel en Excel](excel/img/01-panel.png)
+
 ## Licencia
 
 MIT para el código y la documentación ([LICENSE](LICENSE)). Los datos pertenecen a quienes los publican.

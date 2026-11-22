@@ -113,6 +113,12 @@ The suite reconciles row counts between source, warehouse and measures, checks d
 
 The repository also includes a GitHub Actions workflow ([`ci.yml`](.github/workflows/ci.yml)) that starts SQL Server, loads the small fixtures and runs the same checks without downloading the full MSHA data. It is not running at the moment: GitHub blocks the job at startup because of a billing lock on the owner's account, not because of a failing test.
 
+## Excel companion
+
+The same aggregated figures also feed an Excel workbook: a dashboard with live formulas and native charts, a mine table with sparklines, and PivotTables with slicers. It is generated from the database by [`excel/build_excel.py`](excel/build_excel.py); see [`excel/README.md`](excel/README.md).
+
+![Excel panel](excel/img/01-panel.png)
+
 ## Repository layout
 
 ```
@@ -120,6 +126,7 @@ config.toml · docker-compose.yml · .env.example
 scripts/   download, filter, staging DDL generator, SQL Server loader, run_all
 sql/       database, staging, star schema, ETL, views, indexes, security, load scripts
 powerbi/   PBIP project (TMDL model + PBIR report with the Copper Mining theme)
+excel/     Excel companion: aggregate queries, workbook generator, screenshots (see excel/README.md)
 assets/    banner and the SVG art of the report (map outline, source badges; `scripts/make_report_art.py`)
 tests/     unit tests, SQL assertions, fixtures
 docs/      data model, profile, decisions, DAX measures, video script, interactive HTML prototype
