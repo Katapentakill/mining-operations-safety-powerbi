@@ -14,7 +14,7 @@ Preparación: informe abierto con la base cargada, Año = Todas, aviso amarillo 
 | 1:25–1:35 | Página **Plantilla** | Horas trabajadas y tasa de incidencia: la seguridad se mide contra la exposición. | Hours worked and incidence rate: safety measured against exposure. |
 | 1:35–1:55 | Página **Mapa**; clic en una burbuja (Morenci) | Morenci concentra el 44 % de los accidentes. Un clic en el mapa abre la ficha de la mina. | Morenci accounts for 44 % of accidents. One click on the map opens the mine card. |
 | 1:55–2:20 | Página **Detalle**; escribir «morenci» en el filtro de mina | En Detalle se busca una mina escribiendo y todo el informe se filtra a ella. | On Detail you search a mine by typing, and the whole page filters to it. |
-| 2:20–2:30 | Volver a **Resumen**, Año = Todas | Modelo en estrella sobre SQL Server, informe como código (PBIP/TMDL), con pruebas y CI. | Star schema on SQL Server, report as code (PBIP/TMDL), with tests and CI. |
+| 2:20–2:30 | Volver a **Resumen**, Año = Todas | Modelo en estrella sobre SQL Server, informe como código (PBIP/TMDL), con pruebas automatizadas. | Star schema on SQL Server, report as code (PBIP/TMDL), with automated tests. |
 
 Notas de producción
 - Música: pista ambiental instrumental al 8 % de volumen, con entrada y salida suaves.

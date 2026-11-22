@@ -15,7 +15,7 @@ Proyecto reproducible con **datos públicos reales**: horas trabajadas, accident
 | SQL Server en Docker, `BULK INSERT`, índices, vistas y usuario de solo lectura | [`docker-compose.yml`](docker-compose.yml), [`sql/`](sql) |
 | Power BI como código (PBIP + TMDL), parámetros, jerarquías y 74 medidas DAX | [`powerbi/`](powerbi), [`docs/dax_measures.md`](docs/dax_measures.md) |
 | Perfilado de datos y límites explicados | [`docs/data_profile.md`](docs/data_profile.md), [`docs/decisions.md`](docs/decisions.md) |
-| Pruebas automáticas y CI | [`tests/`](tests), [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
+| Pruebas automáticas (unitarias y de reconciliación SQL) | [`tests/`](tests), [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 
 ## Informe
 
@@ -74,9 +74,13 @@ Luego abre `powerbi/MiningOperationsSafety.pbip`. Guía paso a paso con solució
 ## Pruebas
 
 ```powershell
-python -m pytest
+python -m pytest          # pruebas unitarias + SQL (las SQL necesitan el contenedor en marcha)
 python scripts/validate_pbip.py
 ```
+
+Las pruebas reconcilian filas entre origen, almacén y medidas, y revisan fechas y seguridad; `validate_pbip.py` comprueba que cada columna, relación, medida y campo de visual del proyecto de Power BI exista. Ambas corren en local.
+
+El repositorio incluye además un workflow de GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) que levanta SQL Server, carga unos fixtures pequeños y corre las mismas comprobaciones sin descargar todos los datos de MSHA. Hoy no se ejecuta: GitHub detiene el trabajo al arrancar por un bloqueo de facturación de la cuenta del autor, no por una prueba que falle.
 
 ## Licencia
 

@@ -80,7 +80,7 @@ Ojo con una trampa: la tabla se llama `Mina`, y en DAX `Mina[col]` se confunde c
 1. **¿Por qué una sola empresa?** Para contar una historia trazable; el código admite otra empresa cambiando `config.toml`.
 2. **¿Qué es la tasa por 200.000 horas?** Lesiones por cada 100 trabajadores a tiempo completo en un año; permite comparar minas de distinto tamaño.
 3. **¿Por qué excluiste a los contratistas de la tasa?** Sus horas no traen mina, así que dividir sería inconsistente; los muestro aparte (22,3% de los accidentes).
-4. **¿Cómo sabes que las cifras están bien?** Pruebas SQL que reconcilian origen, almacén y medidas; CI que las corre en cada cambio.
+4. **¿Cómo sabes que las cifras están bien?** Pruebas SQL que reconcilian origen, almacén y medidas, y una validación del proyecto de Power BI; las corro en local. El workflow de GitHub Actions las correría en cada cambio, pero hoy GitHub no lo ejecuta por un bloqueo de facturación de mi cuenta.
 5. **¿Por qué modelo en estrella?** Es simple de consultar, rápido y deja que Power BI filtre por dimensiones compartidas.
 6. **¿Qué es una dimensión «basura»?** Agrupa atributos pocos y repetidos (negligencia, probabilidad…) en una tabla para no ensanchar el hecho.
 7. **¿Por qué Docker y `BULK INSERT`?** Reproducibilidad: cualquiera levanta el mismo SQL Server con tres comandos y carga millones de filas rápido.

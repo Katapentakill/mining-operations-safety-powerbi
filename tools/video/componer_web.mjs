@@ -38,7 +38,7 @@ const ESC = [
   { de: T('nav Mapa') + VIS, a: T('ranking Morenci') + 0.4, es: 'Morenci concentra el 44 % de los accidentes.', en: 'Morenci accounts for 44 % of accidents.' },
   { de: T('ranking Morenci') + 0.5, a: T('nav Detalle') + VIS - 0.1, es: 'Un clic en el mapa, el ranking o la tabla abre la ficha de la mina.', en: 'One click on the map, ranking or table opens the mine card.' },
   { de: T('nav Detalle') + VIS, a: T('nav Resumen', 1) + VIS - 0.1, es: 'En Detalle se busca una mina escribiendo su nombre y todo el informe se filtra a ella.', en: 'On Detail you search a mine by typing its name and the whole page filters to it.' },
-  { de: T('nav Resumen', 1) + VIS, a: rel(coverEnd.t) + 0.5, es: 'Modelo en estrella sobre SQL Server, informe como código (PBIP/TMDL), con pruebas y CI.', en: 'Star schema on SQL Server, report as code (PBIP/TMDL), with tests and CI.' },
+  { de: T('nav Resumen', 1) + VIS, a: rel(coverEnd.t) + 0.5, es: 'Modelo en estrella sobre SQL Server, informe como código (PBIP/TMDL), con pruebas automatizadas.', en: 'Star schema on SQL Server, report as code (PBIP/TMDL), with automated tests.' },
 ];
 const t2s = (s) => {
   const ms = Math.round(Math.max(0, s) * 1000);

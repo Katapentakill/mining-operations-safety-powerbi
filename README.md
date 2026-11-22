@@ -2,7 +2,6 @@
 
 # Mining Operations & Safety: SQL Server data warehouse + Power BI
 
-[![CI](https://github.com/Katapentakill/mining-operations-safety-powerbi/actions/workflows/ci.yml/badge.svg)](https://github.com/Katapentakill/mining-operations-safety-powerbi/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-B8602A)
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-3A3F44)
 ![Power BI](https://img.shields.io/badge/Power%20BI-PBIP%20%2F%20TMDL-3E8E85)
@@ -20,7 +19,7 @@ A reproducible analytics project on **real public data**: workforce hours, accid
 | SQL Server in Docker, `BULK INSERT`, indexes, reporting views, least-privilege login | [`docker-compose.yml`](docker-compose.yml), [`sql/`](sql) |
 | Power BI as code (PBIP + TMDL), parameters, hierarchies, 74 DAX measures | [`powerbi/`](powerbi), [`docs/dax_measures.md`](docs/dax_measures.md) |
 | Data profiling and honest limits | [`docs/data_profile.md`](docs/data_profile.md), [`docs/decisions.md`](docs/decisions.md) |
-| Automated tests (unit, SQL reconciliation) and CI | [`tests/`](tests), [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
+| Automated tests (unit, SQL reconciliation) | [`tests/`](tests), [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 | Reproducible pipeline (download, filter, load) | [`scripts/`](scripts) |
 
 ## Dashboard
@@ -93,7 +92,7 @@ The company is one line in [`config.toml`](config.toml) (`company.controller_nam
 
 ## Data and attribution
 
-- **MSHA Open Government Data Sets** ([source](https://arlweb.msha.gov/OpenGovernmentData/OGIMSHA.asp)). Files are replaced every Friday; this project fixes a snapshot (`data/manifest.json` records dates, sizes and checksums). The MSHA page does not state a license, so **no data is stored in this repository**; the scripts download it. `tests/fixtures/` holds a few hundred rows used only by CI.
+- **MSHA Open Government Data Sets** ([source](https://arlweb.msha.gov/OpenGovernmentData/OGIMSHA.asp)). Files are replaced every Friday; this project fixes a snapshot (`data/manifest.json` records dates, sizes and checksums). The MSHA page does not state a license, so **no data is stored in this repository**; the scripts download it. `tests/fixtures/` holds a few hundred rows used only by the CI workflow.
 - This is an independent project. It is not affiliated with MSHA or Freeport-McMoRan.
 
 ### Known limits
@@ -103,14 +102,16 @@ The company is one line in [`config.toml`](config.toml) (`company.controller_nam
 - 2026 is a partial year; workforce hours reach the third quarter, so rates use only quarters with hours.
 - Only 27 of the 43 mines have coordinates.
 
-## Tests and CI
+## Tests
 
 ```powershell
 python -m pytest          # unit tests + SQL assertions (SQL ones need the container running)
 python scripts/validate_pbip.py
 ```
 
-CI starts SQL Server, loads the small fixtures, runs the SQL assertions (row reconciliation, dates, measure totals, security) and checks the Power BI project files. It never downloads the full MSHA data.
+The suite reconciles row counts between source, warehouse and measures, checks dates and security, and `validate_pbip.py` checks that every column, relationship, measure and visual field of the Power BI project exists. Both run locally.
+
+The repository also includes a GitHub Actions workflow ([`ci.yml`](.github/workflows/ci.yml)) that starts SQL Server, loads the small fixtures and runs the same checks without downloading the full MSHA data. It is not running at the moment: GitHub blocks the job at startup because of a billing lock on the owner's account, not because of a failing test.
 
 ## Repository layout
 
